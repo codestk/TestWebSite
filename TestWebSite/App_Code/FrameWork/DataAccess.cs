@@ -13,8 +13,8 @@ public class DataAccess
         }
 
         var connecStionstring = Config.ConnectionString();
-        //Db = new DataBaseSql(connecStionstring);
-        Db = new DataBaseFireBird(connecStionstring);
+        Db = new DataBaseSql(connecStionstring);
+        //Db = new DataBaseFireBird(connecStionstring);
     }
 
     //=====================================================================================================

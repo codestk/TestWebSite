@@ -1,6 +1,6 @@
-var STK_USER_FLAGService = {}; 
+var CategoriesService = {}; 
 (function () { 
-    var url = "STK_USER_FLAGService.asmx/"; 
+    var url = "CategoriesService.asmx/"; 
  
     this.SaveColumn =  function (id, column, value) { 
             var result; 
@@ -34,10 +34,10 @@ var STK_USER_FLAGService = {};
         return result; 
     };//GetKeyWordsOneColumn  
    
-  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,EM_FLAG,EM_DES,RederTable_Pagger) {
+  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,CategoryID,CategoryName,RederTable_Pagger) {
         var result;
 
-        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",EM_FLAG:"' + EM_FLAG + '",EM_DES:"' + EM_DES + '"}';
+        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '"}';
         var F = CallServices(url + "Search", tag, true, function (msg) {
             result = msg.d;
 
@@ -45,34 +45,34 @@ var STK_USER_FLAGService = {};
         });
         return result;
     };//Save
-this.Save = function(EM_FLAG,EM_DES)
+this.Save = function(CategoryID,CategoryName)
 {
 
             var result;
 
-            var tag = '{EM_FLAG:"' + EM_FLAG + '",EM_DES:"' + EM_DES + '"}';
+            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '"}';
             var F = CallServices(url + "Save", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Save
-this.Update = function(EM_FLAG,EM_DES)
+this.Update = function(CategoryID,CategoryName)
 {
 
             var result;
 
-            var tag = '{EM_FLAG:"' + EM_FLAG + '",EM_DES:"' + EM_DES + '"}';
+            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '"}';
             var F = CallServices(url + "Update", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Update
-this.Delete = function(EM_FLAG,EM_DES)
+this.Delete = function(CategoryID,CategoryName)
 {
 
             var result;
 
-            var tag = '{EM_FLAG:"' + EM_FLAG + '",EM_DES:"' + EM_DES + '"}';
+            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '"}';
             var F = CallServices(url + "Delete", tag, false, function(msg) {
                 result = msg.d;
             });
@@ -89,14 +89,14 @@ this.Delete = function(EM_FLAG,EM_DES)
         return result;
     };//SelectAll
 
-    this.Select = function (EM_FLAG) {
+    this.Select = function (CategoryID) {
         var result;
 
- var tag = '{EM_FLAG:"'+EM_FLAG+'"}';
+ var tag = '{CategoryID:"'+CategoryID+'"}';
         var F = CallServices(url + "Select", tag, false, function (msg) {
             result = msg.d;
         });
         return result;
     };//SelectAll
-}).apply(STK_USER_FLAGService); 
+}).apply(CategoriesService); 
 

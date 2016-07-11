@@ -1,7 +1,7 @@
-<%@ Page Title="STK_USER_FLAG" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="STK_USER_FLAGListFilter.aspx.cs" Inherits="STK_USER_FLAGFilter" %>
+<%@ Page Title="Categories" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CategoriesListFilter.aspx.cs" Inherits="CategoriesFilter" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">  
 <script src="Module/Pagger/jquery.simplePagination.js"></script>
-<script src="Js_U/STK_USER_FLAG.js"></script>
+<script src="Js_U/Categories.js"></script>
 <script>
 var MsgError = 'UPDATE: An unexpected error has occurred. Please contact your system Administrator.'; 
 var PageIndex = '1';
@@ -22,13 +22,13 @@ starting_top: '50%'
 //ready: function () { alert('Ready'); }, // Callback for Modal open 
 //complete: function () { alert('Closed'); } // Callback for Modal close 
 }); 
-$(".EM_FLAG,.EM_DES").autocomplete({ 
+$(".CategoryID,.CategoryName").autocomplete({ 
  
 source: function (request, response) { 
  
 var column = this.element[0].attributes["data-column-id"].value; 
  
-var data = STK_USER_FLAGService.GetKeyWordsOneColumn(column, request.term); 
+var data = CategoriesService.GetKeyWordsOneColumn(column, request.term); 
  
 response(data); 
 
@@ -85,11 +85,12 @@ $(this).html(columnName);
 });
 }
   function SetTable() {
-var  EM_FLAG =$('#txtEM_FLAG').val();
-var  EM_DES =$('#txtEM_DES').val();
+var  CategoryID =$('#txtCategoryID').val();
+var  CategoryName =$('#txtCategoryName').val();
+var  Picture =$('#txtPicture').val();
 
 $('#modal1').openModal();
-var result = STK_USER_FLAGService.Search(PageIndex, PageSize, SortExpression, SortDirection, EM_FLAG,EM_DES,RederTable_Pagger);
+var result = CategoriesService.Search(PageIndex, PageSize, SortExpression, SortDirection, CategoryID,CategoryName,RederTable_Pagger);
 
 }
 function RederTable_Pagger(result) {
@@ -107,22 +108,30 @@ if (result.hasOwnProperty(key))
 {
 totalRecord = result[key].RecordCount;
 var TrTempplate ="<tr>";
-TrTempplate +="<td class='tdEM_FLAG'>";
-TrTempplate +="<a id='btnShowPopup0' target='_blank' href='STK_USER_FLAGWeb.aspx?Q="+result[key].EM_FLAG+"'";
+TrTempplate +="<td class='tdCategoryID'>";
+TrTempplate +="<a id='btnShowPopup0' target='_blank' href='CategoriesWeb.aspx?Q="+result[key].CategoryID+"'";
 TrTempplate +="title=''>";
-TrTempplate +="<span>"+result[key].EM_FLAG+"</span>";
+TrTempplate +="<span>"+result[key].CategoryID+"</span>";
 TrTempplate +="</a>";
 TrTempplate +="<div style='display: none'>";
-TrTempplate +="<input data-column-id='EM_FLAG' type='text' MaxLength='10' length='10' class='validate truncateEM_FLAG' value='"+result[key].EM_FLAG+"' style='height: unset; margin: 0px;'>";
+TrTempplate +="<input data-column-id='CategoryID' type='text' class='validate ForceNumber ' value='"+result[key].CategoryID+"' style='height: unset; margin: 0px;'>";
 TrTempplate +="<label class='lblSave'>Save</label>";
 TrTempplate +="<label class='lblCancel'>";
 TrTempplate +="Cancel</label>";
 TrTempplate +="</div>";
 TrTempplate +="</td>";
-TrTempplate +="<td class='tdEM_DES'>";
-TrTempplate +="<span class=''>"+result[key].EM_DES+"</span>";
+TrTempplate +="<td class='tdCategoryName'>";
+TrTempplate +="<span class=''>"+result[key].CategoryName+"</span>";
 TrTempplate +="<div style='display: none'>";
-TrTempplate +="<input data-column-id='EM_DES' type='text' MaxLength='50' length='50' class='validate truncateEM_DES' value='"+result[key].EM_DES+"' style='height: unset; margin: 0px;'>";
+TrTempplate +="<input data-column-id='CategoryName' type='text' MaxLength='15' length='15' class='validate truncateCategoryName' value='"+result[key].CategoryName+"' style='height: unset; margin: 0px;'>";
+TrTempplate +="<label class='lblSave'>Save</label>";
+TrTempplate +="<label class='lblCancel'>";
+TrTempplate +="Cancel</label>";
+TrTempplate +="</div>";
+TrTempplate +="</td>";
+TrTempplate +="<td class='tdPicture'>";
+TrTempplate +="<span>"+result[key].Picture+"</span>";
+TrTempplate +="<div style='display: none'>";
 TrTempplate +="<label class='lblSave'>Save</label>";
 TrTempplate +="<label class='lblCancel'>";
 TrTempplate +="Cancel</label>";
@@ -151,7 +160,7 @@ SetPagger(totalRecord);
 
 //Edit table-------------------------------------------------------------------------------------------- 
 function BindEditTable() {
-$('.tdEM_DES').dblclick(function () { 
+$('.tdCategoryName,.tdPicture').dblclick(function () { 
  
 var sp = $(this).find("span"); 
 var di = $(this).find("div"); 
@@ -180,7 +189,7 @@ var id = $(this).parent().parent().parent().find("span")[0].outerText; //Get fir
 var column = inputBox.attributes['data-column-id'].value;
 var data = inputBox.value;
 
-if (column == "EM_FLAG")
+if (column == "CategoryID")
 {
 if ($(inputBox).val().trim() == '') {
 $(inputBox).addClass("invalid");
@@ -189,7 +198,16 @@ return;
 }
 }
 
-if (column == "EM_DES")
+if (column == "CategoryName")
+{
+if ($(inputBox).val().trim() == '') {
+$(inputBox).addClass("invalid");
+ Materialize.toast('please validate your input.', 3000, 'toastCss');  
+return;
+}
+}
+
+if (column == "Picture")
 {
 if ($(inputBox).val().trim() == '') {
 $(inputBox).addClass("invalid");
@@ -211,7 +229,7 @@ return;
 }
 
 //Save Data To CodeBehide
-var result = STK_USER_FLAGService.SaveColumn(id, column, data);
+var result = CategoriesService.SaveColumn(id, column, data);
 
 //Convert Select
 if (inputBox.tagName == 'SELECT') {
@@ -256,7 +274,7 @@ status = true;
 Data = "1"; 
 } 
  
-var result = STK_USER_FLAGService.SaveColumn(id, column, Data); 
+var result = CategoriesService.SaveColumn(id, column, Data); 
  
 if (result == true) { 
 //Display Message Display Checkbox 
@@ -306,6 +324,7 @@ format: 'd mmmm yyyy'
 //No drop/.
 function ForceNumberTextBox() 
 {
+$("#txtCategoryID").ForceNumericOnly();
 }
 </script> <link href="Module/Search/SearchControl.css" rel="stylesheet" />
  </asp:Content> 
@@ -313,18 +332,18 @@ function ForceNumberTextBox()
  <div class="container"> 
 <div class="row"> 
 <div class="input-field col s6"> 
-<input  id="txtEM_FLAG" type="text" data-column-id="EM_FLAG"  class="validate EM_FLAG"   length="10"  /> 
-<label for="txtEM_FLAG">EM_FLAG </label> 
+<input  id="txtCategoryID" type="text" data-column-id="CategoryID"  CssClass="validate CategoryID" length="9" />
+<label for="txtCategoryID">CategoryID </label> 
  </div> 
 <div class="input-field col s6"> 
-<input  id="txtEM_DES" type="text" data-column-id="EM_DES"  class="validate EM_DES"   length="50"  /> 
-<label for="txtEM_DES">EM_DES </label> 
+<input  id="txtCategoryName" type="text" data-column-id="CategoryName"  class="validate CategoryName"   length="15"  /> 
+<label for="txtCategoryName">CategoryName </label> 
  </div> 
 <div class="input-field col s12"> 
  
 <input id="btnSearch" class="waves-effect waves-light btn center" type="button" value="Search" onclick="Search();" />
 <input id="btnClear" class="waves-effect waves-light btn center" type="button" value="Clear" onclick="javascript: return ClearValue();" />
-<input id ="btnNew" class="waves-effect waves-light btn center" type="button" value="New" onclick="javascript: window.open('STK_USER_FLAGWeb.aspx', '_blank');" />
+<input id ="btnNew" class="waves-effect waves-light btn center" type="button" value="New" onclick="javascript: window.open('CategoriesWeb.aspx', '_blank');" />
 </div> 
 </div> 
 
@@ -332,8 +351,9 @@ function ForceNumberTextBox()
   <table id=tbResult class="  bordered  striped "  style="display: none;" > 
   <thead> 
   <tr> 
-<th style="width:300px;" data-column-id="EM_FLAG"  onclick="Sort(this);">EM_FLAG</th>
-<th style="width:300px;" data-column-id="EM_DES"  onclick="Sort(this);">EM_DES</th>
+<th style="width:300px;" data-column-id="CategoryID"  onclick="Sort(this);">CategoryID</th>
+<th style="width:300px;" data-column-id="CategoryName"  onclick="Sort(this);">CategoryName</th>
+<th style="width:300px;" data-column-id="Picture"  onclick="Sort(this);">Picture</th>
 </tr>
 </thead>
 <tbody>

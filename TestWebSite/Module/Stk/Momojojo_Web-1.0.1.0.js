@@ -5,7 +5,7 @@
 // Please see the License.txt file for more information.
 // All other rights reserved.
 //
-// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
 // KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 // PARTICULAR PURPOSE.
@@ -16,20 +16,16 @@
 // <date>19-07-2012</date>
 // <summary>Add Function run Base on Jquery</summary>
 
-
-
- 
 //*======================================Manage Error
 ////page 'SignOff.aspx'
 //function SetAjaxSignOut(page) {
 //    $(document).ajaxError(function (event, request, settings) {
-//       
+//
 //        if (request.status == 401) {
 //            //window.location = 'SignOff.aspx';
 //            window.location = page;
-            
-//        }
 
+//        }
 
 //        //if (props.status === 401) {
 //        //    location.reload();
@@ -37,18 +33,13 @@
 //    });
 //}
 
-
- 
-
 /*========================================================Json==============================================*/
-
 
 /* Create 24/01/2013
  * Json To Text Or Csv
  * objArray = JsonData.d
  */
 function DownloadJSON2CSV(objArray) {
-
     var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
 
     var str = '';
@@ -74,7 +65,6 @@ function DownloadJSON2CSV(objArray) {
         str += trim(line, ',') + '\r\n';
     }
 
-
     //Fix ie
     if (navigator.appName != 'Microsoft Internet Explorer') {
         window.open('data:text/csv;charset=utf-8,' + escape(str));
@@ -84,10 +74,6 @@ function DownloadJSON2CSV(objArray) {
     }
     window.open("data:text/csv;charset=utf-8," + escape(str));
 }
-
-
-
-
 
 /*==============================Html===================================================================================================================================*/
 
@@ -143,10 +129,9 @@ function highlight(css, options) {
 /** 25/02/2013
  * highlight Wording by add  class to txt
  * Texthighlight('cat rat map', 'map', 'higthlight');
- *  
+ *
  **/
 function Texthighlight(txt, words, cssClass) {
-     
     var out = '';
     var caseSensitive = false;
     var wordsOnly = true;
@@ -163,10 +148,6 @@ function Texthighlight(txt, words, cssClass) {
 
     return out;
 }
-
-
-
- 
 
 /*=================================From  Usage=======================================================================================================*/
 
@@ -192,7 +173,6 @@ jQuery.fn.extend({
     }
 });
 
-
 /** input nummerric
 *  Use
 * <INPUT id="txtChar" onkeypress="return isNumberKey(event)" type="text" name="txtChar">
@@ -203,10 +183,6 @@ function isNumberKey(evt) {
 
     return true;
 }
-
-
-
-
 
 /*AutoClose-------------------------------------------------------------------------------------------------------
 * Help
@@ -229,13 +205,10 @@ $.fn.isOf = function (selector) {
     return false;
 }
 
-
 /*=================================================      Control   =====================================================================*/
 //ClearInputValue("#Form1 input[type=text],#Form1 input[type=password],#Form1 input[type=checkbox],#Form1 select,#Form input[type=radio]");
 function ClearInputValue(control) {
-
     $(control).each(function () {
-
         //Update radio
         if (($(this)[0].type == "text") || ($(this)[0].type == "password")) {
             $(this).val('');
@@ -243,51 +216,36 @@ function ClearInputValue(control) {
             this.checked = false;
         } else if ($(this)[0].type == "select-one") { //For Option html or select
             $(this)[0].selectedIndex = 0;
-            
-       
-           
         } else if ($(this)[0].type == "radio") { //For Option html or select
-
             //$(this)[0].attr("checked", false);
             //$(this)[0].removeAttr("checked");
             $(this).prop('checked', false);
         }
-       
     });
 }
-
 
 //Usage
 // id =customerForm
 // class = .InputForm
 //LockInput("customerForm input[type=text],input[type=password],input[type=checkbox],select", true);
-function LockInput(control,flage) {
+function LockInput(control, flage) {
     // $("#x").attr('disabled', 'disabled');
 
-      
     $(control).each(function () {
-        if (($(this)[0].type == "button")||($(this)[0].type == "text") || ($(this)[0].type == "password") || ($(this)[0].type == "checkbox") || $(this)[0].type == "select-one") {
-
+        if (($(this)[0].type == "button") || ($(this)[0].type == "text") || ($(this)[0].type == "password") || ($(this)[0].type == "checkbox") || $(this)[0].type == "select-one") {
             // $(this).val('');
-            if (flage==true)
-            {
+            if (flage == true) {
                 $(this).attr('disabled', 'disabled');
-                
+
                 //Option
                 //$(this).removeClass(css);
             }
-            else
-            {
+            else {
                 $(this).removeAttr('disabled');
-           
-                
+
                 //$(this).addClass(css);
             }
         }
-       
-
-        
-
     });
 }
 
@@ -307,14 +265,11 @@ function () {
     });
 };
 
-
 jQuery.fn.ForceNumericOnly2Digit =
 function () {
     return this.each(function () {
         $(this).keypress(function (e) {
-                  
-           return check_digit(e, this, 8,2);
-
+            return check_digit(e, this, 8, 2);
         });
     });
 };
@@ -323,16 +278,12 @@ jQuery.fn.ForceNumericDigit =
 function (digit) {
     return this.each(function () {
         $(this).keypress(function (e) {
-
             return check_digit(e, this, 8, 10);
-
         });
     });
 };
 
-
 function check_digit(e, obj, intsize, deczize) {
-
     var keycode;
 
     if (window.event) keycode = window.event.keyCode;
@@ -342,23 +293,19 @@ function check_digit(e, obj, intsize, deczize) {
     var dots = fieldval.split(".").length;
 
     var ThaiChar = (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) && (!(keycode == 46)));
-       
-    if (ThaiChar) {
 
+    if (ThaiChar) {
         return false;
     }
 
-
     if (keycode == 46) {
         if (dots > 1) {
-
             return false;
         } else {
-
             return true;
         }
     }
-    if (keycode == 8 || keycode == 9 || keycode == 46 || keycode == 13) // back space, tab, delete, enter 
+    if (keycode == 8 || keycode == 9 || keycode == 46 || keycode == 13) // back space, tab, delete, enter
     {
         return true;
     }
@@ -366,11 +313,7 @@ function check_digit(e, obj, intsize, deczize) {
         return false;
     }
 
-
     //alert(jQuery(fieldval:contains('.').length));
-
-
-
 
     if (fieldval == "0" && keycode == 48)
         return false;
@@ -379,7 +322,6 @@ function check_digit(e, obj, intsize, deczize) {
         if (keycode == 46)
             return false;
         var splitfield = fieldval.split(".");
-
 
         //alert('Spilt -> '+ splitfield[1].length);
         if (splitfield[1].length >= deczize && keycode != 8 && keycode != 0)
@@ -390,9 +332,7 @@ function check_digit(e, obj, intsize, deczize) {
     }
     else return true;
 }
- 
 
- 
 /*======================================================Utility=========================================================================*/
 //<a name="id3"/>
 //scrollToAnchor('id3');
@@ -400,14 +340,12 @@ function scrollToAnchor(aid) {
     var aTag = $("a[name='" + aid + "']");
     $('html,body').animate({ scrollTop: aTag.offset().top }, 'slow');
 }
- 
-function getPageName()
-{
-var sPath = window.location.pathname;
-var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+
+function getPageName() {
+    var sPath = window.location.pathname;
+    var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
     return sPage;
 }
-
 
 function getRootWebSitePath() {
     var _location = document.location.toString();
@@ -419,13 +357,9 @@ function getRootWebSitePath() {
     return webFolderFullPath;
 }
 
-
-
 function Refresh(parameters) {
     location.reload();
 }
- 
-
 
 //==================================================================================Url=================================================================================
 /* Get Query String
@@ -434,41 +368,36 @@ function Refresh(parameters) {
 * var blog = GetQueryStringParams('stringword');
 *
 */
-function GetQueryString(sParam)
-{
-    
-    
+function GetQueryString(sParam) {
     sParam = sParam.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
     var regex = new RegExp("[\\?&]" + sParam + "=([^&#]*)");
     var qs = regex.exec(window.location.href);
-   
+    if (qs == null)
+        return null;
     return qs[1];
 
-  /*  var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));*/
-    
+    /*  var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+      return match && decodeURIComponent(match[1].replace(/\+/g, ' '));*/
 
-   /* var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
+    /* var sPageURL = window.location.search.substring(1);
+     var sURLVariables = sPageURL.split('&');
 
-    for (var i = 0; i < sURLVariables.length; i++)
-    {
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == sParam)
-        {
-            return sParameterName[1];
-        }
-    }*/
+     for (var i = 0; i < sURLVariables.length; i++)
+     {
+         var sParameterName = sURLVariables[i].split('=');
+         if (sParameterName[0] == sParam)
+         {
+             return sParameterName[1];
+         }
+     }*/
 }
-
 
 //===============================================Print==============================================================================================================
 /*PRint Div*/
 /*
 Div = id
 */
-function Print(div)
-{
+function Print(div) {
     var divToPrint = document.getElementById(div);
     var newWin = window.open('', 'Print-Window', 'width=400,height=400,top=100,left=100');
     newWin.document.open();
@@ -481,8 +410,8 @@ function Print(div)
 /* Momojojo_Web-1.0.1.0.js
 * printCanvas(el,width,height)  : el is canav item
 */
-function printCanvas(el,w,h) {
-    var dataUrl = document.getElementById(el).toDataURL(); //attempt to save base64 string to server using this var  
+function printCanvas(el, w, h) {
+    var dataUrl = document.getElementById(el).toDataURL(); //attempt to save base64 string to server using this var
     var windowContent = '<!DOCTYPE html>';
     windowContent += '<html>';
     windowContent += '<head><title>Print canvas</title></head>';
@@ -495,37 +424,23 @@ function printCanvas(el,w,h) {
     printWin.document.write(windowContent);
     printWin.document.close();
     //printWin.focus();
-   
+
     printWin.print();
     printWin.close();
     window.close();
-
 }
-
-
-
-
-
-
-
-
-
-
-
 
 /*Message Box=======================================================================================================================================*/
 //Tooltip
 //Obj for tooltip popup
 function SetToolTip(obj, msg, aJudstTop, aJustLeft) {
-
     //var offset = $(obj).position();
     var offset = $(obj).offset();
     var left = (offset.left + aJustLeft);//ชิดขอบ
     var top = (offset.top + aJudstTop);//Custom
-    
-    var left = (offset.left );//ชิดขอบ
-    var top = (offset.top +30);//Custom
 
+    var left = (offset.left);//ชิดขอบ
+    var top = (offset.top + 30);//Custom
 
     //$('#divPleaseSelect').css({ zIndex: 5000, top: offset.top, left: (offset.left) + width + 10 }).fadeIn();
     //<div  class="tooltip ValidateError ">  Please Select </div>
@@ -541,17 +456,13 @@ function SetToolTip(obj, msg, aJudstTop, aJustLeft) {
     });
 
     $newdiv1.css({ position: 'absolute', zIndex: 5000, top: top, left: left }).fadeIn();
-
 }
-
 
 function ClearToolTip() {
     $('.tooltip').fadeOut(1000);
 }
 
-
 function ClearMessageBox() {
-    
     $('#messageBox').slideUp().remove();
     //$('#messageBox').remove();
 }
@@ -568,7 +479,6 @@ function MessageBoxAction(parameters) {
     $('#messageBox').slideDown();
 }
 function MessageBoxSuccess(message) {
-
     //$('#messageBox').remove();//Remove Old iitem
 
     //var template = "<div id=messageBox class=success  ><span class=textMessage>" + message + " </span> </div>";
@@ -592,23 +502,15 @@ function MessageBoxSuccess(message) {
     //$('#messageBox').slideDown();
 }
 
-
-
 function MessageBoxInfo(message) {
-
- 
-
     //var template = "<div id=messageBox class=info ><span class=textMessage>" + message + "</span></div>";
     MessageBoxBase();
     $('#messageBox').addClass("info");//Add Stylte
     $('#textMessage').text(message);
     MessageBoxAction();
-}  
+}
 
 function MessageBoxWarning(message) {
-
-   
-
     //var template = "<div id=messageBox class=warning ><span class=textMessage>" + message + "</span></div>";
     MessageBoxBase();
     $('#messageBox').addClass("warning");//Add Stylte
@@ -617,9 +519,6 @@ function MessageBoxWarning(message) {
 }
 
 function MessageBoxError(message) {
-
-   
-
     //var template = "<div id=messageBox class=error ><span class=textMessage>" + message + "</span></div>";
     MessageBoxBase();
     $('#messageBox').addClass("error");//Add Stylte
@@ -628,14 +527,9 @@ function MessageBoxError(message) {
 }
 
 function MessageBoxValidation(message) {
-
-
-
     //var template = "<div id=messageBox class=error ><span class=textMessage>" + message + "</span></div>";
     MessageBoxBase();
     $('#messageBox').addClass("validation");//Add Stylte
     $('#textMessage').text(message);
     MessageBoxAction();
 }
-
- 
