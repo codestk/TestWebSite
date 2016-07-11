@@ -82,7 +82,7 @@ private List<Categories> DataSetToList(DataSet ds)
  EnumerableRowCollection<Categories> q = (from temp in ds.Tables[0].AsEnumerable()
  select new Categories
 {
-RecordCount = temp.Field<Int32>("RecordCount"),CategoryID= temp.Field<Int32>("CategoryID"), 
+RecordCount = temp.Field<Int32>("RecordCount"),CategoryID= temp.Field<Int32?>("CategoryID"), 
  CategoryName= temp.Field<String>("CategoryName"), 
   });
   return q.ToList();

@@ -34,7 +34,6 @@ function Save() {
  if (Validate() == false) { return false; }
 var  CategoryID =$('#txtCategoryID').val();
 var  CategoryName =$('#txtCategoryName').val();
-var  Picture =$('#txtPicture').val();
 var result = CategoriesService.Save(CategoryID,CategoryName);
 
   if (result != null) {
@@ -53,7 +52,6 @@ function Update() {
  if (Validate() == false) { return false; }
 var  CategoryID =$('#txtCategoryID').val();
 var  CategoryName =$('#txtCategoryName').val();
-var  Picture =$('#txtPicture').val();
 var result = CategoriesService.Update(CategoryID,CategoryName);
 
   if (result != null) {
@@ -68,7 +66,6 @@ function Delete() {
  if (Validate() == false) { return false; }
 var  CategoryID =$('#txtCategoryID').val();
 var  CategoryName =$('#txtCategoryName').val();
-var  Picture =$('#txtPicture').val();
 var result = CategoriesService.Delete(CategoryID,CategoryName);
 
   if (result != null) {

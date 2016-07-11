@@ -54,3 +54,11 @@ button {
     width: 150% !important;
     padding: 50px;
 }
+/*Table Fix*/
+#tbResult td {
+    white-space: nowrap;
+}
+
+#tbResult input {
+    display: block;
+}
