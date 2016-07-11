@@ -13,8 +13,8 @@ public class DataAccess
         }
 
         var connecStionstring = Config.ConnectionString();
-        Db = new DataBaseSql(connecStionstring);
-        //Db = new DataBaseFireBird(connecStionstring);
+        //Db = new DataBaseSql(connecStionstring);
+        Db = new DataBaseFireBird(connecStionstring);
     }
 
     //=====================================================================================================
@@ -25,9 +25,9 @@ public class DataAccess
     /// <param name="sortAscending"></param>
     /// <param name="sortExpression"></param>
     /// <returns></returns>
-    public string GenSort(SortDirection _SortDirection, string _SortExpression)
+    public string GenSort(string _SortDirection, string _SortExpression)
     {
-        bool sortAscending = _SortDirection == SortDirection.Ascending;
+        bool sortAscending = _SortDirection == "ASC";
         var sort = "";
         if (_SortExpression == null)
         {
