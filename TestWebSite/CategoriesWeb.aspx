@@ -12,7 +12,7 @@ BindQueryString();
 $('.datepicker').pickadate({
 selectMonths: true, // Creates a dropdown to control month
 selectYears: 15 ,// Creates a dropdown of 15 years to control year,
-format: 'd mmmm yyyy',
+format: 'd mmm yyyy',
 });
  }); 
 function ForceNumberTextBox() 
@@ -21,7 +21,6 @@ function ForceNumberTextBox()
 function Validate() {
 var output=true;
 if (CheckEmtyp($("#txtCategoryName"))) output = false;
-if (CheckEmtyp($("#txtPicture"))) output = false;
 if (output == false)
 Materialize.toast('please validate your input.', 3000, 'toastCss');
 return output;
@@ -81,7 +80,7 @@ Materialize.toast(MsgError, 5000, 'toastCss');
 //No drop/.
 function BindQueryString() {
 
-var CategoryID = GetQueryString('Q');
+var CategoryID = getQuerystring('Q');
 if (CategoryID != '') {
 var _Categories = CategoriesService.Select(CategoryID);
 
@@ -103,10 +102,10 @@ $('#btnDelete').hide();
 <div class="container">
 <div class="row"><div class="  col s12"> 
 <label>CategoryID </label> 
-<input ReadOnly="true"  id="txtCategoryID" type="text" data-column-id="CategoryID"  CssClass="validate CategoryID" length="9" />
+<input ReadOnly="true"  id="txtCategoryID" type="text" data-column-id="CategoryID"  Class="validate CategoryID" length="9"        maxlength="9"     />
  </div> 
 <div class="input-field col s12"> 
-<input  id="txtCategoryName" type="text" data-column-id="CategoryName"  class="validate CategoryName"   length="15"  /> 
+<input  id="txtCategoryName" type="text" data-column-id="CategoryName"  class="validate CategoryName"   length="15"   maxlength="15"                /> 
 <label for="txtCategoryName">CategoryName </label> 
  </div> 
   <div class="input-field col s12">

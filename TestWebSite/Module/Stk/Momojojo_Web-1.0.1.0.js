@@ -368,29 +368,29 @@ function Refresh(parameters) {
 * var blog = GetQueryStringParams('stringword');
 *
 */
-function GetQueryString(sParam) {
-    sParam = sParam.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-    var regex = new RegExp("[\\?&]" + sParam + "=([^&#]*)");
-    var qs = regex.exec(window.location.href);
-    if (qs == null)
-        return null;
-    return qs[1];
+//function GetQueryString(sParam) {
+//    sParam = sParam.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+//    var regex = new RegExp("[\\?&]" + sParam + "=([^&#]*)");
+//    var qs = regex.exec(window.location.href);
+//    if (qs == null)
+//        return null;
+//    return qs[1];
 
-    /*  var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
-      return match && decodeURIComponent(match[1].replace(/\+/g, ' '));*/
+//    /*  var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+//      return match && decodeURIComponent(match[1].replace(/\+/g, ' '));*/
 
-    /* var sPageURL = window.location.search.substring(1);
-     var sURLVariables = sPageURL.split('&');
+//    /* var sPageURL = window.location.search.substring(1);
+//     var sURLVariables = sPageURL.split('&');
 
-     for (var i = 0; i < sURLVariables.length; i++)
-     {
-         var sParameterName = sURLVariables[i].split('=');
-         if (sParameterName[0] == sParam)
-         {
-             return sParameterName[1];
-         }
-     }*/
-}
+//     for (var i = 0; i < sURLVariables.length; i++)
+//     {
+//         var sParameterName = sURLVariables[i].split('=');
+//         if (sParameterName[0] == sParam)
+//         {
+//             return sParameterName[1];
+//         }
+//     }*/
+//}
 
 //===============================================Print==============================================================================================================
 /*PRint Div*/

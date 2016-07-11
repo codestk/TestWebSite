@@ -12,28 +12,31 @@ public class StkGlobalDate
     public StkGlobalDate()
     {
     }
+
     /// <summary>
     ///
     /// </summary>
-    /// <param name="str"> 9 June 2016  d MMMM yyyy</param>
+    /// <param name="str"> 9 Jun 2016  d Mmm yyyy</param>
     /// <returns></returns>
     public static DateTime? TextEnToDate(string str)
     {
-        DateTime? dt=null;
+        DateTime? dt = null;
         try
         {
-            dt = DateTime.ParseExact(str, "d MMMM yyyy",CultureInfo.InvariantCulture);
+            //dt = DateTime.ParseExact(str, "d MMMM yyyy",CultureInfo.InvariantCulture);
+            dt = DateTime.ParseExact(str, "d MMM yyyy", CultureInfo.InvariantCulture);
         }
-        catch
+        catch (Exception ex)
         {
+            string a = ex.ToString();
             dt = null;
         }
 
         return dt;
     }
-    
+
     /// <summary>
-    /// Convert โดยไม่ขึ้นกับ Culture ใช้ Eng 
+    /// Convert โดยไม่ขึ้นกับ Culture ใช้ Eng
     /// </summary>
     /// <param name="dt"></param>
     /// <returns></returns>
@@ -44,13 +47,12 @@ public class StkGlobalDate
         {
             DateTime? _Datetemp;
             _Datetemp = (DateTime?)(dt);
-           if (_Datetemp.HasValue)
+            if (_Datetemp.HasValue)
             {
                 DateTime tempDateTime = Convert.ToDateTime(_Datetemp);
                 output = tempDateTime.ToString("d MMMM yyyy", new CultureInfo(LangName, false));
-
             }
-             
+
             //output = _Datetemp.ToString("d MMMM yyyy", new CultureInfo(LangName, false));
         }
         catch
