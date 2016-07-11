@@ -1,0 +1,56 @@
+﻿.waves-effect {
+    position: unset !important;
+}
+
+.saved {
+    font-weight: bold;
+    font-style: italic;
+    color: forestgreen;
+    padding: 5px;
+}
+
+.ControlEditMode {
+    background-color: rebeccapurple;
+    margin: 0 !important;
+    height: unset !important;
+    width: unset !important;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.CustomInvalid {
+    border-bottom: 1px solid #F44336 !important;
+    box-shadow: 0 1px 0 0 #F44336 !important;
+}
+
+.CustomValid {
+    border-bottom: 1px solid #4CAF50 !important;
+    box-shadow: 0 1px 0 0 #4CAF50 !important;
+}
+
+.modal {
+    /*display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: #fafafa;
+    padding: 0;*/
+    max-height: 70%;
+    width: 29%;
+    /*margin: auto;
+    overflow-y: auto;
+    border-radius: 2px;
+    will-change: top, opacity;*/
+}
+
+.btn {
+    margin-right: 3px !important;
+    /*padding: unset;*/
+}
+
+button {
+    box-sizing: border-box;
+    width: 150% !important;
+    padding: 50px;
+}
