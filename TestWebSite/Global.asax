@@ -5,7 +5,7 @@
     void Application_Start(object sender, EventArgs e) 
     {
         // Code that runs on application startup
-
+            System.Web.Http.GlobalConfiguration.Configure(WebApiConfig.Register);
     }
     
     void Application_End(object sender, EventArgs e) 

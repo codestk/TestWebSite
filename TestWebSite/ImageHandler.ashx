@@ -20,50 +20,54 @@ public class ImageHandler : IHttpHandler
         //        querySqlStr="select * from testImageTable";
         //    }
 
-     
+
         string id = "";
         if (context.Request.QueryString["Q"] != null)
         {
             id=context.Request.QueryString["Q"];
         }
         else {
-                return;
+            return;
         }
 
-       
+
         IDataReader reader = null;
         CategoriesImageDb CategoriesImage = new CategoriesImageDb();
         try
         {
-          
-            reader = CategoriesImage.GetImage(id);
-            //get the extension name of image
-            while (reader.Read())
+            using (  reader = CategoriesImage.GetImage(id))
             {
-               
 
-                string extensionName = "jpg";
 
-                buffer = (byte[])reader["Picture"];
+                //get the extension name of image
+                while (reader.Read())
+                {
 
-                context.Response.Clear();
-                context.Response.ContentType = "image/" + extensionName;
-               
-                context.Response.OutputStream.Write(buffer, 78, buffer.Length - 78);
-                context.Response.Flush();
-                context.Response.Close();
 
-                //context.Response.OutputStream.Write(buffer, 78, buffer.Length - 78);
-                //ctx.Response.ContentType = "image/bmp";
-                //ctx.Response.OutputStream.Write(pict, 78, pict.Length - 78);
+                    string extensionName = "jpg";
 
+                    buffer = (byte[])reader["Picture"];
+
+                    context.Response.Clear();
+                    context.Response.ContentType = "image/" + extensionName;
+
+                    //context.Response.OutputStream.Write(buffer, 78, buffer.Length - 78);
+                      context.Response.OutputStream.Write(buffer, 0, buffer.Length);
+                    context.Response.Flush();
+                    context.Response.Close();
+
+                    //context.Response.OutputStream.Write(buffer, 78, buffer.Length - 78);
+                    //ctx.Response.ContentType = "image/bmp";
+                    //ctx.Response.OutputStream.Write(pict, 78, pict.Length - 78);
+
+                }
+                reader.Close();
             }
-            reader.Close();
 
         }
         finally
         {
-           
+
             CategoriesImage.Db.CloseFbData();
         }
     }
