@@ -1,4 +1,4 @@
-﻿function PictureNameValidate(filename) {
+﻿function ImageNameValid(filename) {
     return (/\.(gif|jpg|jpeg|tiff|png)$/i).test(filename);
 }
 

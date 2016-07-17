@@ -1,4 +1,8 @@
-﻿.waves-effect {
+﻿.container {
+position:relative;
+}
+
+.waves-effect {
     position: unset !important;
 }
 

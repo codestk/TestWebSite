@@ -35,7 +35,7 @@ public class ImageHandler : IHttpHandler
         CategoriesImageDb CategoriesImage = new CategoriesImageDb();
         try
         {
-            using (  reader = CategoriesImage.GetImage(id))
+            using (  reader = CategoriesImage.GetPicture(id))
             {
 
 
@@ -45,14 +45,16 @@ public class ImageHandler : IHttpHandler
 
 
                     string extensionName = "jpg";
+                    if (reader["Picture"] != System.DBNull.Value)
+                    {
+                        buffer = (byte[])reader["Picture"];
 
-                    buffer = (byte[])reader["Picture"];
+                        context.Response.Clear();
+                        context.Response.ContentType = "image/" + extensionName;
 
-                    context.Response.Clear();
-                    context.Response.ContentType = "image/" + extensionName;
-
-                    //context.Response.OutputStream.Write(buffer, 78, buffer.Length - 78);
-                      context.Response.OutputStream.Write(buffer, 0, buffer.Length);
+                        //context.Response.OutputStream.Write(buffer, 78, buffer.Length - 78);
+                        context.Response.OutputStream.Write(buffer, 0, buffer.Length);
+                    }
                     context.Response.Flush();
                     context.Response.Close();
 

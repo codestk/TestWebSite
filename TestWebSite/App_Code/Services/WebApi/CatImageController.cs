@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
 using System.Web.Http;
 
@@ -10,16 +7,12 @@ using System.Web.Http;
 /// </summary>
 public class CatImageController : ApiController
 {
-
-
     [HttpGet]
     [HttpPost]
-
-
-    [Route("api/CatImageController/UploadFile")]
-    public string  UploadFile()
+    [Route("api/CatImageController/UploadFile/{id}")]
+    public bool UploadFile(string id)
     {
-
+        bool result = false;
         if (HttpContext.Current.Request.Files.AllKeys.Any())
         {
             // Get the uploaded image from the Files collection
@@ -29,7 +22,7 @@ public class CatImageController : ApiController
             {
                 // Validate the uploaded image(optional)
                 int lengths = httpPostedFile.ContentLength;
-                      byte[] imgbytes = new byte[lengths];
+                byte[] imgbytes = new byte[lengths];
                 httpPostedFile.InputStream.Read(imgbytes, 0, lengths);
                 // Get the complete file path
                 //var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/UploadedFiles"), httpPostedFile.FileName);
@@ -37,15 +30,36 @@ public class CatImageController : ApiController
                 // Save the uploaded file to "UploadedFiles" folder
                 // httpPostedFile.SaveAs(fileSavePath);
 
-                System.Data.SqlClient.SqlConnection con = new System.Data.SqlClient.SqlConnection("Data Source=NODE-PC;Initial Catalog=Northwind;User ID=sa;Password=P@ssw0rd");
-                con.Open();
-                System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand("UPDATE [dbo].[Categories] SET  [Picture] =@Picture  WHERE [CategoryID]=1", con);
+                //System.Data.SqlClient.SqlConnection con = new System.Data.SqlClient.SqlConnection("Data Source=NODE-PC;Initial Catalog=Northwind;User ID=sa;Password=P@ssw0rd");
+                //con.Open();
+                //System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand("UPDATE [dbo].[Categories] SET  [Picture] =@Picture  WHERE [CategoryID]=@CategoryID", con);
 
-                cmd.Parameters.AddWithValue("@Picture", imgbytes);
-                int count = cmd.ExecuteNonQuery();
+                //cmd.Parameters.AddWithValue("@Picture", imgbytes);
+                //cmd.Parameters.AddWithValue("@CategoryID", id);
+
+                //int count = cmd.ExecuteNonQuery();
+
+
+                CategoriesImageDb CategoriesImage = new CategoriesImageDb();
+
+
+                result = CategoriesImage.SavePicture(id, imgbytes);
+
             }
         }
-       
-        return "FFFF";
+
+        return result;
+    }
+
+    [HttpGet]
+    [HttpPost]
+    [Route("api/CatImageController/Delete/{id}")]
+    public bool Delete(string id)
+    {
+        CategoriesImageDb CategoriesImage = new CategoriesImageDb();
+
+
+        var result = CategoriesImage.DeletePicture(id);
+        return result;
     }
 }

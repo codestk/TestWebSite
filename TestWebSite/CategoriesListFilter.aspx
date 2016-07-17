@@ -129,7 +129,7 @@ TrTempplate +="Cancel</label>";
 TrTempplate +="</div>";
 TrTempplate +="</td>";
 TrTempplate +="<td class='tdPicture'>";
-TrTempplate +="<span>"+result[key].Picture+"</span>";
+TrTempplate +="<img id='imgPreview' src='ImageHandler.ashx?Q=" + result[key].CategoryID + "' height='131' width='174' onerror=this.src='Images/no-image.png' alt='Image preview...'>"
 TrTempplate +="<div style='display: none'>";
 TrTempplate +="<label class='lblSave'>Save</label>";
 TrTempplate +="<label class='lblCancel'>";

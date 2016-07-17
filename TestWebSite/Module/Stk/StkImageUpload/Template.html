@@ -53,13 +53,12 @@
             z-index: 100;
         }
     </style>
-    <script src="Module/Stk/Momojojo-1.0.1.0.js"></script>
-    <script src="Module/Stk/Momojojo_Web-1.0.1.0.js"></script>
-    <script src="Js_U/CategoriesImage.js"></script>
     <script src="Module/Stk/ValidateStk.js"></script>
     <script>
         $(document).ready(function () {
             $("#drop-area-preview").hide();
+
+            DisplayImage(1);
 
             $("#drop-area").on('dragenter', function (e) {
                 e.preventDefault();
@@ -84,7 +83,6 @@
                 createFormData(image);
             });
 
-            DisplayImage(1);
         });
 
         function createFormData(image) {
@@ -268,7 +266,8 @@
             <img id="imgPreview" src="" height="131" width="174" alt="Image preview...">
             <img id="imgRemove" src="Images/Close.png" />
         </div>
-        <div id="status"></div>
     </div>
+
+    <div id="status"></div>
 </body>
 </html>
