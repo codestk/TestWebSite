@@ -644,6 +644,23 @@ $("#txtReportsTo").ForceNumericOnly();
 <input  id="txtExtension" type="text" data-column-id="Extension"  class="validate Extension"   length="4"   maxlength="4"                /> 
 <label for="txtExtension">Extension </label> 
  </div> 
+
+            <div id="drop-area"  style="display:none">
+                <div id="drop-area-detail">
+
+                    <h3 class="drop-text">Drag and Drop Images Here</h3>
+
+                    <div class="progressUpload">
+                        <div class="bar"></div>
+                        <div class="percent">0%</div>
+                    </div>
+                </div>
+                <div id="drop-area-preview" style="display: none">
+                    <img id="imgPreview"   height="131" width="174" alt="Image preview...">
+                    <img id="imgRemove" src="Images/Close.png" />
+                </div>
+                <div id="status"></div>
+            </div>
 <div class="input-field col s6"> 
 <input  id="txtReportsTo" type="text" data-column-id="ReportsTo"  Class="validate ReportsTo" length="9"        maxlength="9"     />
 <label for="txtReportsTo">ReportsTo </label> 

@@ -1,9 +1,9 @@
 <%@ Page Title="Employees" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="EmployeesWeb.aspx.cs" Inherits="EmployeesWeb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">  
 <script src="Js_U/Employees.js"></script>
-<script type="text/javascript"> 
+    <link href="Module/Stk/StkImageUpload/StkImageUpload.css" rel="stylesheet" />    <script src="Module/Stk/StkImageUpload/StkImageUpload.js"></script>    <script src="Module/Stk/ValidateStk.js"></script><script type="text/javascript"> 
 var MsgError = 'UPDATE: An unexpected error has occurred. Please contact your system Administrator.';
- $(document).ready(function () 
+  var apiService = "api/EmployeesImageController/";        var handlerService = "EmployeesImageHandler.ashx"; $(document).ready(function () 
 {
 $('.modal-trigger').leanModal();
 ForceNumberTextBox(); 
@@ -71,6 +71,9 @@ Materialize.toast('Your data has been saved.', 3000, 'toastCss');
 $('#btnSave').hide();
 $('#btnUpdate').show();
 $('#btnDelete').show();
+ var id =  $('#txtEmployeeID').val();
+
+DropArea(id, apiService, handlerService);
 }
 else {
 Materialize.toast(MsgError, 5000, 'toastCss');
@@ -159,6 +162,7 @@ $('#txtExtension').val(_Employees.Extension);
 $('#txtReportsTo').val(_Employees.ReportsTo);
 $('#txtPhotoPath').val(_Employees.PhotoPath);
 $('#btnSave').hide();
+ DropArea(CategoryID, apiService, handlerService);
 }
 else{
 $('#btnSave').show();
@@ -171,67 +175,84 @@ $('#btnDelete').hide();
 </asp:Content> 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" > 
 <div class="container">
-<div class="row"><div class="  col s12"> 
+<div class="row"><div class="  col s9"> 
 <label>EmployeeID </label> 
 <input ReadOnly="true"  id="txtEmployeeID" type="text" data-column-id="EmployeeID"  Class="validate EmployeeID" length="9"        maxlength="9"     />
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtLastName" type="text" data-column-id="LastName"  class="validate LastName"   length="20"   maxlength="20"                /> 
 <label for="txtLastName">LastName </label> 
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtFirstName" type="text" data-column-id="FirstName"  class="validate FirstName"   length="10"   maxlength="10"                /> 
 <label for="txtFirstName">FirstName </label> 
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtTitle" type="text" data-column-id="Title"  class="validate Title"   length="30"   maxlength="30"                /> 
 <label for="txtTitle">Title </label> 
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtTitleOfCourtesy" type="text" data-column-id="TitleOfCourtesy"  class="validate TitleOfCourtesy"   length="25"   maxlength="25"                /> 
 <label for="txtTitleOfCourtesy">TitleOfCourtesy </label> 
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtBirthDate"  class="datepicker" type ="date"   />
 <label for="txtBirthDate">BirthDate </label> 
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtHireDate"  class="datepicker" type ="date"   />
 <label for="txtHireDate">HireDate </label> 
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtAddress" type="text" data-column-id="Address"  class="validate Address"   length="60"   maxlength="60"                /> 
 <label for="txtAddress">Address </label> 
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtCity" type="text" data-column-id="City"  class="validate City"   length="15"   maxlength="15"                /> 
 <label for="txtCity">City </label> 
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtRegion" type="text" data-column-id="Region"  class="validate Region"   length="15"   maxlength="15"                /> 
 <label for="txtRegion">Region </label> 
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtPostalCode" type="text" data-column-id="PostalCode"  class="validate PostalCode"   length="10"   maxlength="10"                /> 
 <label for="txtPostalCode">PostalCode </label> 
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtCountry" type="text" data-column-id="Country"  class="validate Country"   length="15"   maxlength="15"                /> 
 <label for="txtCountry">Country </label> 
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtHomePhone" type="text" data-column-id="HomePhone"  class="validate HomePhone"   length="24"   maxlength="24"                /> 
 <label for="txtHomePhone">HomePhone </label> 
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtExtension" type="text" data-column-id="Extension"  class="validate Extension"   length="4"   maxlength="4"                /> 
 <label for="txtExtension">Extension </label> 
  </div> 
-<div class="input-field col s12"> 
+
+            <div id="drop-area"  style="display:none">
+                <div id="drop-area-detail">
+
+                    <h3 class="drop-text">Drag and Drop Images Here</h3>
+
+                    <div class="progressUpload">
+                        <div class="bar"></div>
+                        <div class="percent">0%</div>
+                    </div>
+                </div>
+                <div id="drop-area-preview" style="display: none">
+                    <img id="imgPreview"   height="131" width="174" alt="Image preview...">
+                    <img id="imgRemove" src="Images/Close.png" />
+                </div>
+                <div id="status"></div>
+            </div>
+<div class="input-field col s9"> 
 <input  id="txtReportsTo" type="text" data-column-id="ReportsTo"  Class="validate ReportsTo" length="9"        maxlength="9"     />
 <label for="txtReportsTo">ReportsTo </label> 
  </div> 
-<div class="input-field col s12"> 
+<div class="input-field col s9"> 
 <input  id="txtPhotoPath" type="text" data-column-id="PhotoPath"  class="validate PhotoPath"   length="255"   maxlength="255"                /> 
 <label for="txtPhotoPath">PhotoPath </label> 
  </div> 

@@ -32,7 +32,8 @@ function DropArea(id, apiService, handlerService) {
         var file = e.originalEvent.dataTransfer.files[0];
         var filename = file.name;
         if (ImageNameValid(filename) == false) {
-            alert('Upload Error this file extension is not allowed. You can only upload JPG, JPEG, PNG, GIF files. ')
+            //alert('Upload Error this file extension is not allowed. You can only upload JPG, JPEG, PNG, GIF files. ')
+            Materialize.toast('Upload Error this file extension is not allowed. You can only upload JPG, JPEG, PNG, GIF files. ', 3000, 'toastCss');
             $(this).css('background', '#ffffff');
             return;
         }

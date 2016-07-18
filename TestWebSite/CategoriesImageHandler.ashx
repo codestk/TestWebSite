@@ -1,19 +1,14 @@
-﻿<%@ WebHandler Language="C#" Class="ImageHandler" %>
-
-using System;
+<%@ WebHandler Language ="C#" Class="CategoriesImageHandler" %>
 using System.Web;
-using System.Data;
-public class ImageHandler : IHttpHandler
-{
-
-    public void ProcessRequest(HttpContext context)
+  using System.Data;
+public class CategoriesImageHandler : IHttpHandler{
+  public void ProcessRequest(HttpContext context)
     {
         byte[] buffer = null;
 
         string id = "";
         if (context.Request.QueryString["Q"] != null)
-        {
-            id = context.Request.QueryString["Q"];
+        {            id = context.Request.QueryString["Q"];
         }
         else
         {
@@ -21,10 +16,10 @@ public class ImageHandler : IHttpHandler
         }
 
         IDataReader reader = null;
-        CategoriesImageDb CategoriesImage = new CategoriesImageDb();
+        CategoriesImageDb ImageDb = new CategoriesImageDb();
         try
         {
-            using (reader = CategoriesImage.GetPicture(id))
+            using (reader = ImageDb.GetPicture(id))
             {
 
                 //get the extension name of image
@@ -41,8 +36,7 @@ public class ImageHandler : IHttpHandler
 
                         //context.Response.OutputStream.Write(buffer, 78, buffer.Length - 78);
                         context.Response.OutputStream.Write(buffer, 0, buffer.Length);
-                    }
-                    context.Response.Flush();
+                    }                    context.Response.Flush();
                     context.Response.Close();
 
                     //context.Response.OutputStream.Write(buffer, 78, buffer.Length - 78);
@@ -53,20 +47,15 @@ public class ImageHandler : IHttpHandler
                 reader.Close();
             }
 
-        }
-        finally
-        {
-
-            CategoriesImage.Db.CloseFbData();
+        }        finally        {
+            ImageDb.Db.CloseFbData();
         }
     }
-
-    public bool IsReusable
+  public bool IsReusable
     {
-        get
-        {
+        get        {
             return false;
         }
     }
-
 }
+

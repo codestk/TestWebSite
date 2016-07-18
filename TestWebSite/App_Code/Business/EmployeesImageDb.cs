@@ -1,21 +1,21 @@
 using System.Collections.Generic;
 using System.Data;
-public class CategoriesImageDb : DataAccess
+public class EmployeesImageDb : DataAccess
  {
 public IDataReader GetPicture(string id)
     {
-        string sql = "SELECT Picture FROM Categories where CategoryID = @CategoryID;";
+        string sql = "SELECT Photo FROM Employees where EmployeeID = @EmployeeID;";
         var prset = new List<IDataParameter>();
-        prset.Add(Db.CreateParameterDb("@CategoryID", id));
+        prset.Add(Db.CreateParameterDb("@EmployeeID", id));
         Db.OpenFbData();        return Db.FbExecuteReader(sql, prset, CommandType.Text);
     }
  public bool SavePicture(string id, byte[] Picture)
     {
-        string sql = "UPDATE  Categories SET Picture = @Picture  WHERE CategoryID = @CategoryID";
+        string sql = "UPDATE  Employees SET Photo = @Photo  WHERE EmployeeID = @EmployeeID";
 
         var prset = new List<IDataParameter>();
-        prset.Add(Db.CreateParameterDb("@CategoryID", id));
-        prset.Add(Db.CreateParameterDb("@Picture", Picture));
+        prset.Add(Db.CreateParameterDb("@EmployeeID", id));
+        prset.Add(Db.CreateParameterDb("@Photo", Picture));
 
 
         int output = Db.FbExecuteNonQuery(sql, prset);
@@ -28,10 +28,10 @@ public IDataReader GetPicture(string id)
     }
   public bool DeletePicture(string id)
     {
-        string sql = "UPDATE Categories SET  Picture =null  WHERE CategoryID=@CategoryID";
+        string sql = "UPDATE Employees SET  Photo =null  WHERE EmployeeID=@EmployeeID";
 
         var prset = new List<IDataParameter>();
-        prset.Add(Db.CreateParameterDb("@CategoryID", id));
+        prset.Add(Db.CreateParameterDb("@EmployeeID", id));
 
 
         int output = Db.FbExecuteNonQuery(sql, prset);
