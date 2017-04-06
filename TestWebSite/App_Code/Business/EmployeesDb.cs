@@ -48,6 +48,7 @@ sql += string.Format("  and ((''='{0}')or(Extension='{0}'))", _Employees.Extensi
 sql += string.Format("  and ((''='{0}')or(Photo='{0}'))", _Employees.Photo);
 sql += string.Format("  and ((''='{0}')or(ReportsTo='{0}'))", _Employees.ReportsTo);
 sql += string.Format("  and ((''='{0}')or(PhotoPath='{0}'))", _Employees.PhotoPath);
+sql += string.Format("  and ((''='{0}')or(Email='{0}'))", _Employees.Email);
 if (sortExpression == null){
 sql += string.Format(" order by EmployeeID ", sortExpression);}
 else
@@ -68,15 +69,15 @@ DataSet ds = Db.GetDataSet(store, dbParameter, CommandType.StoredProcedure);
 return DataSetToList(ds); 
 }
 public object Insert() {
-var prset = new List<IDataParameter>();var sql = "INSERT INTO Employees(LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath) VALUES (@LastName,@FirstName,@Title,@TitleOfCourtesy,@BirthDate,@HireDate,@Address,@City,@Region,@PostalCode,@Country,@HomePhone,@Extension,@ReportsTo,@PhotoPath) ;SELECT SCOPE_IDENTITY();";
- prset.Add(Db.CreateParameterDb("@LastName",_Employees.LastName)); prset.Add(Db.CreateParameterDb("@FirstName",_Employees.FirstName)); prset.Add(Db.CreateParameterDb("@Title",_Employees.Title)); prset.Add(Db.CreateParameterDb("@TitleOfCourtesy",_Employees.TitleOfCourtesy)); prset.Add(Db.CreateParameterDb("@BirthDate",_Employees.BirthDate)); prset.Add(Db.CreateParameterDb("@HireDate",_Employees.HireDate)); prset.Add(Db.CreateParameterDb("@Address",_Employees.Address)); prset.Add(Db.CreateParameterDb("@City",_Employees.City)); prset.Add(Db.CreateParameterDb("@Region",_Employees.Region)); prset.Add(Db.CreateParameterDb("@PostalCode",_Employees.PostalCode)); prset.Add(Db.CreateParameterDb("@Country",_Employees.Country)); prset.Add(Db.CreateParameterDb("@HomePhone",_Employees.HomePhone)); prset.Add(Db.CreateParameterDb("@Extension",_Employees.Extension)); prset.Add(Db.CreateParameterDb("@ReportsTo",_Employees.ReportsTo)); prset.Add(Db.CreateParameterDb("@PhotoPath",_Employees.PhotoPath));
+var prset = new List<IDataParameter>();var sql = "INSERT INTO Employees(LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath,Email) VALUES (@LastName,@FirstName,@Title,@TitleOfCourtesy,@BirthDate,@HireDate,@Address,@City,@Region,@PostalCode,@Country,@HomePhone,@Extension,@ReportsTo,@PhotoPath,@Email) ;SELECT SCOPE_IDENTITY();";
+ prset.Add(Db.CreateParameterDb("@LastName",_Employees.LastName)); prset.Add(Db.CreateParameterDb("@FirstName",_Employees.FirstName)); prset.Add(Db.CreateParameterDb("@Title",_Employees.Title)); prset.Add(Db.CreateParameterDb("@TitleOfCourtesy",_Employees.TitleOfCourtesy)); prset.Add(Db.CreateParameterDb("@BirthDate",_Employees.BirthDate)); prset.Add(Db.CreateParameterDb("@HireDate",_Employees.HireDate)); prset.Add(Db.CreateParameterDb("@Address",_Employees.Address)); prset.Add(Db.CreateParameterDb("@City",_Employees.City)); prset.Add(Db.CreateParameterDb("@Region",_Employees.Region)); prset.Add(Db.CreateParameterDb("@PostalCode",_Employees.PostalCode)); prset.Add(Db.CreateParameterDb("@Country",_Employees.Country)); prset.Add(Db.CreateParameterDb("@HomePhone",_Employees.HomePhone)); prset.Add(Db.CreateParameterDb("@Extension",_Employees.Extension)); prset.Add(Db.CreateParameterDb("@ReportsTo",_Employees.ReportsTo)); prset.Add(Db.CreateParameterDb("@PhotoPath",_Employees.PhotoPath)); prset.Add(Db.CreateParameterDb("@Email",_Employees.Email));
 
 object output = Db.FbExecuteScalar(sql, prset);return output;  }
 
 public void Update() {
 var prset = new List<IDataParameter>();
- prset.Add(Db.CreateParameterDb("@EmployeeID",_Employees.EmployeeID)); prset.Add(Db.CreateParameterDb("@LastName",_Employees.LastName)); prset.Add(Db.CreateParameterDb("@FirstName",_Employees.FirstName)); prset.Add(Db.CreateParameterDb("@Title",_Employees.Title)); prset.Add(Db.CreateParameterDb("@TitleOfCourtesy",_Employees.TitleOfCourtesy)); prset.Add(Db.CreateParameterDb("@BirthDate",_Employees.BirthDate)); prset.Add(Db.CreateParameterDb("@HireDate",_Employees.HireDate)); prset.Add(Db.CreateParameterDb("@Address",_Employees.Address)); prset.Add(Db.CreateParameterDb("@City",_Employees.City)); prset.Add(Db.CreateParameterDb("@Region",_Employees.Region)); prset.Add(Db.CreateParameterDb("@PostalCode",_Employees.PostalCode)); prset.Add(Db.CreateParameterDb("@Country",_Employees.Country)); prset.Add(Db.CreateParameterDb("@HomePhone",_Employees.HomePhone)); prset.Add(Db.CreateParameterDb("@Extension",_Employees.Extension)); prset.Add(Db.CreateParameterDb("@ReportsTo",_Employees.ReportsTo)); prset.Add(Db.CreateParameterDb("@PhotoPath",_Employees.PhotoPath));
-var sql = @"UPDATE   Employees SET  LastName=@LastName,FirstName=@FirstName,Title=@Title,TitleOfCourtesy=@TitleOfCourtesy,BirthDate=@BirthDate,HireDate=@HireDate,Address=@Address,City=@City,Region=@Region,PostalCode=@PostalCode,Country=@Country,HomePhone=@HomePhone,Extension=@Extension,ReportsTo=@ReportsTo,PhotoPath=@PhotoPath where EmployeeID = @EmployeeID";
+ prset.Add(Db.CreateParameterDb("@EmployeeID",_Employees.EmployeeID)); prset.Add(Db.CreateParameterDb("@LastName",_Employees.LastName)); prset.Add(Db.CreateParameterDb("@FirstName",_Employees.FirstName)); prset.Add(Db.CreateParameterDb("@Title",_Employees.Title)); prset.Add(Db.CreateParameterDb("@TitleOfCourtesy",_Employees.TitleOfCourtesy)); prset.Add(Db.CreateParameterDb("@BirthDate",_Employees.BirthDate)); prset.Add(Db.CreateParameterDb("@HireDate",_Employees.HireDate)); prset.Add(Db.CreateParameterDb("@Address",_Employees.Address)); prset.Add(Db.CreateParameterDb("@City",_Employees.City)); prset.Add(Db.CreateParameterDb("@Region",_Employees.Region)); prset.Add(Db.CreateParameterDb("@PostalCode",_Employees.PostalCode)); prset.Add(Db.CreateParameterDb("@Country",_Employees.Country)); prset.Add(Db.CreateParameterDb("@HomePhone",_Employees.HomePhone)); prset.Add(Db.CreateParameterDb("@Extension",_Employees.Extension)); prset.Add(Db.CreateParameterDb("@ReportsTo",_Employees.ReportsTo)); prset.Add(Db.CreateParameterDb("@PhotoPath",_Employees.PhotoPath)); prset.Add(Db.CreateParameterDb("@Email",_Employees.Email));
+var sql = @"UPDATE   Employees SET  LastName=@LastName,FirstName=@FirstName,Title=@Title,TitleOfCourtesy=@TitleOfCourtesy,BirthDate=@BirthDate,HireDate=@HireDate,Address=@Address,City=@City,Region=@Region,PostalCode=@PostalCode,Country=@Country,HomePhone=@HomePhone,Extension=@Extension,ReportsTo=@ReportsTo,PhotoPath=@PhotoPath,Email=@Email where EmployeeID = @EmployeeID";
 
 int output = Db.FbExecuteNonQuery(sql, prset);
 if (output != 1){
@@ -112,6 +113,7 @@ RecordCount = temp.Field<Int32>("RecordCount"),EmployeeID= temp.Field<Int32?>("E
  Extension= temp.Field<String>("Extension"), 
  ReportsTo= temp.Field<Int32?>("ReportsTo"), 
  PhotoPath= temp.Field<String>("PhotoPath"), 
+ Email= temp.Field<String>("Email"), 
   });
   return q.ToList();
 }
@@ -237,6 +239,10 @@ public string GenWhereformProperties()
             { 
                 sql += string.Format(" AND ((''='{0}') or (PhotoPath='{0}') )", _Employees.PhotoPath); 
             } 
+            if ( _Employees.Email!= null) 
+            { 
+                sql += string.Format(" AND ((''='{0}') or (Email='{0}') )", _Employees.Email); 
+            } 
 return sql;
 }
       public List<IDataParameter> GetParameter(int pageIndex, int PageSize)
@@ -327,6 +333,11 @@ sqlStorePamameters.Add(Db.CreateParameterDb("@ReportsTo", _Employees.ReportsTo))
 if (_Employees.PhotoPath != null)
             {
 sqlStorePamameters.Add(Db.CreateParameterDb("@PhotoPath", _Employees.PhotoPath));
+
+            }
+if (_Employees.Email != null)
+            {
+sqlStorePamameters.Add(Db.CreateParameterDb("@Email", _Employees.Email));
 
             }
 /*Sort Order*/

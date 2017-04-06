@@ -48,7 +48,7 @@ public class EmployeesService : System.Web.Services.WebService
 
 
     [WebMethod]
-public List<Employees> Search(string PageIndex,string PageSize,string SortExpression,string SortDirection,string EmployeeID,string LastName,string FirstName,string Title,string TitleOfCourtesy,string BirthDate,string HireDate,string Address,string City,string Region,string PostalCode,string Country,string HomePhone,string Extension,string ReportsTo,string PhotoPath)
+public List<Employees> Search(string PageIndex,string PageSize,string SortExpression,string SortDirection,string EmployeeID,string LastName,string FirstName,string Title,string TitleOfCourtesy,string BirthDate,string HireDate,string Address,string City,string Region,string PostalCode,string Country,string HomePhone,string Extension,string ReportsTo,string PhotoPath,string Email)
     {
  Employees _Employees = new Employees(); 
   EmployeesDb _EmployeesDb = new EmployeesDb(); 
@@ -96,6 +96,9 @@ if (ReportsTo!= "") _Employees.ReportsTo = Convert.ToInt32(ReportsTo);
 if (PhotoPath!= "") _Employees.PhotoPath =  PhotoPath; 
 
 
+if (Email!= "") _Employees.Email =  Email; 
+
+
   _EmployeesDb._Employees = _Employees;
 int _PageIndex = Convert.ToInt32(PageIndex);
 int _PageSize = Convert.ToInt32(PageSize);
@@ -110,7 +113,7 @@ return _EmployeesDb.GetPageWise(_PageIndex, _PageSize);
    }
 
     [WebMethod]
-public string Save(string EmployeeID,string LastName,string FirstName,string Title,string TitleOfCourtesy,string BirthDate,string HireDate,string Address,string City,string Region,string PostalCode,string Country,string HomePhone,string Extension,string ReportsTo,string PhotoPath)
+public string Save(string EmployeeID,string LastName,string FirstName,string Title,string TitleOfCourtesy,string BirthDate,string HireDate,string Address,string City,string Region,string PostalCode,string Country,string HomePhone,string Extension,string ReportsTo,string PhotoPath,string Email)
     {
  Employees _Employees = new Employees(); 
   EmployeesDb _EmployeesDb = new EmployeesDb(); 
@@ -158,13 +161,16 @@ if (ReportsTo!= "") _Employees.ReportsTo = Convert.ToInt32(ReportsTo);
 if (PhotoPath!= "") _Employees.PhotoPath =  PhotoPath; 
 
 
+if (Email!= "") _Employees.Email =  Email; 
+
+
   _EmployeesDb._Employees = _Employees;
   object result= _EmployeesDb.Insert(); 
    return result.ToString();
    }
 
     [WebMethod]
-public string Update(string EmployeeID,string LastName,string FirstName,string Title,string TitleOfCourtesy,string BirthDate,string HireDate,string Address,string City,string Region,string PostalCode,string Country,string HomePhone,string Extension,string ReportsTo,string PhotoPath)
+public string Update(string EmployeeID,string LastName,string FirstName,string Title,string TitleOfCourtesy,string BirthDate,string HireDate,string Address,string City,string Region,string PostalCode,string Country,string HomePhone,string Extension,string ReportsTo,string PhotoPath,string Email)
     {
  Employees _Employees = new Employees(); 
   EmployeesDb _EmployeesDb = new EmployeesDb(); 
@@ -210,6 +216,9 @@ if (Extension!= "") _Employees.Extension =  Extension;
 if (ReportsTo!= "") _Employees.ReportsTo = Convert.ToInt32(ReportsTo);
 
 if (PhotoPath!= "") _Employees.PhotoPath =  PhotoPath; 
+
+
+if (Email!= "") _Employees.Email =  Email; 
 
 
   _EmployeesDb._Employees = _Employees;
@@ -218,7 +227,7 @@ if (PhotoPath!= "") _Employees.PhotoPath =  PhotoPath;
    }
 
     [WebMethod]
-public string Delete(string EmployeeID,string LastName,string FirstName,string Title,string TitleOfCourtesy,string BirthDate,string HireDate,string Address,string City,string Region,string PostalCode,string Country,string HomePhone,string Extension,string ReportsTo,string PhotoPath)
+public string Delete(string EmployeeID,string LastName,string FirstName,string Title,string TitleOfCourtesy,string BirthDate,string HireDate,string Address,string City,string Region,string PostalCode,string Country,string HomePhone,string Extension,string ReportsTo,string PhotoPath,string Email)
     {
  Employees _Employees = new Employees(); 
   EmployeesDb _EmployeesDb = new EmployeesDb(); 
@@ -264,6 +273,9 @@ if (Extension!= "") _Employees.Extension =  Extension;
 if (ReportsTo!= "") _Employees.ReportsTo = Convert.ToInt32(ReportsTo);
 
 if (PhotoPath!= "") _Employees.PhotoPath =  PhotoPath; 
+
+
+if (Email!= "") _Employees.Email =  Email; 
 
 
   _EmployeesDb._Employees = _Employees;

@@ -22,7 +22,7 @@ starting_top: '50%'
 //ready: function () { alert('Ready'); }, // Callback for Modal open 
 //complete: function () { alert('Closed'); } // Callback for Modal close 
 }); 
-$(".CategoryID,.CategoryName").autocomplete({ 
+$(".CategoryID,.CategoryName,.Email").autocomplete({ 
  
 source: function (request, response) { 
  
@@ -87,9 +87,10 @@ $(this).html(columnName);
   function SetTable() {
 var  CategoryID =$('#txtCategoryID').val();
 var  CategoryName =$('#txtCategoryName').val();
+var  Email =$('#txtEmail').val();
 
 $('#modal1').openModal();
-var result = CategoriesService.Search(PageIndex, PageSize, SortExpression, SortDirection, CategoryID,CategoryName,RederTable_Pagger);
+var result = CategoriesService.Search(PageIndex, PageSize, SortExpression, SortDirection, CategoryID,CategoryName,Email,RederTable_Pagger);
 
 }
 function RederTable_Pagger(result) {
@@ -136,6 +137,15 @@ TrTempplate +="<label class='lblCancel'>";
 TrTempplate +="Cancel</label>";
 TrTempplate +="</div>";
 TrTempplate +="</td>";
+TrTempplate +="<td class='tdEmail'>";
+TrTempplate +="<span class=''>"+result[key].Email+"</span>";
+TrTempplate +="<div style='display: none'>";
+TrTempplate +="<input data-column-id='Email' type='text' MaxLength='50' length='50' class='validate truncateEmail' value='"+result[key].Email+"' style='height: unset; margin: 0px;'>";
+TrTempplate +="<label class='lblSave'>Save</label>";
+TrTempplate +="<label class='lblCancel'>";
+TrTempplate +="Cancel</label>";
+TrTempplate +="</div>";
+TrTempplate +="</td>";
 TrTempplate +="</tr>";
 $('#tbResult> tbody').append(TrTempplate);
 }
@@ -159,7 +169,7 @@ SetPagger(totalRecord);
 
 //Edit table-------------------------------------------------------------------------------------------- 
 function BindEditTable() {
-$('.tdCategoryName').dblclick(function () { 
+$('.tdCategoryName,.tdEmail').dblclick(function () { 
  
 var sp = $(this).find("span"); 
 var di = $(this).find("div"); 
@@ -198,6 +208,15 @@ return;
 }
 
 if (column == "CategoryName")
+{
+if ($(inputBox).val().trim() == '') {
+$(inputBox).addClass("invalid");
+ Materialize.toast('please validate your input.', 3000, 'toastCss');  
+return;
+}
+}
+
+if (column == "Email")
 {
 if ($(inputBox).val().trim() == '') {
 $(inputBox).addClass("invalid");
@@ -346,6 +365,10 @@ $("#txtCategoryID").ForceNumericOnly();
                 </div>
                 <div id="status"></div>
             </div>
+<div class="input-field col s6"> 
+<input  id="txtEmail" type="text" data-column-id="Email"  class="validate Email"   length="50"   maxlength="50"                /> 
+<label for="txtEmail">Email </label> 
+ </div> 
 <div class="input-field col s12"> 
  
 <input id="btnSearch" class="waves-effect waves-light btn center" type="button" value="Search" onclick="Search();" />
@@ -362,6 +385,7 @@ $("#txtCategoryID").ForceNumericOnly();
 <th   data-column-id="CategoryID"  onclick="Sort(this);">CategoryID</th>
 <th   data-column-id="CategoryName"  onclick="Sort(this);">CategoryName</th>
 <th   data-column-id="Picture"  >Picture</th>
+<th   data-column-id="Email"  onclick="Sort(this);">Email</th>
 </tr>
 </thead>
 <tbody>

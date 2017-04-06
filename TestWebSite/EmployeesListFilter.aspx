@@ -22,7 +22,7 @@ starting_top: '50%'
 //ready: function () { alert('Ready'); }, // Callback for Modal open 
 //complete: function () { alert('Closed'); } // Callback for Modal close 
 }); 
-$(".EmployeeID,.LastName,.FirstName,.Title,.TitleOfCourtesy,.BirthDate,.HireDate,.Address,.City,.Region,.PostalCode,.Country,.HomePhone,.Extension,.ReportsTo,.PhotoPath").autocomplete({ 
+$(".EmployeeID,.LastName,.FirstName,.Title,.TitleOfCourtesy,.BirthDate,.HireDate,.Address,.City,.Region,.PostalCode,.Country,.HomePhone,.Extension,.ReportsTo,.PhotoPath,.Email").autocomplete({ 
  
 source: function (request, response) { 
  
@@ -101,9 +101,10 @@ var  HomePhone =$('#txtHomePhone').val();
 var  Extension =$('#txtExtension').val();
 var  ReportsTo =$('#txtReportsTo').val();
 var  PhotoPath =$('#txtPhotoPath').val();
+var  Email =$('#txtEmail').val();
 
 $('#modal1').openModal();
-var result = EmployeesService.Search(PageIndex, PageSize, SortExpression, SortDirection, EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath,RederTable_Pagger);
+var result = EmployeesService.Search(PageIndex, PageSize, SortExpression, SortDirection, EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath,Email,RederTable_Pagger);
 
 }
 function RederTable_Pagger(result) {
@@ -276,6 +277,15 @@ TrTempplate +="<label class='lblCancel'>";
 TrTempplate +="Cancel</label>";
 TrTempplate +="</div>";
 TrTempplate +="</td>";
+TrTempplate +="<td class='tdEmail'>";
+TrTempplate +="<span class=''>"+result[key].Email+"</span>";
+TrTempplate +="<div style='display: none'>";
+TrTempplate +="<input data-column-id='Email' type='text' MaxLength='50' length='50' class='validate truncateEmail' value='"+result[key].Email+"' style='height: unset; margin: 0px;'>";
+TrTempplate +="<label class='lblSave'>Save</label>";
+TrTempplate +="<label class='lblCancel'>";
+TrTempplate +="Cancel</label>";
+TrTempplate +="</div>";
+TrTempplate +="</td>";
 TrTempplate +="</tr>";
 $('#tbResult> tbody').append(TrTempplate);
 }
@@ -299,7 +309,7 @@ SetPagger(totalRecord);
 
 //Edit table-------------------------------------------------------------------------------------------- 
 function BindEditTable() {
-$('.tdLastName,.tdFirstName,.tdTitle,.tdTitleOfCourtesy,.tdBirthDate,.tdHireDate,.tdAddress,.tdCity,.tdRegion,.tdPostalCode,.tdCountry,.tdHomePhone,.tdExtension,.tdReportsTo,.tdPhotoPath').dblclick(function () { 
+$('.tdLastName,.tdFirstName,.tdTitle,.tdTitleOfCourtesy,.tdBirthDate,.tdHireDate,.tdAddress,.tdCity,.tdRegion,.tdPostalCode,.tdCountry,.tdHomePhone,.tdExtension,.tdReportsTo,.tdPhotoPath,.tdEmail').dblclick(function () { 
  
 var sp = $(this).find("span"); 
 var di = $(this).find("div"); 
@@ -464,6 +474,15 @@ return;
 }
 
 if (column == "PhotoPath")
+{
+if ($(inputBox).val().trim() == '') {
+$(inputBox).addClass("invalid");
+ Materialize.toast('please validate your input.', 3000, 'toastCss');  
+return;
+}
+}
+
+if (column == "Email")
 {
 if ($(inputBox).val().trim() == '') {
 $(inputBox).addClass("invalid");
@@ -669,6 +688,10 @@ $("#txtReportsTo").ForceNumericOnly();
 <input  id="txtPhotoPath" type="text" data-column-id="PhotoPath"  class="validate PhotoPath"   length="255"   maxlength="255"                /> 
 <label for="txtPhotoPath">PhotoPath </label> 
  </div> 
+<div class="input-field col s6"> 
+<input  id="txtEmail" type="text" data-column-id="Email"  class="validate Email"   length="50"   maxlength="50"                /> 
+<label for="txtEmail">Email </label> 
+ </div> 
 <div class="input-field col s12"> 
  
 <input id="btnSearch" class="waves-effect waves-light btn center" type="button" value="Search" onclick="Search();" />
@@ -699,6 +722,7 @@ $("#txtReportsTo").ForceNumericOnly();
 <th   data-column-id="Photo"  >Photo</th>
 <th   data-column-id="ReportsTo"  onclick="Sort(this);">ReportsTo</th>
 <th   data-column-id="PhotoPath"  onclick="Sort(this);">PhotoPath</th>
+<th   data-column-id="Email"  onclick="Sort(this);">Email</th>
 </tr>
 </thead>
 <tbody>

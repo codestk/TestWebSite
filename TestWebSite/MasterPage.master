@@ -6,6 +6,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head title="Site" runat="server">
+     
     <!-- CSS  -->
     <%--  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />--%>
     <link href="Module/Materialize/css/materialize.css" rel="stylesheet" media="screen,projection" />
@@ -77,6 +78,9 @@
     <link href="Module/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
     <script src="Module/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
 
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
     <script>
         $(document).ready(function () {
             //Hilight menu
@@ -92,8 +96,7 @@
         // $(".dropdown-button").dropdown();
     </script>
 
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+
 </head>
 <body>
     <form id="form1" runat="server">

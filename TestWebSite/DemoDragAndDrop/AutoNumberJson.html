@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+    <script>
+
+        var msg = {
+            "data":
+       [
+        { "name": "Art", "height": 1.71, "weight": 55 },
+        { "name": "Jo", "height": 1.52, "weight": 60 },
+        { "name": "Mac", "height": 1.63, "weight": 66 }
+       ]
+
+        }
+       
+        console.log(typeof(msg));
+
+        var temp = msg["data"];
+        var autoNumber = 1;
+        for (var x in temp) {
+            temp[x]["AutoNumber"] = autoNumber;
+
+            autoNumber = autoNumber + 1;
+        }
+
+        console.log(msg);
+
+    </script>
+</head>
+<body>
+</body>
+</html>

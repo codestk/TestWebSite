@@ -52,5 +52,8 @@ public Int32? ReportsTo { get { return _ReportsTo; } set { _ReportsTo = value; }
 String _PhotoPath; 
 public String PhotoPath { get { return _PhotoPath; } set { _PhotoPath = value; } } 
  
+String _Email; 
+public String Email { get { return _Email; } set { _Email = value; } } 
+ 
 }
 

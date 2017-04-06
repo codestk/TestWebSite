@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script>
+
+        // Remove All Html in Html
+        // Return pure txt
+        function removeHtml(html) {
+            var output = '';
+            output = html.replace(/<\/?[a-z][a-z0-9]*[^<>]*>/ig, "");
+            return output;
+        };
+
+        var aTag = '<a href="http://www.javascriptthai.com/">JavaScriptthai | เวพ JavaScript ภาษาไทย</a>';
+        console.log(removeHtml(aTag));
+
+        var textPure = 'JavaScriptthai | เวพ JavaScript ภาษาไทย';
+        console.log(removeHtml(textPure));
+    </script>
+</head>
+<body>
+</body>
+</html>

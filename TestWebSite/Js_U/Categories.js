@@ -34,10 +34,10 @@ var CategoriesService = {};
         return result; 
     };//GetKeyWordsOneColumn  
    
-  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,CategoryID,CategoryName,RederTable_Pagger) {
+  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,CategoryID,CategoryName,Email,RederTable_Pagger) {
         var result;
 
-        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '"}';
+        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '",Email:"' + Email + '"}';
         var F = CallServices(url + "Search", tag, true, function (msg) {
             result = msg.d;
 
@@ -45,34 +45,34 @@ var CategoriesService = {};
         });
         return result;
     };//Save
-this.Save = function(CategoryID,CategoryName)
+this.Save = function(CategoryID,CategoryName,Email)
 {
 
             var result;
 
-            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '"}';
+            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '",Email:"' + Email + '"}';
             var F = CallServices(url + "Save", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Save
-this.Update = function(CategoryID,CategoryName)
+this.Update = function(CategoryID,CategoryName,Email)
 {
 
             var result;
 
-            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '"}';
+            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '",Email:"' + Email + '"}';
             var F = CallServices(url + "Update", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Update
-this.Delete = function(CategoryID,CategoryName)
+this.Delete = function(CategoryID,CategoryName,Email)
 {
 
             var result;
 
-            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '"}';
+            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '",Email:"' + Email + '"}';
             var F = CallServices(url + "Delete", tag, false, function(msg) {
                 result = msg.d;
             });

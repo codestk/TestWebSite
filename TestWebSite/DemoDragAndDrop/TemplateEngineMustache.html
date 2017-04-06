@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+    <style>
+        table {
+            background: #34495E;
+            color: #fff;
+            border-radius: .4em;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        tr {
+            border-color: #34495E;
+        }
+
+        th, td {
+            margin: .5em 1em;
+            text-align: center;
+        }
+
+            th, td:before {
+                color: #dd5;
+            }
+    </style>
+
+    <script src="jquery-2.1.4.min.js"></script>
+    <script src="mustache.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            RenderTable(); //สั่งวาด  Table  
+        });
+
+        function RenderTable() {
+            var url = "/AppDesign/TemplateEngine/ApiService/DataApiSample.php";
+
+            //เรียก Data แบบ async และเมื่อเกิด function Call Back ก็จะทำงาน
+            CallApi(url, true, function (JSON_DATA) {
+                //สำหรับ Test
+                //var data = [{ "name": "Jonathan Suh", "gender": "male", "Age": 30 }, { "name": "William Philbin", "gender": "male", "Age": 30 }, { "name": "Allison McKinnery", "gender": "female", "Age": 30 }];
+                var data = JSON.parse(JSON_DATA);//convert data Json
+
+                if (data.length > 0) {
+
+                    var template = $('#MasterTemplate').html();
+                    Mustache.parse(template);   // optional, speeds up future uses
+
+                    var msg = { UserData: data };
+
+                    var rendered = Mustache.render(template, msg);
+
+                    $('#itemContainer').html(rendered);
+
+                }
+
+            });
+
+        }
+
+        //เรียก Data มาใช้
+        function CallApi(url, async, callBack) {
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: "{}",
+                contentType: false,
+                cache: false,
+                processData: false,
+                async: async,
+                beforeSend: function (jqXHR, settings) {
+                    // console.log(jqXHR.progress)
+                },
+
+                success: function (msg) {
+                    output = msg;
+
+                    return callBack(msg); //ใช้การ CallBack เพื่อให้รองรับ async และไม่ async
+                }
+                , error: function (jqXHR, textStatus, errorThrown) {
+                    //fix bug error not set false
+
+                }
+                , complete: function (jqXHR, textStatus) {
+
+                }
+            });  //.ajax
+
+        }
+    </script>
+    <script id="MasterTemplate" type="x-tmpl-mustache">
+
+        <table id="tbResult" class="">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#UserData}}
+                <tr>
+                    <td>
+                        {{name}}
+                    </td>
+
+                    <td>
+                        {{gender}}
+                    </td>
+
+                    <td>
+                        {{Age}}
+                    </td>
+                </tr>
+                {{/UserData}}
+            </tbody>
+        </table>
+    </script>
+</head>
+<body>
+    <div id="itemContainer">
+    </div>
+</body>
+</html>

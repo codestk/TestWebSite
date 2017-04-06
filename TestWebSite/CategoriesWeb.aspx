@@ -21,6 +21,7 @@ function ForceNumberTextBox()
 function Validate() {
 var output=true;
 if (CheckEmtyp($("#txtCategoryName"))) output = false;
+if (CheckEmtyp($("#txtEmail"))) output = false;
 if (output == false)
 Materialize.toast('please validate your input.', 3000, 'toastCss');
 return output;
@@ -33,7 +34,8 @@ function Save() {
  if (Validate() == false) { return false; }
 var  CategoryID =$('#txtCategoryID').val();
 var  CategoryName =$('#txtCategoryName').val();
-var result = CategoriesService.Save(CategoryID,CategoryName);
+var  Email =$('#txtEmail').val();
+var result = CategoriesService.Save(CategoryID,CategoryName,Email);
 
   if (result != null) {
 
@@ -54,7 +56,8 @@ function Update() {
  if (Validate() == false) { return false; }
 var  CategoryID =$('#txtCategoryID').val();
 var  CategoryName =$('#txtCategoryName').val();
-var result = CategoriesService.Update(CategoryID,CategoryName);
+var  Email =$('#txtEmail').val();
+var result = CategoriesService.Update(CategoryID,CategoryName,Email);
 
   if (result != null) {
 
@@ -68,7 +71,8 @@ function Delete() {
  if (Validate() == false) { return false; }
 var  CategoryID =$('#txtCategoryID').val();
 var  CategoryName =$('#txtCategoryName').val();
-var result = CategoriesService.Delete(CategoryID,CategoryName);
+var  Email =$('#txtEmail').val();
+var result = CategoriesService.Delete(CategoryID,CategoryName,Email);
 
   if (result != null) {
 
@@ -90,6 +94,7 @@ var _Categories = CategoriesService.Select(CategoryID);
 $('#txtCategoryID').prop('disabled', true );
 $('#txtCategoryID').val(_Categories.CategoryID);
 $('#txtCategoryName').val(_Categories.CategoryName);
+$('#txtEmail').val(_Categories.Email);
 $('#btnSave').hide();
  DropArea(CategoryID, apiService, handlerService);
 }
@@ -129,6 +134,10 @@ $('#btnDelete').hide();
                 </div>
                 <div id="status"></div>
             </div>
+<div class="input-field col s9"> 
+<input  id="txtEmail" type="text" data-column-id="Email"  class="validate Email"   length="50"   maxlength="50"                /> 
+<label for="txtEmail">Email </label> 
+ </div> 
   <div class="input-field col s12">
 <input id="btnSave" type="button" value="Save" class=" btn" onclick="Save();" /><input id="btnUpdate" type="button" value="Update" class=" btn" onclick="Update();" /><input id="btnDelete" type="button" value="Delete" class=" btn" onclick="javascript:return Confirm();" /></div>
   

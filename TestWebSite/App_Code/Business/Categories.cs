@@ -10,5 +10,8 @@ public String CategoryName { get { return _CategoryName; } set { _CategoryName =
 Byte[] _Picture; 
 public Byte[] Picture { get { return _Picture; } set { _Picture = value; } } 
  
+String _Email; 
+public String Email { get { return _Email; } set { _Email = value; } } 
+ 
 }
 

@@ -4,6 +4,7 @@ CREATE PROCEDURE [dbo].[Sp_GetCategoriesPageWise]
 /* Optional Filters for Dynamic Search*/
 @CategoryID  [int] =null,
 @CategoryName  [nvarchar](255) =null,
+@Email  [nvarchar](255) =null,
 /*– Pagination Parameters */
 @PageIndex INT = 1 ,
 @PageSize INT = 10 ,
@@ -20,6 +21,7 @@ BEGIN
 /*–Declaring Local Variables corresponding to parameters for modification */
 DECLARE @lCategoryID  [int] =null,
 @lCategoryName  [nvarchar](255) =null,
+@lEmail  [nvarchar](255) =null,
 @lPageNbr INT,
 @lPageSize INT,
 @lSortCol NVARCHAR(20),
@@ -29,6 +31,7 @@ DECLARE @lCategoryID  [int] =null,
 /*Setting Local Variables*/
 SET @lCategoryID =@CategoryID
 SET @lCategoryName = LTRIM(RTRIM(@CategoryName))
+SET @lEmail = LTRIM(RTRIM(@Email))
 SET @lPageNbr = @PageIndex
     SET @lPageSize = @PageSize
     SET @lSortCol = LTRIM(RTRIM(@SortColumn))
@@ -51,21 +54,30 @@ CASE WHEN (@lSortCol = 'CategoryName' AND @SortOrder='ASC')
        END ASC,
        CASE WHEN (@lSortCol = 'CategoryName' AND @SortOrder='DESC')
                   THEN CategoryName
+       END DESC,
+CASE WHEN (@lSortCol = 'Email' AND @SortOrder='ASC')
+                   THEN Email
+       END ASC,
+       CASE WHEN (@lSortCol = 'Email' AND @SortOrder='DESC')
+                  THEN Email
        END DESC  ) AS ROWNUM,
 Count(*) over() AS RecordCount,
 
  CategoryID,
- CategoryName
+ CategoryName,
+ Email
  FROM Categories
 WHERE
 (@lCategoryID IS NULL OR CategoryID = @lCategoryID) AND
-(@lCategoryName IS NULL OR CategoryName LIKE '%' +@lCategoryName + '%') 
+(@lCategoryName IS NULL OR CategoryName LIKE '%' +@lCategoryName + '%') AND 
+(@lEmail IS NULL OR Email LIKE '%' +@lEmail + '%') 
 )
 SELECT   RecordCount,
  ROWNUM,
 
 CategoryID,
-CategoryName FROM CategoriesResult
+CategoryName,
+Email FROM CategoriesResult
  WHERE
          ROWNUM > @lFirstRec
                AND ROWNUM < @lLastRec
@@ -92,6 +104,11 @@ SELECT
       [CategoryName] As KetText 
         
   FROM [Categories] where [CategoryName] like ''+@Key_word+'%' 
+union all
+SELECT  
+      [Email] As KetText 
+        
+  FROM [Categories] where [Email] like ''+@Key_word+'%' 
 
   )KeyTable  
   group by KetText 
@@ -114,9 +131,9 @@ SET NOCOUNT ON;
  select top 20 KetText,count(*) as NumberOfkey from  
 ( 
 SELECT  
-      CASE  WHEN (@Column = 'CategoryID') THEN CONVERT(varchar, CategoryID )  WHEN (@Column = 'CategoryName') THEN CONVERT(varchar, CategoryName )END As KetText 
+      CASE  WHEN (@Column = 'CategoryID') THEN CONVERT(varchar, CategoryID )  WHEN (@Column = 'CategoryName') THEN CONVERT(varchar, CategoryName )  WHEN (@Column = 'Email') THEN CONVERT(varchar, Email )END As KetText 
         
-  FROM [Categories] where CASE  WHEN (@Column = 'CategoryID') THEN CONVERT(varchar, CategoryID )  WHEN (@Column = 'CategoryName') THEN CONVERT(varchar, CategoryName )END like ''+@keyword+'%' 
+  FROM [Categories] where CASE  WHEN (@Column = 'CategoryID') THEN CONVERT(varchar, CategoryID )  WHEN (@Column = 'CategoryName') THEN CONVERT(varchar, CategoryName )  WHEN (@Column = 'Email') THEN CONVERT(varchar, Email )END like ''+@keyword+'%' 
   )KeyTable  
   group by KetText 
   order by count(*) desc  
@@ -141,6 +158,10 @@ go
          if  @Column = 'CategoryName'
            BEGIN 
            UPDATE   Categories SET CategoryName=@Data where CategoryID = @CategoryID;  
+         END 
+         if  @Column = 'Email'
+           BEGIN 
+           UPDATE   Categories SET Email=@Data where CategoryID = @CategoryID;  
          END 
        END     
 

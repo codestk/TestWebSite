@@ -34,10 +34,10 @@ var EmployeesService = {};
         return result; 
     };//GetKeyWordsOneColumn  
    
-  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath,RederTable_Pagger) {
+  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath,Email,RederTable_Pagger) {
         var result;
 
-        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",EmployeeID:"' + EmployeeID + '",LastName:"' + LastName + '",FirstName:"' + FirstName + '",Title:"' + Title + '",TitleOfCourtesy:"' + TitleOfCourtesy + '",BirthDate:"' + BirthDate + '",HireDate:"' + HireDate + '",Address:"' + Address + '",City:"' + City + '",Region:"' + Region + '",PostalCode:"' + PostalCode + '",Country:"' + Country + '",HomePhone:"' + HomePhone + '",Extension:"' + Extension + '",ReportsTo:"' + ReportsTo + '",PhotoPath:"' + PhotoPath + '"}';
+        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",EmployeeID:"' + EmployeeID + '",LastName:"' + LastName + '",FirstName:"' + FirstName + '",Title:"' + Title + '",TitleOfCourtesy:"' + TitleOfCourtesy + '",BirthDate:"' + BirthDate + '",HireDate:"' + HireDate + '",Address:"' + Address + '",City:"' + City + '",Region:"' + Region + '",PostalCode:"' + PostalCode + '",Country:"' + Country + '",HomePhone:"' + HomePhone + '",Extension:"' + Extension + '",ReportsTo:"' + ReportsTo + '",PhotoPath:"' + PhotoPath + '",Email:"' + Email + '"}';
         var F = CallServices(url + "Search", tag, true, function (msg) {
             result = msg.d;
 
@@ -45,34 +45,34 @@ var EmployeesService = {};
         });
         return result;
     };//Save
-this.Save = function(EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath)
+this.Save = function(EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath,Email)
 {
 
             var result;
 
-            var tag = '{EmployeeID:"' + EmployeeID + '",LastName:"' + LastName + '",FirstName:"' + FirstName + '",Title:"' + Title + '",TitleOfCourtesy:"' + TitleOfCourtesy + '",BirthDate:"' + BirthDate + '",HireDate:"' + HireDate + '",Address:"' + Address + '",City:"' + City + '",Region:"' + Region + '",PostalCode:"' + PostalCode + '",Country:"' + Country + '",HomePhone:"' + HomePhone + '",Extension:"' + Extension + '",ReportsTo:"' + ReportsTo + '",PhotoPath:"' + PhotoPath + '"}';
+            var tag = '{EmployeeID:"' + EmployeeID + '",LastName:"' + LastName + '",FirstName:"' + FirstName + '",Title:"' + Title + '",TitleOfCourtesy:"' + TitleOfCourtesy + '",BirthDate:"' + BirthDate + '",HireDate:"' + HireDate + '",Address:"' + Address + '",City:"' + City + '",Region:"' + Region + '",PostalCode:"' + PostalCode + '",Country:"' + Country + '",HomePhone:"' + HomePhone + '",Extension:"' + Extension + '",ReportsTo:"' + ReportsTo + '",PhotoPath:"' + PhotoPath + '",Email:"' + Email + '"}';
             var F = CallServices(url + "Save", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Save
-this.Update = function(EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath)
+this.Update = function(EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath,Email)
 {
 
             var result;
 
-            var tag = '{EmployeeID:"' + EmployeeID + '",LastName:"' + LastName + '",FirstName:"' + FirstName + '",Title:"' + Title + '",TitleOfCourtesy:"' + TitleOfCourtesy + '",BirthDate:"' + BirthDate + '",HireDate:"' + HireDate + '",Address:"' + Address + '",City:"' + City + '",Region:"' + Region + '",PostalCode:"' + PostalCode + '",Country:"' + Country + '",HomePhone:"' + HomePhone + '",Extension:"' + Extension + '",ReportsTo:"' + ReportsTo + '",PhotoPath:"' + PhotoPath + '"}';
+            var tag = '{EmployeeID:"' + EmployeeID + '",LastName:"' + LastName + '",FirstName:"' + FirstName + '",Title:"' + Title + '",TitleOfCourtesy:"' + TitleOfCourtesy + '",BirthDate:"' + BirthDate + '",HireDate:"' + HireDate + '",Address:"' + Address + '",City:"' + City + '",Region:"' + Region + '",PostalCode:"' + PostalCode + '",Country:"' + Country + '",HomePhone:"' + HomePhone + '",Extension:"' + Extension + '",ReportsTo:"' + ReportsTo + '",PhotoPath:"' + PhotoPath + '",Email:"' + Email + '"}';
             var F = CallServices(url + "Update", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Update
-this.Delete = function(EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath)
+this.Delete = function(EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath,Email)
 {
 
             var result;
 
-            var tag = '{EmployeeID:"' + EmployeeID + '",LastName:"' + LastName + '",FirstName:"' + FirstName + '",Title:"' + Title + '",TitleOfCourtesy:"' + TitleOfCourtesy + '",BirthDate:"' + BirthDate + '",HireDate:"' + HireDate + '",Address:"' + Address + '",City:"' + City + '",Region:"' + Region + '",PostalCode:"' + PostalCode + '",Country:"' + Country + '",HomePhone:"' + HomePhone + '",Extension:"' + Extension + '",ReportsTo:"' + ReportsTo + '",PhotoPath:"' + PhotoPath + '"}';
+            var tag = '{EmployeeID:"' + EmployeeID + '",LastName:"' + LastName + '",FirstName:"' + FirstName + '",Title:"' + Title + '",TitleOfCourtesy:"' + TitleOfCourtesy + '",BirthDate:"' + BirthDate + '",HireDate:"' + HireDate + '",Address:"' + Address + '",City:"' + City + '",Region:"' + Region + '",PostalCode:"' + PostalCode + '",Country:"' + Country + '",HomePhone:"' + HomePhone + '",Extension:"' + Extension + '",ReportsTo:"' + ReportsTo + '",PhotoPath:"' + PhotoPath + '",Email:"' + Email + '"}';
             var F = CallServices(url + "Delete", tag, false, function(msg) {
                 result = msg.d;
             });

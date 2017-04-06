@@ -48,13 +48,16 @@ public class CategoriesService : System.Web.Services.WebService
 
 
     [WebMethod]
-public List<Categories> Search(string PageIndex,string PageSize,string SortExpression,string SortDirection,string CategoryID,string CategoryName)
+public List<Categories> Search(string PageIndex,string PageSize,string SortExpression,string SortDirection,string CategoryID,string CategoryName,string Email)
     {
  Categories _Categories = new Categories(); 
   CategoriesDb _CategoriesDb = new CategoriesDb(); 
 if (CategoryID!= "") _Categories.CategoryID = Convert.ToInt32(CategoryID);
 
 if (CategoryName!= "") _Categories.CategoryName =  CategoryName; 
+
+
+if (Email!= "") _Categories.Email =  Email; 
 
 
   _CategoriesDb._Categories = _Categories;
@@ -71,7 +74,7 @@ return _CategoriesDb.GetPageWise(_PageIndex, _PageSize);
    }
 
     [WebMethod]
-public string Save(string CategoryID,string CategoryName)
+public string Save(string CategoryID,string CategoryName,string Email)
     {
  Categories _Categories = new Categories(); 
   CategoriesDb _CategoriesDb = new CategoriesDb(); 
@@ -80,19 +83,25 @@ public string Save(string CategoryID,string CategoryName)
 if (CategoryName!= "") _Categories.CategoryName =  CategoryName; 
 
 
+if (Email!= "") _Categories.Email =  Email; 
+
+
   _CategoriesDb._Categories = _Categories;
   object result= _CategoriesDb.Insert(); 
    return result.ToString();
    }
 
     [WebMethod]
-public string Update(string CategoryID,string CategoryName)
+public string Update(string CategoryID,string CategoryName,string Email)
     {
  Categories _Categories = new Categories(); 
   CategoriesDb _CategoriesDb = new CategoriesDb(); 
 if (CategoryID!= "") _Categories.CategoryID = Convert.ToInt32(CategoryID);
 
 if (CategoryName!= "") _Categories.CategoryName =  CategoryName; 
+
+
+if (Email!= "") _Categories.Email =  Email; 
 
 
   _CategoriesDb._Categories = _Categories;
@@ -101,13 +110,16 @@ if (CategoryName!= "") _Categories.CategoryName =  CategoryName;
    }
 
     [WebMethod]
-public string Delete(string CategoryID,string CategoryName)
+public string Delete(string CategoryID,string CategoryName,string Email)
     {
  Categories _Categories = new Categories(); 
   CategoriesDb _CategoriesDb = new CategoriesDb(); 
 if (CategoryID!= "") _Categories.CategoryID = Convert.ToInt32(CategoryID);
 
 if (CategoryName!= "") _Categories.CategoryName =  CategoryName; 
+
+
+if (Email!= "") _Categories.Email =  Email; 
 
 
   _CategoriesDb._Categories = _Categories;

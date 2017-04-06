@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="jquery-2.1.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+           
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: "{}",
+                contentType: false,
+                cache: false,
+                processData: false,
+                async: async,
+                beforeSend: function (jqXHR, settings) {
+                    //console.log(jqXHR.progress)
+                },
+
+                success: function (msg) {
+
+                //รับ Data วาด Table 1
+                  var $table1 = $('#table1');
+        var contents = msg.d; // store the returned array in a variable
+        // loop through the array and build up the HTML for the new row.
+        // there are much better ways to do this, but I can't think of them right now...
+        var html = '';
+        for (var i = 0; i < contents.length; i++) {
+           html += '<td>' + contents[i] + '</td>';   
+        }
+        // add the new row to the table
+        var $newRow = $('<tr></tr>').append(html).appendTo($table1);
+                }
+             , error: function (jqXHR, textStatus, errorThrown) {
+                 //fix bug error not set false
+
+             }
+             , complete: function (jqXHR, textStatus) {
+
+             }
+            });  //.ajax
+
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

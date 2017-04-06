@@ -18,6 +18,7 @@ CREATE PROCEDURE [dbo].[Sp_GetEmployeesPageWise]
 @Extension  [nvarchar](255) =null,
 @ReportsTo  [int] =null,
 @PhotoPath  [nvarchar](255) =null,
+@Email  [nvarchar](255) =null,
 /*– Pagination Parameters */
 @PageIndex INT = 1 ,
 @PageSize INT = 10 ,
@@ -48,6 +49,7 @@ DECLARE @lEmployeeID  [int] =null,
 @lExtension  [nvarchar](255) =null,
 @lReportsTo  [int] =null,
 @lPhotoPath  [nvarchar](255) =null,
+@lEmail  [nvarchar](255) =null,
 @lPageNbr INT,
 @lPageSize INT,
 @lSortCol NVARCHAR(20),
@@ -71,6 +73,7 @@ SET @lHomePhone = LTRIM(RTRIM(@HomePhone))
 SET @lExtension = LTRIM(RTRIM(@Extension))
 SET @lReportsTo =@ReportsTo
 SET @lPhotoPath = LTRIM(RTRIM(@PhotoPath))
+SET @lEmail = LTRIM(RTRIM(@Email))
 SET @lPageNbr = @PageIndex
     SET @lPageSize = @PageSize
     SET @lSortCol = LTRIM(RTRIM(@SortColumn))
@@ -177,6 +180,12 @@ CASE WHEN (@lSortCol = 'PhotoPath' AND @SortOrder='ASC')
        END ASC,
        CASE WHEN (@lSortCol = 'PhotoPath' AND @SortOrder='DESC')
                   THEN PhotoPath
+       END DESC,
+CASE WHEN (@lSortCol = 'Email' AND @SortOrder='ASC')
+                   THEN Email
+       END ASC,
+       CASE WHEN (@lSortCol = 'Email' AND @SortOrder='DESC')
+                  THEN Email
        END DESC  ) AS ROWNUM,
 Count(*) over() AS RecordCount,
 
@@ -195,7 +204,8 @@ Count(*) over() AS RecordCount,
  HomePhone,
  Extension,
  ReportsTo,
- PhotoPath
+ PhotoPath,
+ Email
  FROM Employees
 WHERE
 (@lEmployeeID IS NULL OR EmployeeID = @lEmployeeID) AND
@@ -213,7 +223,8 @@ WHERE
 (@lHomePhone IS NULL OR HomePhone LIKE '%' +@lHomePhone + '%') AND 
 (@lExtension IS NULL OR Extension LIKE '%' +@lExtension + '%') AND 
 (@lReportsTo IS NULL OR ReportsTo = @lReportsTo) AND
-(@lPhotoPath IS NULL OR PhotoPath LIKE '%' +@lPhotoPath + '%') 
+(@lPhotoPath IS NULL OR PhotoPath LIKE '%' +@lPhotoPath + '%') AND 
+(@lEmail IS NULL OR Email LIKE '%' +@lEmail + '%') 
 )
 SELECT   RecordCount,
  ROWNUM,
@@ -233,7 +244,8 @@ Country,
 HomePhone,
 Extension,
 ReportsTo,
-PhotoPath FROM EmployeesResult
+PhotoPath,
+Email FROM EmployeesResult
  WHERE
          ROWNUM > @lFirstRec
                AND ROWNUM < @lLastRec
@@ -315,6 +327,11 @@ SELECT
       [PhotoPath] As KetText 
         
   FROM [Employees] where [PhotoPath] like ''+@Key_word+'%' 
+union all
+SELECT  
+      [Email] As KetText 
+        
+  FROM [Employees] where [Email] like ''+@Key_word+'%' 
 
   )KeyTable  
   group by KetText 
@@ -337,9 +354,9 @@ SET NOCOUNT ON;
  select top 20 KetText,count(*) as NumberOfkey from  
 ( 
 SELECT  
-      CASE  WHEN (@Column = 'EmployeeID') THEN CONVERT(varchar, EmployeeID )  WHEN (@Column = 'LastName') THEN CONVERT(varchar, LastName )  WHEN (@Column = 'FirstName') THEN CONVERT(varchar, FirstName )  WHEN (@Column = 'Title') THEN CONVERT(varchar, Title )  WHEN (@Column = 'TitleOfCourtesy') THEN CONVERT(varchar, TitleOfCourtesy )  WHEN (@Column = 'BirthDate') THEN CONVERT(varchar, BirthDate )  WHEN (@Column = 'HireDate') THEN CONVERT(varchar, HireDate )  WHEN (@Column = 'Address') THEN CONVERT(varchar, Address )  WHEN (@Column = 'City') THEN CONVERT(varchar, City )  WHEN (@Column = 'Region') THEN CONVERT(varchar, Region )  WHEN (@Column = 'PostalCode') THEN CONVERT(varchar, PostalCode )  WHEN (@Column = 'Country') THEN CONVERT(varchar, Country )  WHEN (@Column = 'HomePhone') THEN CONVERT(varchar, HomePhone )  WHEN (@Column = 'Extension') THEN CONVERT(varchar, Extension )  WHEN (@Column = 'ReportsTo') THEN CONVERT(varchar, ReportsTo )  WHEN (@Column = 'PhotoPath') THEN CONVERT(varchar, PhotoPath )END As KetText 
+      CASE  WHEN (@Column = 'EmployeeID') THEN CONVERT(varchar, EmployeeID )  WHEN (@Column = 'LastName') THEN CONVERT(varchar, LastName )  WHEN (@Column = 'FirstName') THEN CONVERT(varchar, FirstName )  WHEN (@Column = 'Title') THEN CONVERT(varchar, Title )  WHEN (@Column = 'TitleOfCourtesy') THEN CONVERT(varchar, TitleOfCourtesy )  WHEN (@Column = 'BirthDate') THEN CONVERT(varchar, BirthDate )  WHEN (@Column = 'HireDate') THEN CONVERT(varchar, HireDate )  WHEN (@Column = 'Address') THEN CONVERT(varchar, Address )  WHEN (@Column = 'City') THEN CONVERT(varchar, City )  WHEN (@Column = 'Region') THEN CONVERT(varchar, Region )  WHEN (@Column = 'PostalCode') THEN CONVERT(varchar, PostalCode )  WHEN (@Column = 'Country') THEN CONVERT(varchar, Country )  WHEN (@Column = 'HomePhone') THEN CONVERT(varchar, HomePhone )  WHEN (@Column = 'Extension') THEN CONVERT(varchar, Extension )  WHEN (@Column = 'ReportsTo') THEN CONVERT(varchar, ReportsTo )  WHEN (@Column = 'PhotoPath') THEN CONVERT(varchar, PhotoPath )  WHEN (@Column = 'Email') THEN CONVERT(varchar, Email )END As KetText 
         
-  FROM [Employees] where CASE  WHEN (@Column = 'EmployeeID') THEN CONVERT(varchar, EmployeeID )  WHEN (@Column = 'LastName') THEN CONVERT(varchar, LastName )  WHEN (@Column = 'FirstName') THEN CONVERT(varchar, FirstName )  WHEN (@Column = 'Title') THEN CONVERT(varchar, Title )  WHEN (@Column = 'TitleOfCourtesy') THEN CONVERT(varchar, TitleOfCourtesy )  WHEN (@Column = 'BirthDate') THEN CONVERT(varchar, BirthDate )  WHEN (@Column = 'HireDate') THEN CONVERT(varchar, HireDate )  WHEN (@Column = 'Address') THEN CONVERT(varchar, Address )  WHEN (@Column = 'City') THEN CONVERT(varchar, City )  WHEN (@Column = 'Region') THEN CONVERT(varchar, Region )  WHEN (@Column = 'PostalCode') THEN CONVERT(varchar, PostalCode )  WHEN (@Column = 'Country') THEN CONVERT(varchar, Country )  WHEN (@Column = 'HomePhone') THEN CONVERT(varchar, HomePhone )  WHEN (@Column = 'Extension') THEN CONVERT(varchar, Extension )  WHEN (@Column = 'ReportsTo') THEN CONVERT(varchar, ReportsTo )  WHEN (@Column = 'PhotoPath') THEN CONVERT(varchar, PhotoPath )END like ''+@keyword+'%' 
+  FROM [Employees] where CASE  WHEN (@Column = 'EmployeeID') THEN CONVERT(varchar, EmployeeID )  WHEN (@Column = 'LastName') THEN CONVERT(varchar, LastName )  WHEN (@Column = 'FirstName') THEN CONVERT(varchar, FirstName )  WHEN (@Column = 'Title') THEN CONVERT(varchar, Title )  WHEN (@Column = 'TitleOfCourtesy') THEN CONVERT(varchar, TitleOfCourtesy )  WHEN (@Column = 'BirthDate') THEN CONVERT(varchar, BirthDate )  WHEN (@Column = 'HireDate') THEN CONVERT(varchar, HireDate )  WHEN (@Column = 'Address') THEN CONVERT(varchar, Address )  WHEN (@Column = 'City') THEN CONVERT(varchar, City )  WHEN (@Column = 'Region') THEN CONVERT(varchar, Region )  WHEN (@Column = 'PostalCode') THEN CONVERT(varchar, PostalCode )  WHEN (@Column = 'Country') THEN CONVERT(varchar, Country )  WHEN (@Column = 'HomePhone') THEN CONVERT(varchar, HomePhone )  WHEN (@Column = 'Extension') THEN CONVERT(varchar, Extension )  WHEN (@Column = 'ReportsTo') THEN CONVERT(varchar, ReportsTo )  WHEN (@Column = 'PhotoPath') THEN CONVERT(varchar, PhotoPath )  WHEN (@Column = 'Email') THEN CONVERT(varchar, Email )END like ''+@keyword+'%' 
   )KeyTable  
   group by KetText 
   order by count(*) desc  
@@ -420,6 +437,10 @@ go
          if  @Column = 'PhotoPath'
            BEGIN 
            UPDATE   Employees SET PhotoPath=@Data where EmployeeID = @EmployeeID;  
+         END 
+         if  @Column = 'Email'
+           BEGIN 
+           UPDATE   Employees SET Email=@Data where EmployeeID = @EmployeeID;  
          END 
        END     
 

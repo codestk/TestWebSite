@@ -36,6 +36,7 @@ if (CheckEmtyp($("#txtHomePhone"))) output = false;
 if (CheckEmtyp($("#txtExtension"))) output = false;
 if (CheckEmtyp($("#txtReportsTo"))) output = false;
 if (CheckEmtyp($("#txtPhotoPath"))) output = false;
+if (CheckEmtyp($("#txtEmail"))) output = false;
 if (output == false)
 Materialize.toast('please validate your input.', 3000, 'toastCss');
 return output;
@@ -62,7 +63,8 @@ var  HomePhone =$('#txtHomePhone').val();
 var  Extension =$('#txtExtension').val();
 var  ReportsTo =$('#txtReportsTo').val();
 var  PhotoPath =$('#txtPhotoPath').val();
-var result = EmployeesService.Save(EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath);
+var  Email =$('#txtEmail').val();
+var result = EmployeesService.Save(EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath,Email);
 
   if (result != null) {
 
@@ -97,7 +99,8 @@ var  HomePhone =$('#txtHomePhone').val();
 var  Extension =$('#txtExtension').val();
 var  ReportsTo =$('#txtReportsTo').val();
 var  PhotoPath =$('#txtPhotoPath').val();
-var result = EmployeesService.Update(EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath);
+var  Email =$('#txtEmail').val();
+var result = EmployeesService.Update(EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath,Email);
 
   if (result != null) {
 
@@ -125,7 +128,8 @@ var  HomePhone =$('#txtHomePhone').val();
 var  Extension =$('#txtExtension').val();
 var  ReportsTo =$('#txtReportsTo').val();
 var  PhotoPath =$('#txtPhotoPath').val();
-var result = EmployeesService.Delete(EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath);
+var  Email =$('#txtEmail').val();
+var result = EmployeesService.Delete(EmployeeID,LastName,FirstName,Title,TitleOfCourtesy,BirthDate,HireDate,Address,City,Region,PostalCode,Country,HomePhone,Extension,ReportsTo,PhotoPath,Email);
 
   if (result != null) {
 
@@ -161,6 +165,7 @@ $('#txtHomePhone').val(_Employees.HomePhone);
 $('#txtExtension').val(_Employees.Extension);
 $('#txtReportsTo').val(_Employees.ReportsTo);
 $('#txtPhotoPath').val(_Employees.PhotoPath);
+$('#txtEmail').val(_Employees.Email);
 $('#btnSave').hide();
  DropArea(CategoryID, apiService, handlerService);
 }
@@ -255,6 +260,10 @@ $('#btnDelete').hide();
 <div class="input-field col s9"> 
 <input  id="txtPhotoPath" type="text" data-column-id="PhotoPath"  class="validate PhotoPath"   length="255"   maxlength="255"                /> 
 <label for="txtPhotoPath">PhotoPath </label> 
+ </div> 
+<div class="input-field col s9"> 
+<input  id="txtEmail" type="text" data-column-id="Email"  class="validate Email"   length="50"   maxlength="50"                /> 
+<label for="txtEmail">Email </label> 
  </div> 
   <div class="input-field col s12">
 <input id="btnSave" type="button" value="Save" class=" btn" onclick="Save();" /><input id="btnUpdate" type="button" value="Update" class=" btn" onclick="Update();" /><input id="btnDelete" type="button" value="Delete" class=" btn" onclick="javascript:return Confirm();" /></div>

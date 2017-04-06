@@ -1,0 +1,457 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    @inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+    <link rel="stylesheet" type="text/css" href="/css/jPages.css">
+    <link rel="stylesheet" href="/css/justifiedGallery.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/lightgallery.min.css" media='screen' />
+    <link rel="stylesheet" href="/css/lg-transitions.css">
+
+    <style>
+        #itemContainer {
+            display: block;
+        }
+
+        .glyphicon {
+            margin-right: 5px;
+        }
+
+        ul#itemContainer {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+            ul#itemContainer li {
+                display: inline-block;
+                margin: 0px;
+                zoom: 1;
+            }
+
+        #searchbox select {
+            margin-bottom: 20px;
+        }
+
+        #searchbox .btn {
+            margin-bottom: 20px;
+        }
+
+        .thumbnail {
+            margin: 0px;
+            padding: 0px;
+            border: 0;
+            box-shadow: none;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+            .thumbnail a {
+                text-decoration: none;
+            }
+
+                .thumbnail a:hover {
+                    color: #ff7e00;
+                }
+
+        .item {
+            display: inline-block;
+        }
+
+            .item li {
+                margin: 0;
+                padding: 0;
+            }
+
+            .item.list-group-item {
+                background-color: #fff;
+            }
+
+                .item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {
+                    background: #fff;
+                }
+
+                .item.list-group-item .list-group-image {
+                    margin: 10px;
+                }
+
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+            background-color: #fff;
+            border: 0;
+            text-align: left;
+        }
+
+        .item.list-group-item .thumbnail {
+            margin-bottom: 0px;
+        }
+
+        .item.list-group-item .caption {
+            padding: 9px;
+        }
+
+        .caption {
+            display: none;
+        }
+
+        .item.list-group-item:nth-of-type(odd) {
+            background: #fff;
+        }
+
+        .item.list-group-item:before, .item.list-group-item:after {
+            display: table;
+            content: " ";
+        }
+
+        .item.list-group-item img {
+            float: left;
+        }
+
+        .item.list-group-item:after {
+            clear: both;
+        }
+
+        .list-group-item-text {
+            margin: 0;
+        }
+
+        .list-group {
+            border-radius: 0px;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            margin-bottom: 0px;
+        }
+
+        .col-center-block {
+            margin: 0 auto;
+            width: 50%;
+        }
+
+        .view {
+            border-color: #fff;
+            box-shadow: none;
+            display: inline;
+            position: relative;
+            top: -5px;
+            margin-right: 40px;
+        }
+    </style>
+
+    @{
+    var mediaIds = Model.MacroParameters["mediaIds"];
+    var limit = Convert.ToInt32(Model.MacroParameters["limit"]);
+    var nodeLang = Culture.ToString().ToLower();
+
+    @SearchBox(mediaIds,nodeLang)
+    <div class="holder center"></div>
+    @RandomImage(mediaIds,limit,nodeLang)
+    <div class="holder center"></div>
+
+    }
+
+    @helper SearchBox(object mediaIds,string nodeLang)
+    {
+    var category = new List<string>
+        ();
+        var year = new List<string>
+            ();
+            var medias = Umbraco.Media(mediaIds);
+            <div class="row md-col-12">
+                @if (medias.Children.Any())
+                {
+
+                @* Category *@
+
+                if (nodeLang == "th-th") {
+                foreach (var post in medias.Children.Distinct("categoryThai"))
+                {
+                if (!category.Contains(post.categoryThai))
+                {
+                category.Add(post.categoryThai);
+                }
+                }
+                } else {
+                foreach (var post in medias.Children.Distinct("categoryEng"))
+                {
+                if (!category.Contains(post.categoryEng))
+                {
+                category.Add(post.categoryEng);
+                }
+                }
+                }
+                category.Sort();
+
+                @* Year *@
+
+                if (nodeLang == "th-th") {
+                foreach (var iyear in medias.Children.Distinct("YearTh"))
+                {
+                if (!year.Contains(iyear.YearTh.ToString()))
+                {
+                year.Add(iyear.YearTh.ToString());
+                }
+                }
+                } else {
+                foreach (var iyear in medias.Children.Distinct("YearEn"))
+                {
+                if (!year.Contains(iyear.YearEn.ToString()))
+                {
+                year.Add(iyear.YearEn.ToString());
+                }
+                }
+                }
+                year.Sort();
+                }
+                <form method="POST" action="" class="form-inline">
+                    <div class="col-md-8 center" id="searchbox">
+                        <select id="category" name="category" class="form-control">
+                            @if (nodeLang == "th-th") {
+                            <option value="">เลือกประเภท</option>
+                            } else {
+                            <option value="">Select Category</option>
+                            }
+                            @foreach (var c in category)
+                            {
+                            <option value="@c">@c</option>
+                            }
+                        </select>
+
+                        <select id="fromyear" name="fromyear" class="form-control">
+                            @if (nodeLang == "th-th") {
+                            <option value="">จากปี</option>
+                            } else {
+                            <option value="">From Year</option>
+                            }
+                            @foreach (var y in year)
+                            {
+                            <option value="@y">@y</option>
+                            }
+                        </select>
+                        <select id="toyear" name="toyear" class="form-control">
+                            @if (nodeLang == "th-th") {
+                            <option value="">ถึง</option>
+                            } else {
+                            <option value="">To</option>
+                            }
+                            @foreach (var y in year)
+                            {
+                            <option value="@y">@y</option>
+                            }
+                        </select>
+
+                        <input type="button" class="btn btn-default" id="btnSearch" name="btnSearch" value="Search" />
+                    </div>
+                    <div class="col-md-4 center" id="searchbox">
+                        <a href="#" id="list" class="btn btn-default">
+                            <span class="glyphicon glyphicon-th-list">
+                            </span>List
+                        </a> <a href="#" id="grid" class="btn btn-default">
+                            <span class="glyphicon glyphicon-th"></span>Grid
+                        </a>
+                    </div>
+                </form>
+            </div>
+            }
+
+            @helper RandomImage(object mediaIds,int limit,string nodeLang)
+            {
+            int NoItems = 0;
+
+            var _nodeLang = "\""+nodeLang +"\"";
+            var _mediaIds =mediaIds;
+
+            if (mediaIds != null)
+            {
+            <div class="row col-md-12">
+                <div id="products" class="center">
+                    <div id="itemContainer">
+                        @foreach (var mediaId in mediaIds.ToString().Split(','))
+                        {
+                        var media = Umbraco.Media(mediaId);
+                        NoItems = media.Children.Count();
+                        if (media.Children.Any())
+                        {
+                        foreach (var image in media.Children().Take(limit))
+                        {
+                        if (nodeLang == "th-th") {
+                        <a href="@image.umbracofile" class="thumbnail item text--left" data-sub-html='<div class="piccaption">@image.artistTh</div>
+								<div>@image.categoryThai</div>
+								<div>@image.imageNameTh</div>
+								<div>@image.YearTh</div>
+								<div>@image.techniqueTh</div>
+								<div>@image.size</div>'>
+								<img class="group list-group-image" src="@image.GetCropUrl("umbracofile",propertyAlias:"Square")" alt="@image.artistTh" />
+								<div class="caption">
+									<h4 class="group inner list-group-item-heading">@image.artistTh</h4>
+									<p class="group inner list-group-item-text">@image.imageNameTh</p>
+									<p class="group inner list-group-item-text">@image.yearTh</p>
+									<p class="group inner list-group-item-text">@image.categoryThai</p>
+									<p class="group inner list-group-item-text">@image.techniqueTh</p>
+								</div>
+								</a>
+                        } else {
+                        <a href="@image.umbracofile" class="thumbnail item text--left" data-sub-html='<div class="piccaption">@image.artistEn</div>
+								<div>@image.categoryEng</div>
+								<div>@image.imageNameEn</div>
+								<div>@image.YearEn</div>
+								<div>@image.techniqueEn</div>
+								<div>@image.size</div>'>
+								<img class="group list-group-image" src="@image.GetCropUrl("umbracofile",propertyAlias:"Square")" alt="@image.artistEn" />
+								<div class="caption">
+									<h4 class="group inner list-group-item-heading">@image.artistEn</h4>
+									<p class="group inner list-group-item-text">@image.imageNameEn</p>
+									<p class="group inner list-group-item-text">@image.yearEn</p>
+									<p class="group inner list-group-item-text">@image.categoryEng</p>
+									<p class="group inner list-group-item-text">@image.techniqueEn</p>
+								</div>
+								</a>
+                        }
+                        }
+                        }
+                        }
+                    </div>
+                </div>
+            </div>
+            }
+            <script>
+                $(document).ready(function () {
+
+                    var lang=@Html.Raw(_nodeLang)
+                    var mediaID =@Html.Raw(_mediaIds)
+
+                    var cat= $("#category option:selected").val();
+                    $('#btnSearch').click(function (event) {
+
+                        $('#itemContainer').remove();
+
+                        $.ajax({
+                            url: "/api/Paint/Get/"+mediaID+"/"+lang+"/"+cat+"/2001/2016",
+                            type: "GET",
+                            data: "{}",
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            beforeSend: function () {
+                                destroyPagination();
+                            },
+
+                            success: function (data) {
+                                var item='';
+
+                                item +="<div id=itemContainer>";
+
+                                for (var key in data) {
+                                    if (data.hasOwnProperty(key)) {
+
+                                        item +=" <a href='"+data[key].umbracofile+"' class='thumbnail item text--left' data-sub-html=\"<div class='piccaption'>"+data[key].artist+"</div>";
+                                        item +="								<div>"+data[key].category+"</div>";
+                                        item +=" 								<div>"+data[key].imagename+"</div>";
+                                        item +=" 								<div>"+data[key].year+"</div>";
+                                        item +="								<div>"+data[key].technique+"</div>";
+                                        item +="								<div>"+data[key].size+"</div>\">";
+                                        item +="								<img class='group list-group-image' src='"+data[key].CropUrl+"' alt='"+data[key].artist+"' />";
+                                        item +="								<div class='caption'>";
+                                        item +="									<h4 class='group inner list-group-item-heading'>"+data[key].artist+"</h4>";
+                                        item +="									<p class='group inner list-group-item-text'>"+data[key].imagename+"</p>";
+                                        item +="									<p class='group inner list-group-item-text'>"+data[key].year+"</p>";
+                                        item +="									<p class='group inner list-group-item-text'>"+data[key].category+"</p>";
+                                        item +="									<p class='group inner list-group-item-text'>"+data[key].technique+"</p>";
+                                        item +="								</div>";
+                                        item +="								</a>";
+
+                                    }
+                                }
+                                item +="</div>"
+
+                                $('#products').html(item);
+
+                                $("#itemContainer").lightGallery({
+                                    mode: 'lg-fade',
+                                    download: false
+                                });
+
+                                destroyPagination();
+                                setPagination(8);
+
+                                $('.holder').css('display','none');
+                                setPagination(@NoItems);
+
+                            },
+                            complete: function (xhr) {
+                                // status.html(xhr.responseText);
+                            }
+                        });
+
+                    });
+
+                    $("#itemContainer").lightGallery({
+                        mode: 'lg-fade',
+                        download: false
+                    });
+
+                    $('#list').click(function (event) {
+                        event.preventDefault();
+                        $('#itemContainer .item').css('display','block');
+                        $('#itemContainer .item').addClass('list-group-item');
+                        $('#itemContainer .item').addClass('col-md-6');
+                        $('.thumbnail').css('border','0');
+                        $('.caption').css('display','inline-block');
+                        $('.holder').css('display','block');
+                        destroyPagination();
+                        setPagination(8);
+                    });
+                    $('#grid').click(function (event) {
+                        event.preventDefault();
+                        $('#itemContainer .item').css('display','inline-block');
+                        $('#itemContainer .item').removeClass('list-group-item');
+                        $('#itemContainer .item').removeClass('col-md-6');
+                        $('.thumbnail').css('border','0');
+                        $('.caption').css('display','none');
+                        $('.holder').css('display','none');
+                        destroyPagination();
+                        setPagination(@NoItems);
+                    });
+                    $('.holder').css('display','none');
+                    setPagination(@NoItems);
+                });
+
+                function setPagination(pPage){
+                    var pagination = $('.holder');
+                    pagination.jPages({
+                        containerID: 'itemContainer',
+                        perPage: pPage,
+                        direction:"random",
+                        delay:10,
+                        startPage: 1,
+                        startRange: 1,
+                        midRange: 5,
+                        endRange: 1,
+                        previous :"←",
+                        next :"→",
+                        first: false,
+                        last: false
+                    });
+                }
+                function destroyPagination() {
+                    var pagination = $('.holder');
+                    pagination.jPages('destroy');
+                };
+            </script>
+            }
+
+            <script src="/scripts/jPages.min.js"></script>
+            <script src="/scripts/jquery.mousewheel.min.js"></script>
+            <script src="/scripts/jquery.justifiedGallery.min.js"></script>
+            <script src="/scripts/lightgallery.min.js"></script>
+            <script src="/scripts/lg-thumbnail.min.js"></script>
+            <script src="/scripts/lg-fullscreen.min.js"></script>
+            <script src="/scripts/lg-zoom.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Base64 Man</title>
+    <script src="jquery-2.1.4.min.js"></script>
+    <style>
+        #drop-area {
+            background: #D8F9D3;
+            padding: 10px;
+            width: 178px;
+            height: 133px;
+            border: 1px dashed #ddd;
+            border-radius: 5px;
+            background: white;
+            top: 16px;
+            right: 37px;
+        }
+
+        h3.drop-text {
+            color: #999;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .progressUpload {
+            position: relative;
+            width: 100%;
+            border: 1px solid #ddd;
+            padding: 1px;
+            border-radius: 3px;
+        }
+
+        .bar {
+            background-color: #B4F5B4;
+            width: 0%;
+            height: 20px;
+            border-radius: 3px;
+        }
+
+        .percent {
+            color: #999;
+            position: absolute;
+            display: inline-block;
+            top: 0px;
+            left: 48%;
+        }
+
+        #drop-area-preview {
+            position: relative;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            $("#drop-area").on('dragenter', function (e) {
+                e.preventDefault();
+                $(this).css('background', '#BBD5B8');
+            });
+
+            $("#drop-area").on('dragover', function (e) {
+                e.preventDefault();
+            });
+
+            $("#drop-area").on('drop', function (e) {
+                $(this).css('background', '#D8F9D3');
+                e.preventDefault();
+                var image = e.originalEvent.dataTransfer.files[0];
+                 
+                PreviewFile(image);
+               
+            });
+        });
+
+        function PreviewFile(file) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var arrayBuffer = reader.result;
+                $("#imgPreview").attr("src", reader.result);
+                $("#imgPreview").show();
+                $("#drop-area-detail").hide();
+
+            }
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <div id="drop-area" style="background: rgb(255, 255, 255);">
+        <div id="drop-area-detail" style="display: block;">
+
+            <h3 class="drop-text">Drag and Drop Images Here</h3>
+        </div>
+        <div id="drop-area-preview" style="">
+            <img id="imgPreview" height="131" width="174" alt="Image preview..." src="" style="display:none">
+        </div>
+        <div id="status"></div>
+    </div>
+</body>
+</html>
