@@ -1,0 +1,20 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>.ready() tutorial</title>
+    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script>
+      $(function(){ // .ready() callback, is only executed when the DOM is fully loaded
+        var length = $("p").length;
+        // The following will log 1 to the console, as the paragraph exists.
+        // This is the evidence that this method is only called when the
+        // DOM is fully loaded
+        console.log(length);
+      });
+    </script>
+</head>
+<body>
+    <p>I'm the content of this website</p>
+</body>
+</html>

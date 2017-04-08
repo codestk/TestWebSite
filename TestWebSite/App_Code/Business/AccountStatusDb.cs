@@ -4,46 +4,45 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
-public class  ShippersDb: DataAccess
+public class  AccountStatusDb: DataAccess
 {
  public string _SortDirection { get; set; }
  public string _SortExpression { get; set; }
-  public Shippers _Shippers;
-public const string DataKey = "ShipperID";
-public const string DataText = "CompanyName";
-public const string DataValue = "ShipperID";
+  public AccountStatus _AccountStatus;
+public const string DataKey = "Status";
+public const string DataText = "StatusName";
+public const string DataValue = "Status";
  public List<SelectInputProperties> Select()
     {
- string sql = "SELECT * FROM Shippers";
+ string sql = "SELECT * FROM AccountStatus";
         DataSet ds = Db.GetDataSet(sql);
 
         return SelectInputProperties.DataSetToList(ds);
 		
     }
 	
-public Shippers Select(string ShipperID) 
+public AccountStatus Select(string Status) 
 { 
- string _sql1 = "SELECT *,0 AS RecordCount FROM Shippers where ShipperID = @ShipperID; "; 
+ string _sql1 = "SELECT *,0 AS RecordCount FROM AccountStatus where Status = @Status; "; 
    var prset = new List<IDataParameter>();
-  prset.Add(Db.CreateParameterDb("@ShipperID", ShipperID));
+  prset.Add(Db.CreateParameterDb("@Status", Status));
   DataSet ds = Db.GetDataSet(_sql1,prset);
 return DataSetToList(ds).FirstOrDefault(); 
-}public List<Shippers> GetWithFilter(bool sortAscending, string sortExpression){
+}public List<AccountStatus> GetWithFilter(bool sortAscending, string sortExpression){
 throw new Exception("Not implement");
-string sql = "SELECT * FROM Shippers "; 
-sql += string.Format("  where ((''='{0}')or(ShipperID='{0}'))", _Shippers.ShipperID);
-sql += string.Format("  and ((''='{0}')or(CompanyName='{0}'))", _Shippers.CompanyName);
-sql += string.Format("  and ((''='{0}')or(Phone='{0}'))", _Shippers.Phone);
+string sql = "SELECT * FROM AccountStatus "; 
+sql += string.Format("  where ((''='{0}')or(Status='{0}'))", _AccountStatus.Status);
+sql += string.Format("  and ((''='{0}')or(StatusName='{0}'))", _AccountStatus.StatusName);
 if (sortExpression == null){
-sql += string.Format(" order by ShipperID ", sortExpression);}
+sql += string.Format(" order by Status ", sortExpression);}
 else
 {
 }
 
 DataSet ds = Db.GetDataSet(sql);return DataSetToList(ds);}
-public List<Shippers> GetPageWise(int pageIndex, int PageSize, string  wordFullText="") 
+public List<AccountStatus> GetPageWise(int pageIndex, int PageSize, string  wordFullText="") 
 { 
-string store = "Sp_GetShippersPageWise"; 
+string store = "Sp_GetAccountStatusPageWise"; 
  
  
 var dbParameter = GetParameter(pageIndex,PageSize);
@@ -54,15 +53,15 @@ DataSet ds = Db.GetDataSet(store, dbParameter, CommandType.StoredProcedure);
 return DataSetToList(ds); 
 }
 public object Insert() {
-var prset = new List<IDataParameter>();var sql = "INSERT INTO Shippers(CompanyName,Phone) VALUES (@CompanyName,@Phone) ;SELECT SCOPE_IDENTITY();";
- prset.Add(Db.CreateParameterDb("@CompanyName",_Shippers.CompanyName)); prset.Add(Db.CreateParameterDb("@Phone",_Shippers.Phone));
+var prset = new List<IDataParameter>();var sql = "INSERT INTO AccountStatus(Status,StatusName) VALUES (@Status,@StatusName) ;Select @Status";
+ prset.Add(Db.CreateParameterDb("@Status",_AccountStatus.Status)); prset.Add(Db.CreateParameterDb("@StatusName",_AccountStatus.StatusName));
 
 object output = Db.FbExecuteScalar(sql, prset);return output;  }
 
 public void Update() {
 var prset = new List<IDataParameter>();
- prset.Add(Db.CreateParameterDb("@ShipperID",_Shippers.ShipperID)); prset.Add(Db.CreateParameterDb("@CompanyName",_Shippers.CompanyName)); prset.Add(Db.CreateParameterDb("@Phone",_Shippers.Phone));
-var sql = @"UPDATE   Shippers SET  CompanyName=@CompanyName,Phone=@Phone where ShipperID = @ShipperID";
+ prset.Add(Db.CreateParameterDb("@Status",_AccountStatus.Status)); prset.Add(Db.CreateParameterDb("@StatusName",_AccountStatus.StatusName));
+var sql = @"UPDATE   AccountStatus SET  StatusName=@StatusName where Status = @Status";
 
 int output = Db.FbExecuteNonQuery(sql, prset);
 if (output != 1){
@@ -70,31 +69,30 @@ if (output != 1){
 
 public void Delete() {
 var prset = new List<IDataParameter>();
- prset.Add(Db.CreateParameterDb("@ShipperID",_Shippers.ShipperID));
-var sql =@"DELETE FROM Shippers where ShipperID=@ShipperID";
+ prset.Add(Db.CreateParameterDb("@Status",_AccountStatus.Status));
+var sql =@"DELETE FROM AccountStatus where Status=@Status";
 
 int output = Db.FbExecuteNonQuery(sql, prset);
 if (output != 1){
  throw new System.Exception("Delete" + this.ToString());}   }
 
-private List<Shippers> DataSetToList(DataSet ds) 
+private List<AccountStatus> DataSetToList(DataSet ds) 
 {
- EnumerableRowCollection<Shippers> q = (from temp in ds.Tables[0].AsEnumerable()
- select new Shippers
+ EnumerableRowCollection<AccountStatus> q = (from temp in ds.Tables[0].AsEnumerable()
+ select new AccountStatus
 {
-RecordCount = temp.Field<Int32>("RecordCount"),ShipperID= temp.Field<Int32?>("ShipperID"), 
- CompanyName= temp.Field<String>("CompanyName"), 
- Phone= temp.Field<String>("Phone"), 
+RecordCount = temp.Field<Int32>("RecordCount"),Status= temp.Field<String>("Status"), 
+ StatusName= temp.Field<String>("StatusName"), 
   });
   return q.ToList();
 }
    public Boolean UpdateColumn(string id, string column,string value) 
         { 
             var prset = new List<IDataParameter>(); 
-            prset.Add(Db.CreateParameterDb("@ShipperID", id)); 
+            prset.Add(Db.CreateParameterDb("@Status", id)); 
 prset.Add(Db.CreateParameterDb("@Column", column));
             prset.Add(Db.CreateParameterDb("@Data", value)); 
-   var sql = @"Sp_GetShippers_UpdateColumn";
+   var sql = @"Sp_GetAccountStatus_UpdateColumn";
             int output = Db.FbExecuteNonQuery(sql, prset, CommandType.StoredProcedure); 
             if (output == 1) 
             { 
@@ -106,7 +104,7 @@ prset.Add(Db.CreateParameterDb("@Column", column));
  public List<string> GetKeyWordsAllColumn(string Keyword) 
     { 
         
-        string sql = "Sp_GetShippers_Autocomplete"; 
+        string sql = "Sp_GetAccountStatus_Autocomplete"; 
         var prset = new List<IDataParameter>(); 
         prset.Add(Db.CreateParameterDb("@Key_word", Keyword)); 
  
@@ -124,7 +122,7 @@ prset.Add(Db.CreateParameterDb("@Column", column));
   { 
           
  
-  string sql = "SELECT  " + column + " FROM Shippers where lower(" + column + ") like '" + keyword.ToLower() + "%'   group by " + column + " order by count(*) desc;"; 
+  string sql = "SELECT  " + column + " FROM AccountStatus where lower(" + column + ") like '" + keyword.ToLower() + "%'   group by " + column + " order by count(*) desc;"; 
          
          
   List<string> dataArray = new List<string>(); 
@@ -142,17 +140,13 @@ public string GenWhereformProperties()
 {
   String sql="";
    sql += "WHERE (1=1) "; 
-            if ( _Shippers.ShipperID!= null) 
+            if ( _AccountStatus.Status!= null) 
             { 
-                sql += string.Format(" AND ((''='{0}') or (ShipperID='{0}') )", _Shippers.ShipperID); 
+                sql += string.Format(" AND ((''='{0}') or (Status='{0}') )", _AccountStatus.Status); 
             } 
-            if ( _Shippers.CompanyName!= null) 
+            if ( _AccountStatus.StatusName!= null) 
             { 
-                sql += string.Format(" AND ((''='{0}') or (CompanyName='{0}') )", _Shippers.CompanyName); 
-            } 
-            if ( _Shippers.Phone!= null) 
-            { 
-                sql += string.Format(" AND ((''='{0}') or (Phone='{0}') )", _Shippers.Phone); 
+                sql += string.Format(" AND ((''='{0}') or (StatusName='{0}') )", _AccountStatus.StatusName); 
             } 
 return sql;
 }
@@ -161,19 +155,14 @@ return sql;
             var sqlStorePamameters = new List<IDataParameter>();
             sqlStorePamameters.Add(Db.CreateParameterDb("@PageIndex", pageIndex));
             sqlStorePamameters.Add(Db.CreateParameterDb("@PageSize", PageSize));
-if (_Shippers.ShipperID != null)
+if (_AccountStatus.Status != null)
             {
-sqlStorePamameters.Add(Db.CreateParameterDb("@ShipperID", _Shippers.ShipperID));
+sqlStorePamameters.Add(Db.CreateParameterDb("@Status", _AccountStatus.Status));
 
             }
-if (_Shippers.CompanyName != null)
+if (_AccountStatus.StatusName != null)
             {
-sqlStorePamameters.Add(Db.CreateParameterDb("@CompanyName", _Shippers.CompanyName));
-
-            }
-if (_Shippers.Phone != null)
-            {
-sqlStorePamameters.Add(Db.CreateParameterDb("@Phone", _Shippers.Phone));
+sqlStorePamameters.Add(Db.CreateParameterDb("@StatusName", _AccountStatus.StatusName));
 
             }
 /*Sort Order*/

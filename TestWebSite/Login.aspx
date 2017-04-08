@@ -32,8 +32,9 @@
             /*background-image: url('images/the-queens-gallery-2.jpg');
                     background-image: url('images/backgroundligthup.jpg');*/
             background-image: url('images/pexels-photo-261706.jpeg');
+            background-position:center right;
             background-size: cover;
-            -webkit-filter: blur(3px);
+            -webkit-filter: blur(5px);
             z-index: 0; /* color */
             width: 101%;
             height: 103%;
@@ -182,6 +183,7 @@
             <div>
             </div>
             <div>
+           
                 Site<span>Login</span>
             </div>
         </div>

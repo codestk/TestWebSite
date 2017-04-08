@@ -1,6 +1,6 @@
-var ShippersService = {}; 
+var AccountStatusService = {}; 
 (function () { 
-    var url = "ShippersService.asmx/"; 
+    var url = "AccountStatusService.asmx/"; 
  
     this.SaveColumn =  function (id, column, value) { 
             var result; 
@@ -34,10 +34,10 @@ var ShippersService = {};
         return result; 
     };//GetKeyWordsOneColumn  
    
-  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,ShipperID,CompanyName,Phone,RederTable_Pagger) {
+  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,Status,StatusName,RederTable_Pagger) {
         var result;
 
-        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",ShipperID:"' + ShipperID + '",CompanyName:"' + CompanyName + '",Phone:"' + Phone + '"}';
+        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",Status:"' + Status + '",StatusName:"' + StatusName + '"}';
         var F = CallServices(url + "Search", tag, true, function (msg) {
             result = msg.d;
 
@@ -45,34 +45,34 @@ var ShippersService = {};
         });
         return result;
     };//Save
-this.Save = function(ShipperID,CompanyName,Phone)
+this.Save = function(Status,StatusName)
 {
 
             var result;
 
-            var tag = '{ShipperID:"' + ShipperID + '",CompanyName:"' + CompanyName + '",Phone:"' + Phone + '"}';
+            var tag = '{Status:"' + Status + '",StatusName:"' + StatusName + '"}';
             var F = CallServices(url + "Save", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Save
-this.Update = function(ShipperID,CompanyName,Phone)
+this.Update = function(Status,StatusName)
 {
 
             var result;
 
-            var tag = '{ShipperID:"' + ShipperID + '",CompanyName:"' + CompanyName + '",Phone:"' + Phone + '"}';
+            var tag = '{Status:"' + Status + '",StatusName:"' + StatusName + '"}';
             var F = CallServices(url + "Update", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Update
-this.Delete = function(ShipperID,CompanyName,Phone)
+this.Delete = function(Status,StatusName)
 {
 
             var result;
 
-            var tag = '{ShipperID:"' + ShipperID + '",CompanyName:"' + CompanyName + '",Phone:"' + Phone + '"}';
+            var tag = '{Status:"' + Status + '",StatusName:"' + StatusName + '"}';
             var F = CallServices(url + "Delete", tag, false, function(msg) {
                 result = msg.d;
             });
@@ -89,14 +89,14 @@ this.Delete = function(ShipperID,CompanyName,Phone)
         return result;
     };//SelectAll
 
-    this.Select = function (ShipperID) {
+    this.Select = function (Status) {
         var result;
 
- var tag = '{ShipperID:"'+ShipperID+'"}';
+ var tag = '{Status:"'+Status+'"}';
         var F = CallServices(url + "Select", tag, false, function (msg) {
             result = msg.d;
         });
         return result;
     };//SelectAll
-}).apply(ShippersService); 
+}).apply(AccountStatusService); 
 
