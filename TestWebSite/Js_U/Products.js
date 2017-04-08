@@ -1,6 +1,6 @@
-var CategoriesService = {}; 
+var ProductsService = {}; 
 (function () { 
-    var url = "CategoriesService.asmx/"; 
+    var url = "ProductsService.asmx/"; 
  
     this.SaveColumn =  function (id, column, value) { 
             var result; 
@@ -34,10 +34,10 @@ var CategoriesService = {};
         return result; 
     };//GetKeyWordsOneColumn  
    
-  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,CategoryID,CategoryName,Email,TestIn,RederTable_Pagger) {
+  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued,RederTable_Pagger) {
         var result;
 
-        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '",Email:"' + Email + '",TestIn:"' + TestIn + '"}';
+        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",ProductID:"' + ProductID + '",ProductName:"' + ProductName + '",SupplierID:"' + SupplierID + '",CategoryID:"' + CategoryID + '",QuantityPerUnit:"' + QuantityPerUnit + '",UnitPrice:"' + UnitPrice + '",UnitsInStock:"' + UnitsInStock + '",UnitsOnOrder:"' + UnitsOnOrder + '",ReorderLevel:"' + ReorderLevel + '",Discontinued:"' + Discontinued + '"}';
         var F = CallServices(url + "Search", tag, true, function (msg) {
             result = msg.d;
 
@@ -45,34 +45,34 @@ var CategoriesService = {};
         });
         return result;
     };//Save
-this.Save = function(CategoryID,CategoryName,Email,TestIn)
+this.Save = function(ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued)
 {
 
             var result;
 
-            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '",Email:"' + Email + '",TestIn:"' + TestIn + '"}';
+            var tag = '{ProductID:"' + ProductID + '",ProductName:"' + ProductName + '",SupplierID:"' + SupplierID + '",CategoryID:"' + CategoryID + '",QuantityPerUnit:"' + QuantityPerUnit + '",UnitPrice:"' + UnitPrice + '",UnitsInStock:"' + UnitsInStock + '",UnitsOnOrder:"' + UnitsOnOrder + '",ReorderLevel:"' + ReorderLevel + '",Discontinued:"' + Discontinued + '"}';
             var F = CallServices(url + "Save", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Save
-this.Update = function(CategoryID,CategoryName,Email,TestIn)
+this.Update = function(ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued)
 {
 
             var result;
 
-            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '",Email:"' + Email + '",TestIn:"' + TestIn + '"}';
+            var tag = '{ProductID:"' + ProductID + '",ProductName:"' + ProductName + '",SupplierID:"' + SupplierID + '",CategoryID:"' + CategoryID + '",QuantityPerUnit:"' + QuantityPerUnit + '",UnitPrice:"' + UnitPrice + '",UnitsInStock:"' + UnitsInStock + '",UnitsOnOrder:"' + UnitsOnOrder + '",ReorderLevel:"' + ReorderLevel + '",Discontinued:"' + Discontinued + '"}';
             var F = CallServices(url + "Update", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Update
-this.Delete = function(CategoryID,CategoryName,Email,TestIn)
+this.Delete = function(ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued)
 {
 
             var result;
 
-            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '",Email:"' + Email + '",TestIn:"' + TestIn + '"}';
+            var tag = '{ProductID:"' + ProductID + '",ProductName:"' + ProductName + '",SupplierID:"' + SupplierID + '",CategoryID:"' + CategoryID + '",QuantityPerUnit:"' + QuantityPerUnit + '",UnitPrice:"' + UnitPrice + '",UnitsInStock:"' + UnitsInStock + '",UnitsOnOrder:"' + UnitsOnOrder + '",ReorderLevel:"' + ReorderLevel + '",Discontinued:"' + Discontinued + '"}';
             var F = CallServices(url + "Delete", tag, false, function(msg) {
                 result = msg.d;
             });
@@ -89,14 +89,14 @@ this.Delete = function(CategoryID,CategoryName,Email,TestIn)
         return result;
     };//SelectAll
 
-    this.Select = function (CategoryID) {
+    this.Select = function (ProductID) {
         var result;
 
- var tag = '{CategoryID:"'+CategoryID+'"}';
+ var tag = '{ProductID:"'+ProductID+'"}';
         var F = CallServices(url + "Select", tag, false, function (msg) {
             result = msg.d;
         });
         return result;
     };//SelectAll
-}).apply(CategoriesService); 
+}).apply(ProductsService); 
 

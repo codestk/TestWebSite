@@ -1,6 +1,6 @@
-var CategoriesService = {}; 
+var SuppliersService = {}; 
 (function () { 
-    var url = "CategoriesService.asmx/"; 
+    var url = "SuppliersService.asmx/"; 
  
     this.SaveColumn =  function (id, column, value) { 
             var result; 
@@ -34,10 +34,10 @@ var CategoriesService = {};
         return result; 
     };//GetKeyWordsOneColumn  
    
-  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,CategoryID,CategoryName,Email,TestIn,RederTable_Pagger) {
+  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,SupplierID,CompanyName,ContactName,ContactTitle,Address,City,Region,PostalCode,Country,Phone,Fax,HomePage,RederTable_Pagger) {
         var result;
 
-        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '",Email:"' + Email + '",TestIn:"' + TestIn + '"}';
+        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",SupplierID:"' + SupplierID + '",CompanyName:"' + CompanyName + '",ContactName:"' + ContactName + '",ContactTitle:"' + ContactTitle + '",Address:"' + Address + '",City:"' + City + '",Region:"' + Region + '",PostalCode:"' + PostalCode + '",Country:"' + Country + '",Phone:"' + Phone + '",Fax:"' + Fax + '",HomePage:"' + HomePage + '"}';
         var F = CallServices(url + "Search", tag, true, function (msg) {
             result = msg.d;
 
@@ -45,34 +45,34 @@ var CategoriesService = {};
         });
         return result;
     };//Save
-this.Save = function(CategoryID,CategoryName,Email,TestIn)
+this.Save = function(SupplierID,CompanyName,ContactName,ContactTitle,Address,City,Region,PostalCode,Country,Phone,Fax,HomePage)
 {
 
             var result;
 
-            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '",Email:"' + Email + '",TestIn:"' + TestIn + '"}';
+            var tag = '{SupplierID:"' + SupplierID + '",CompanyName:"' + CompanyName + '",ContactName:"' + ContactName + '",ContactTitle:"' + ContactTitle + '",Address:"' + Address + '",City:"' + City + '",Region:"' + Region + '",PostalCode:"' + PostalCode + '",Country:"' + Country + '",Phone:"' + Phone + '",Fax:"' + Fax + '",HomePage:"' + HomePage + '"}';
             var F = CallServices(url + "Save", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Save
-this.Update = function(CategoryID,CategoryName,Email,TestIn)
+this.Update = function(SupplierID,CompanyName,ContactName,ContactTitle,Address,City,Region,PostalCode,Country,Phone,Fax,HomePage)
 {
 
             var result;
 
-            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '",Email:"' + Email + '",TestIn:"' + TestIn + '"}';
+            var tag = '{SupplierID:"' + SupplierID + '",CompanyName:"' + CompanyName + '",ContactName:"' + ContactName + '",ContactTitle:"' + ContactTitle + '",Address:"' + Address + '",City:"' + City + '",Region:"' + Region + '",PostalCode:"' + PostalCode + '",Country:"' + Country + '",Phone:"' + Phone + '",Fax:"' + Fax + '",HomePage:"' + HomePage + '"}';
             var F = CallServices(url + "Update", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Update
-this.Delete = function(CategoryID,CategoryName,Email,TestIn)
+this.Delete = function(SupplierID,CompanyName,ContactName,ContactTitle,Address,City,Region,PostalCode,Country,Phone,Fax,HomePage)
 {
 
             var result;
 
-            var tag = '{CategoryID:"' + CategoryID + '",CategoryName:"' + CategoryName + '",Email:"' + Email + '",TestIn:"' + TestIn + '"}';
+            var tag = '{SupplierID:"' + SupplierID + '",CompanyName:"' + CompanyName + '",ContactName:"' + ContactName + '",ContactTitle:"' + ContactTitle + '",Address:"' + Address + '",City:"' + City + '",Region:"' + Region + '",PostalCode:"' + PostalCode + '",Country:"' + Country + '",Phone:"' + Phone + '",Fax:"' + Fax + '",HomePage:"' + HomePage + '"}';
             var F = CallServices(url + "Delete", tag, false, function(msg) {
                 result = msg.d;
             });
@@ -89,14 +89,14 @@ this.Delete = function(CategoryID,CategoryName,Email,TestIn)
         return result;
     };//SelectAll
 
-    this.Select = function (CategoryID) {
+    this.Select = function (SupplierID) {
         var result;
 
- var tag = '{CategoryID:"'+CategoryID+'"}';
+ var tag = '{SupplierID:"'+SupplierID+'"}';
         var F = CallServices(url + "Select", tag, false, function (msg) {
             result = msg.d;
         });
         return result;
     };//SelectAll
-}).apply(CategoriesService); 
+}).apply(SuppliersService); 
 

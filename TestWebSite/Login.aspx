@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link href="Module/Materialize/css/materialize.css" rel="stylesheet" media="screen,projection" />
     <link href="Module/Materialize/css/style.css" rel="stylesheet" media="screen,projection" />
     <link href="Module/Materialize/FixedCss/MaterializedFixed.css" rel="stylesheet" />
@@ -17,6 +17,7 @@
             color: #fff;
             /*font-family: Arial;
             font-size: 12px;*/
+            font-family: 'Open Sans', sans-serif;
         }
 
         .body {
@@ -28,8 +29,11 @@
             /*width: auto;*/
             /*height: auto;*/
             background-image: url('images/loginBg.jpg');
+            /*background-image: url('images/the-queens-gallery-2.jpg');
+                    background-image: url('images/backgroundligthup.jpg');*/
+            background-image: url('images/pexels-photo-261706.jpeg');
             background-size: cover;
-            -webkit-filter: blur(12px);
+            -webkit-filter: blur(3px);
             z-index: 0; /* color */
             width: 101%;
             height: 103%;
@@ -109,16 +113,27 @@
             .login input[type=submit] {
                 width: 260px;
                 height: 35px;
+                background: #00CC99;
+                
+                     background: #00D75E;
+                border: 0px solid #0088CC;
+                cursor: pointer;
+                border-radius: 2px;
+                color: #fff !important;
+                font-weight: 400;
+                padding: 6px;
+                margin-top: 10px;
+                /*width: 260px;
+                height: 35px;
                 background: #fff;
                 border: 1px solid #fff;
                 cursor: pointer;
                 border-radius: 2px;
                 color: #a18d6c;
-                /*font-family: 'Exo', sans-serif;
-                font-size: 16px;*/
+
                 font-weight: 400;
                 padding: 6px;
-                margin-top: 10px;
+                margin-top: 10px;*/
             }
 
                 .login input[type=submit]:hover {
@@ -150,12 +165,12 @@
         ::-moz-input-placeholder {
             color: rgba(255,255,255,0.6);
         }
+
         .LoginFail {
-     margin-top:20px;
-     display:block;
+            margin-top: 20px;
+            display: block;
         }
     </style>
-
 </head>
 <body>
     <form id="form1" autocomplete="off" runat="server">
@@ -164,6 +179,8 @@
         <div class="grad">
         </div>
         <div class="header">
+            <div>
+            </div>
             <div>
                 Site<span>Login</span>
             </div>

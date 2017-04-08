@@ -35,6 +35,7 @@ sql += string.Format("  where ((''='{0}')or(CategoryID='{0}'))", _Categories.Cat
 sql += string.Format("  and ((''='{0}')or(CategoryName='{0}'))", _Categories.CategoryName);
 sql += string.Format("  and ((''='{0}')or(Picture='{0}'))", _Categories.Picture);
 sql += string.Format("  and ((''='{0}')or(Email='{0}'))", _Categories.Email);
+sql += string.Format("  and ((''='{0}')or(TestIn='{0}'))", _Categories.TestIn);
 if (sortExpression == null){
 sql += string.Format(" order by CategoryID ", sortExpression);}
 else
@@ -55,15 +56,15 @@ DataSet ds = Db.GetDataSet(store, dbParameter, CommandType.StoredProcedure);
 return DataSetToList(ds); 
 }
 public object Insert() {
-var prset = new List<IDataParameter>();var sql = "INSERT INTO Categories(CategoryName,Email) VALUES (@CategoryName,@Email) ;SELECT SCOPE_IDENTITY();";
- prset.Add(Db.CreateParameterDb("@CategoryName",_Categories.CategoryName)); prset.Add(Db.CreateParameterDb("@Email",_Categories.Email));
+var prset = new List<IDataParameter>();var sql = "INSERT INTO Categories(CategoryName,Email,TestIn) VALUES (@CategoryName,@Email,@TestIn) ;SELECT SCOPE_IDENTITY();";
+ prset.Add(Db.CreateParameterDb("@CategoryName",_Categories.CategoryName)); prset.Add(Db.CreateParameterDb("@Email",_Categories.Email)); prset.Add(Db.CreateParameterDb("@TestIn",_Categories.TestIn));
 
 object output = Db.FbExecuteScalar(sql, prset);return output;  }
 
 public void Update() {
 var prset = new List<IDataParameter>();
- prset.Add(Db.CreateParameterDb("@CategoryID",_Categories.CategoryID)); prset.Add(Db.CreateParameterDb("@CategoryName",_Categories.CategoryName)); prset.Add(Db.CreateParameterDb("@Email",_Categories.Email));
-var sql = @"UPDATE   Categories SET  CategoryName=@CategoryName,Email=@Email where CategoryID = @CategoryID";
+ prset.Add(Db.CreateParameterDb("@CategoryID",_Categories.CategoryID)); prset.Add(Db.CreateParameterDb("@CategoryName",_Categories.CategoryName)); prset.Add(Db.CreateParameterDb("@Email",_Categories.Email)); prset.Add(Db.CreateParameterDb("@TestIn",_Categories.TestIn));
+var sql = @"UPDATE   Categories SET  CategoryName=@CategoryName,Email=@Email,TestIn=@TestIn where CategoryID = @CategoryID";
 
 int output = Db.FbExecuteNonQuery(sql, prset);
 if (output != 1){
@@ -86,6 +87,7 @@ private List<Categories> DataSetToList(DataSet ds)
 RecordCount = temp.Field<Int32>("RecordCount"),CategoryID= temp.Field<Int32?>("CategoryID"), 
  CategoryName= temp.Field<String>("CategoryName"), 
  Email= temp.Field<String>("Email"), 
+ TestIn= temp.Field<Int32?>("TestIn"), 
   });
   return q.ToList();
 }
@@ -159,6 +161,10 @@ public string GenWhereformProperties()
             { 
                 sql += string.Format(" AND ((''='{0}') or (Email='{0}') )", _Categories.Email); 
             } 
+            if ( _Categories.TestIn!= null) 
+            { 
+                sql += string.Format(" AND ((''='{0}') or (TestIn='{0}') )", _Categories.TestIn); 
+            } 
 return sql;
 }
       public List<IDataParameter> GetParameter(int pageIndex, int PageSize)
@@ -184,6 +190,11 @@ sqlStorePamameters.Add(Db.CreateParameterDb("@Picture", _Categories.Picture));
 if (_Categories.Email != null)
             {
 sqlStorePamameters.Add(Db.CreateParameterDb("@Email", _Categories.Email));
+
+            }
+if (_Categories.TestIn != null)
+            {
+sqlStorePamameters.Add(Db.CreateParameterDb("@TestIn", _Categories.TestIn));
 
             }
 /*Sort Order*/
