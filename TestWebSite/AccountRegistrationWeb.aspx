@@ -188,7 +188,9 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
+   
+    <div >
+     <div class="container">
         <div class="row">
             <div class="  col s9">
                 <label>RequestId </label>
@@ -252,6 +254,7 @@
             </div>
         </div>
     </div>
+         </div>
     <!-- Modal Trigger -->
     <%--  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>--%>
     <!-- Modal Structure -->

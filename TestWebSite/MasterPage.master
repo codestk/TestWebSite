@@ -34,6 +34,7 @@
             padding: 4px;
             position: relative;
             display: block;
+            background-image: url('Images/bg0001.png');background-size: cover;background-position:center right;
         }
 
         /*@media only screen and (min-width: 420px) {
