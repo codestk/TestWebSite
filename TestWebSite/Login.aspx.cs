@@ -6,13 +6,30 @@ public partial class Login : System.Web.UI.Page
 {
     protected void Button1_Click(object sender, EventArgs e)
     {
+
+        //Demo
+        //if((user.Text=="a") && (password.Text=="a")
+
+        //    )
+        //{
+        //    Response.Redirect("AccountRegistrationListFilter.aspx");
+
+        //}
+        //else
+        //{
+        //    lblError.Visible = true;
+        //    //Response.Redirect("login.aspx", true);
+        //}
+
         Sigon();
     }
 
     private void Sigon()
     {
         Logon lg = new Logon();
-        if (lg.ValidateUser(user.Text, password.Text))
+        //if (lg.ValidateUser(user.Text, password.Text))
+
+        if((user.Text == "demo") && (password.Text == "demo"))
         {
             FormsAuthenticationTicket tkt;
             string cookiestr;
@@ -20,8 +37,8 @@ public partial class Login : System.Web.UI.Page
 
             //STkRolesGroup stkRole = new STkRolesGroup();
             string Roles;
-            Roles = lg.GetRole();
-
+            //Roles = lg.GetRole();
+            Roles = "A";
             //var stkEmployee = new Bu.Stk_Employee();
 
             //stkEmployee.GetEmployee(txtUserName.Text.Trim());
@@ -38,7 +55,7 @@ public partial class Login : System.Web.UI.Page
             //strRedirect = Request["ReturnUrl"];
             // if (strRedirect == null)
             // {
-            strRedirect = "default.aspx";
+            strRedirect = "AccountRegistrationListFilter.aspx";
 
             // }
 

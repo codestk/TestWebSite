@@ -48,7 +48,7 @@ public class AccountRegistrationService : System.Web.Services.WebService
 
 
     [WebMethod]
-public List<AccountRegistration> Search(string PageIndex,string PageSize,string SortExpression,string SortDirection,string RequestId,string UserName,string Password,string FirstName,string LastName,string Department,string Phone,string Fax,string Status,string CreateDate,string DeleteDate,string CancelDate,string ApprovedDate,string LastUpdate)
+public List<AccountRegistration> Search(string PageIndex,string PageSize,string SortExpression,string SortDirection,string RequestId,string UserName,string Password,string FirstName,string LastName,string Department,string Phone,string Fax,string Status)
     {
  AccountRegistration _AccountRegistration = new AccountRegistration(); 
   AccountRegistrationDb _AccountRegistrationDb = new AccountRegistrationDb(); 
@@ -78,16 +78,6 @@ if (Fax!= "") _AccountRegistration.Fax =  Fax;
 if (Status!= "") _AccountRegistration.Status =  Status; 
 
 
-if (CreateDate!= "") _AccountRegistration.CreateDate =StkGlobalDate.TextEnToDate(CreateDate);
-
-if (DeleteDate!= "") _AccountRegistration.DeleteDate =StkGlobalDate.TextEnToDate(DeleteDate);
-
-if (CancelDate!= "") _AccountRegistration.CancelDate =StkGlobalDate.TextEnToDate(CancelDate);
-
-if (ApprovedDate!= "") _AccountRegistration.ApprovedDate =StkGlobalDate.TextEnToDate(ApprovedDate);
-
-if (LastUpdate!= "") _AccountRegistration.LastUpdate =StkGlobalDate.TextEnToDate(LastUpdate);
-
   _AccountRegistrationDb._AccountRegistration = _AccountRegistration;
 int _PageIndex = Convert.ToInt32(PageIndex);
 int _PageSize = Convert.ToInt32(PageSize);
@@ -102,7 +92,7 @@ return _AccountRegistrationDb.GetPageWise(_PageIndex, _PageSize);
    }
 
     [WebMethod]
-public string Save(string RequestId,string UserName,string Password,string FirstName,string LastName,string Department,string Phone,string Fax,string Status,string CreateDate,string DeleteDate,string CancelDate,string ApprovedDate,string LastUpdate)
+public string Save(string RequestId,string UserName,string Password,string FirstName,string LastName,string Department,string Phone,string Fax,string Status)
     {
  AccountRegistration _AccountRegistration = new AccountRegistration(); 
   AccountRegistrationDb _AccountRegistrationDb = new AccountRegistrationDb(); 
@@ -132,23 +122,13 @@ if (Fax!= "") _AccountRegistration.Fax =  Fax;
 if (Status!= "") _AccountRegistration.Status =  Status; 
 
 
-if (CreateDate!= "") _AccountRegistration.CreateDate =StkGlobalDate.TextEnToDate(CreateDate);
-
-if (DeleteDate!= "") _AccountRegistration.DeleteDate =StkGlobalDate.TextEnToDate(DeleteDate);
-
-if (CancelDate!= "") _AccountRegistration.CancelDate =StkGlobalDate.TextEnToDate(CancelDate);
-
-if (ApprovedDate!= "") _AccountRegistration.ApprovedDate =StkGlobalDate.TextEnToDate(ApprovedDate);
-
-if (LastUpdate!= "") _AccountRegistration.LastUpdate =StkGlobalDate.TextEnToDate(LastUpdate);
-
   _AccountRegistrationDb._AccountRegistration = _AccountRegistration;
   object result= _AccountRegistrationDb.Insert(); 
    return result.ToString();
    }
 
     [WebMethod]
-public string Update(string RequestId,string UserName,string Password,string FirstName,string LastName,string Department,string Phone,string Fax,string Status,string CreateDate,string DeleteDate,string CancelDate,string ApprovedDate,string LastUpdate)
+public string Update(string RequestId,string UserName,string Password,string FirstName,string LastName,string Department,string Phone,string Fax,string Status)
     {
  AccountRegistration _AccountRegistration = new AccountRegistration(); 
   AccountRegistrationDb _AccountRegistrationDb = new AccountRegistrationDb(); 
@@ -177,16 +157,6 @@ if (Fax!= "") _AccountRegistration.Fax =  Fax;
 
 if (Status!= "") _AccountRegistration.Status =  Status; 
 
-
-if (CreateDate!= "") _AccountRegistration.CreateDate =StkGlobalDate.TextEnToDate(CreateDate);
-
-if (DeleteDate!= "") _AccountRegistration.DeleteDate =StkGlobalDate.TextEnToDate(DeleteDate);
-
-if (CancelDate!= "") _AccountRegistration.CancelDate =StkGlobalDate.TextEnToDate(CancelDate);
-
-if (ApprovedDate!= "") _AccountRegistration.ApprovedDate =StkGlobalDate.TextEnToDate(ApprovedDate);
-
-if (LastUpdate!= "") _AccountRegistration.LastUpdate =StkGlobalDate.TextEnToDate(LastUpdate);
 
   _AccountRegistrationDb._AccountRegistration = _AccountRegistration;
     _AccountRegistrationDb.Update(); 
@@ -194,7 +164,7 @@ if (LastUpdate!= "") _AccountRegistration.LastUpdate =StkGlobalDate.TextEnToDate
    }
 
     [WebMethod]
-public string Delete(string RequestId,string UserName,string Password,string FirstName,string LastName,string Department,string Phone,string Fax,string Status,string CreateDate,string DeleteDate,string CancelDate,string ApprovedDate,string LastUpdate)
+public string Delete(string RequestId,string UserName,string Password,string FirstName,string LastName,string Department,string Phone,string Fax,string Status)
     {
  AccountRegistration _AccountRegistration = new AccountRegistration(); 
   AccountRegistrationDb _AccountRegistrationDb = new AccountRegistrationDb(); 
@@ -223,16 +193,6 @@ if (Fax!= "") _AccountRegistration.Fax =  Fax;
 
 if (Status!= "") _AccountRegistration.Status =  Status; 
 
-
-if (CreateDate!= "") _AccountRegistration.CreateDate =StkGlobalDate.TextEnToDate(CreateDate);
-
-if (DeleteDate!= "") _AccountRegistration.DeleteDate =StkGlobalDate.TextEnToDate(DeleteDate);
-
-if (CancelDate!= "") _AccountRegistration.CancelDate =StkGlobalDate.TextEnToDate(CancelDate);
-
-if (ApprovedDate!= "") _AccountRegistration.ApprovedDate =StkGlobalDate.TextEnToDate(ApprovedDate);
-
-if (LastUpdate!= "") _AccountRegistration.LastUpdate =StkGlobalDate.TextEnToDate(LastUpdate);
 
   _AccountRegistrationDb._AccountRegistration = _AccountRegistration;
     _AccountRegistrationDb.Delete(); 

@@ -252,6 +252,10 @@ th.rotate {
     margin-bottom: 0px;
 }
 
+
+th {
+cursor: pointer;
+}
 th, td {
     /*vertical-align: bottom;*/
     border-radius: 0px;

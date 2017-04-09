@@ -1,6 +1,8 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPageAnonymous.master.cs" Inherits="MasterPageAnonymous" %>
 
-<%@ Register Src="~/Menu.ascx" TagPrefix="uc1" TagName="Menu" %>
+ 
+
+ 
 
 <!DOCTYPE html>
 
@@ -34,15 +36,13 @@
             padding: 4px;
             position: relative;
             display: block;
-            background-image: url('Images/bg0001.png');background-size: cover;background-position:center right;
+
+
+
+            background-image: url('Images/bglight01.png');background-size: cover;
         }
 
-        /*@media only screen and (min-width: 420px) {
-  main{
-        min-height:540px;
-            vertical-align: central;
- }
-}*/
+ 
 
         .uparrow {
             width: 0;
@@ -105,7 +105,7 @@
         <header>
            
            
-             <uc1:Menu runat="server" ID="Menu" />
+        
         </header>
 
         <main>

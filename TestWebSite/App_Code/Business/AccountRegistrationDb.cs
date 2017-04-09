@@ -40,11 +40,6 @@ sql += string.Format("  and ((''='{0}')or(Department='{0}'))", _AccountRegistrat
 sql += string.Format("  and ((''='{0}')or(Phone='{0}'))", _AccountRegistration.Phone);
 sql += string.Format("  and ((''='{0}')or(Fax='{0}'))", _AccountRegistration.Fax);
 sql += string.Format("  and ((''='{0}')or(Status='{0}'))", _AccountRegistration.Status);
-sql += string.Format("  and ((''='{0}')or(CreateDate='{0}'))", _AccountRegistration.CreateDate);
-sql += string.Format("  and ((''='{0}')or(DeleteDate='{0}'))", _AccountRegistration.DeleteDate);
-sql += string.Format("  and ((''='{0}')or(CancelDate='{0}'))", _AccountRegistration.CancelDate);
-sql += string.Format("  and ((''='{0}')or(ApprovedDate='{0}'))", _AccountRegistration.ApprovedDate);
-sql += string.Format("  and ((''='{0}')or(LastUpdate='{0}'))", _AccountRegistration.LastUpdate);
 if (sortExpression == null){
 sql += string.Format(" order by RequestId ", sortExpression);}
 else
@@ -65,15 +60,15 @@ DataSet ds = Db.GetDataSet(store, dbParameter, CommandType.StoredProcedure);
 return DataSetToList(ds); 
 }
 public object Insert() {
-var prset = new List<IDataParameter>();var sql = "INSERT INTO AccountRegistration(UserName,Password,FirstName,LastName,Department,Phone,Fax,Status,CreateDate,DeleteDate,CancelDate,ApprovedDate,LastUpdate) VALUES (@UserName,@Password,@FirstName,@LastName,@Department,@Phone,@Fax,@Status,@CreateDate,@DeleteDate,@CancelDate,@ApprovedDate,@LastUpdate) ;SELECT SCOPE_IDENTITY();";
- prset.Add(Db.CreateParameterDb("@UserName",_AccountRegistration.UserName)); prset.Add(Db.CreateParameterDb("@Password",_AccountRegistration.Password)); prset.Add(Db.CreateParameterDb("@FirstName",_AccountRegistration.FirstName)); prset.Add(Db.CreateParameterDb("@LastName",_AccountRegistration.LastName)); prset.Add(Db.CreateParameterDb("@Department",_AccountRegistration.Department)); prset.Add(Db.CreateParameterDb("@Phone",_AccountRegistration.Phone)); prset.Add(Db.CreateParameterDb("@Fax",_AccountRegistration.Fax)); prset.Add(Db.CreateParameterDb("@Status",_AccountRegistration.Status)); prset.Add(Db.CreateParameterDb("@CreateDate",_AccountRegistration.CreateDate)); prset.Add(Db.CreateParameterDb("@DeleteDate",_AccountRegistration.DeleteDate)); prset.Add(Db.CreateParameterDb("@CancelDate",_AccountRegistration.CancelDate)); prset.Add(Db.CreateParameterDb("@ApprovedDate",_AccountRegistration.ApprovedDate)); prset.Add(Db.CreateParameterDb("@LastUpdate",_AccountRegistration.LastUpdate));
+var prset = new List<IDataParameter>();var sql = "INSERT INTO AccountRegistration(UserName,Password,FirstName,LastName,Department,Phone,Fax,Status) VALUES (@UserName,@Password,@FirstName,@LastName,@Department,@Phone,@Fax,@Status) ;SELECT SCOPE_IDENTITY();";
+ prset.Add(Db.CreateParameterDb("@UserName",_AccountRegistration.UserName)); prset.Add(Db.CreateParameterDb("@Password",_AccountRegistration.Password)); prset.Add(Db.CreateParameterDb("@FirstName",_AccountRegistration.FirstName)); prset.Add(Db.CreateParameterDb("@LastName",_AccountRegistration.LastName)); prset.Add(Db.CreateParameterDb("@Department",_AccountRegistration.Department)); prset.Add(Db.CreateParameterDb("@Phone",_AccountRegistration.Phone)); prset.Add(Db.CreateParameterDb("@Fax",_AccountRegistration.Fax)); prset.Add(Db.CreateParameterDb("@Status",_AccountRegistration.Status));
 
 object output = Db.FbExecuteScalar(sql, prset);return output;  }
 
 public void Update() {
 var prset = new List<IDataParameter>();
- prset.Add(Db.CreateParameterDb("@RequestId",_AccountRegistration.RequestId)); prset.Add(Db.CreateParameterDb("@UserName",_AccountRegistration.UserName)); prset.Add(Db.CreateParameterDb("@Password",_AccountRegistration.Password)); prset.Add(Db.CreateParameterDb("@FirstName",_AccountRegistration.FirstName)); prset.Add(Db.CreateParameterDb("@LastName",_AccountRegistration.LastName)); prset.Add(Db.CreateParameterDb("@Department",_AccountRegistration.Department)); prset.Add(Db.CreateParameterDb("@Phone",_AccountRegistration.Phone)); prset.Add(Db.CreateParameterDb("@Fax",_AccountRegistration.Fax)); prset.Add(Db.CreateParameterDb("@Status",_AccountRegistration.Status)); prset.Add(Db.CreateParameterDb("@CreateDate",_AccountRegistration.CreateDate)); prset.Add(Db.CreateParameterDb("@DeleteDate",_AccountRegistration.DeleteDate)); prset.Add(Db.CreateParameterDb("@CancelDate",_AccountRegistration.CancelDate)); prset.Add(Db.CreateParameterDb("@ApprovedDate",_AccountRegistration.ApprovedDate)); prset.Add(Db.CreateParameterDb("@LastUpdate",_AccountRegistration.LastUpdate));
-var sql = @"UPDATE   AccountRegistration SET  UserName=@UserName,Password=@Password,FirstName=@FirstName,LastName=@LastName,Department=@Department,Phone=@Phone,Fax=@Fax,Status=@Status,CreateDate=@CreateDate,DeleteDate=@DeleteDate,CancelDate=@CancelDate,ApprovedDate=@ApprovedDate,LastUpdate=@LastUpdate where RequestId = @RequestId";
+ prset.Add(Db.CreateParameterDb("@RequestId",_AccountRegistration.RequestId)); prset.Add(Db.CreateParameterDb("@UserName",_AccountRegistration.UserName)); prset.Add(Db.CreateParameterDb("@Password",_AccountRegistration.Password)); prset.Add(Db.CreateParameterDb("@FirstName",_AccountRegistration.FirstName)); prset.Add(Db.CreateParameterDb("@LastName",_AccountRegistration.LastName)); prset.Add(Db.CreateParameterDb("@Department",_AccountRegistration.Department)); prset.Add(Db.CreateParameterDb("@Phone",_AccountRegistration.Phone)); prset.Add(Db.CreateParameterDb("@Fax",_AccountRegistration.Fax)); prset.Add(Db.CreateParameterDb("@Status",_AccountRegistration.Status));
+var sql = @"UPDATE   AccountRegistration SET  UserName=@UserName,Password=@Password,FirstName=@FirstName,LastName=@LastName,Department=@Department,Phone=@Phone,Fax=@Fax,Status=@Status where RequestId = @RequestId";
 
 int output = Db.FbExecuteNonQuery(sql, prset);
 if (output != 1){
@@ -102,11 +97,6 @@ RecordCount = temp.Field<Int32>("RecordCount"),RequestId= temp.Field<Int32?>("Re
  Phone= temp.Field<String>("Phone"), 
  Fax= temp.Field<String>("Fax"), 
  Status= temp.Field<String>("Status"), 
- CreateDate= temp.Field<DateTime?>("CreateDate"), 
- DeleteDate= temp.Field<DateTime?>("DeleteDate"), 
- CancelDate= temp.Field<DateTime?>("CancelDate"), 
- ApprovedDate= temp.Field<DateTime?>("ApprovedDate"), 
- LastUpdate= temp.Field<DateTime?>("LastUpdate"), 
   });
   return q.ToList();
 }
@@ -200,26 +190,6 @@ public string GenWhereformProperties()
             { 
                 sql += string.Format(" AND ((''='{0}') or (Status='{0}') )", _AccountRegistration.Status); 
             } 
-            if ( _AccountRegistration.CreateDate!= null) 
-            { 
-                sql += string.Format(" AND ((''='{0}') or (CreateDate='{0}') )", _AccountRegistration.CreateDate); 
-            } 
-            if ( _AccountRegistration.DeleteDate!= null) 
-            { 
-                sql += string.Format(" AND ((''='{0}') or (DeleteDate='{0}') )", _AccountRegistration.DeleteDate); 
-            } 
-            if ( _AccountRegistration.CancelDate!= null) 
-            { 
-                sql += string.Format(" AND ((''='{0}') or (CancelDate='{0}') )", _AccountRegistration.CancelDate); 
-            } 
-            if ( _AccountRegistration.ApprovedDate!= null) 
-            { 
-                sql += string.Format(" AND ((''='{0}') or (ApprovedDate='{0}') )", _AccountRegistration.ApprovedDate); 
-            } 
-            if ( _AccountRegistration.LastUpdate!= null) 
-            { 
-                sql += string.Format(" AND ((''='{0}') or (LastUpdate='{0}') )", _AccountRegistration.LastUpdate); 
-            } 
 return sql;
 }
       public List<IDataParameter> GetParameter(int pageIndex, int PageSize)
@@ -270,31 +240,6 @@ sqlStorePamameters.Add(Db.CreateParameterDb("@Fax", _AccountRegistration.Fax));
 if (_AccountRegistration.Status != null)
             {
 sqlStorePamameters.Add(Db.CreateParameterDb("@Status", _AccountRegistration.Status));
-
-            }
-if (_AccountRegistration.CreateDate != null)
-            {
-sqlStorePamameters.Add(Db.CreateParameterDb("@CreateDate", _AccountRegistration.CreateDate));
-
-            }
-if (_AccountRegistration.DeleteDate != null)
-            {
-sqlStorePamameters.Add(Db.CreateParameterDb("@DeleteDate", _AccountRegistration.DeleteDate));
-
-            }
-if (_AccountRegistration.CancelDate != null)
-            {
-sqlStorePamameters.Add(Db.CreateParameterDb("@CancelDate", _AccountRegistration.CancelDate));
-
-            }
-if (_AccountRegistration.ApprovedDate != null)
-            {
-sqlStorePamameters.Add(Db.CreateParameterDb("@ApprovedDate", _AccountRegistration.ApprovedDate));
-
-            }
-if (_AccountRegistration.LastUpdate != null)
-            {
-sqlStorePamameters.Add(Db.CreateParameterDb("@LastUpdate", _AccountRegistration.LastUpdate));
 
             }
 /*Sort Order*/

@@ -10,6 +10,7 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        Response.Redirect("login.aspx");
         int b = 99;
         int a = 0;
         Response.Write(User.IsInRole(StringEnum.GetStringValue(EnumStkRole.Admin)));

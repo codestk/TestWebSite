@@ -6767,8 +6767,9 @@ nav ul a span.badge {
 .row .col.s9 {
   width: 75%;
   margin-left: auto;
-  left: auto;
-  right: auto;
+  left: 0px;
+  right: 0px;
+    top: 0px;
 }
 
 .row .col.s10 {

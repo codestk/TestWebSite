@@ -5,12 +5,12 @@
     { %>
   <nav id="DivMenu" class="blue-grey darken-2" role="navigation">
                 <div class=" container">
-                    <a id="logo-container" href="#" class="brand-logo">Locate Us</a>
+                    <a id="logo-container" href="#" class="brand-logo">Registration form</a>
 
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="LocationAdd.aspx">Add</a></li>
-                        <li><a href="LocationManage.aspx">Manage</a></li>
-                        <li><a href="LocationUpload.aspx">Upload</a></li>
+                        <li><a href="AccountRegistrationWeb.aspx">Add</a></li>
+                        <li><a href="AccountRegistrationListFilter.aspx">Manage</a></li>
+                    <%--    <li><a href="LocationUpload.aspx">Upload</a></li>--%>
                         <li>
                             <asp:LoginView ID="HeadLoginView1" runat="server" EnableViewState="false">
                                 <AnonymousTemplate>
@@ -32,12 +32,12 @@
      else {%>
 <nav id="DivMenu" class="blue-grey darken-2" role="navigation">
                 <div class=" container">
-                    <a id="logo-container" href="#" class="brand-logo">Locate Us</a>
+                    <a id="logo-container" href="#" class="brand-logo">Registration</a>
 
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="LocationAdd.aspx">Add</a></li>
-                        <li><a href="LocationManage.aspx">Manage</a></li>
-                        <li><a href="LocationUpload.aspx">Upload</a></li>
+                        <li><a href="AccountRegistrationWeb.aspx">Add</a></li>
+                        <li><a href="AccountRegistrationListFilter.aspx">Manage</a></li>
+                      <%--  <li><a href="LocationUpload.aspx">Upload</a></li>--%>
                         <li>
                             <asp:LoginView ID="HeadLoginView2" runat="server" EnableViewState="false">
                                 <AnonymousTemplate>

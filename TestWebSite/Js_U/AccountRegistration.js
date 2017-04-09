@@ -34,10 +34,10 @@ var AccountRegistrationService = {};
         return result; 
     };//GetKeyWordsOneColumn  
    
-  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,RequestId,UserName,Password,FirstName,LastName,Department,Phone,Fax,Status,CreateDate,DeleteDate,CancelDate,ApprovedDate,LastUpdate,RederTable_Pagger) {
+  this.Search = function (PageIndex,PageSize,SortExpression,SortDirection,RequestId,UserName,Password,FirstName,LastName,Department,Phone,Fax,Status,RederTable_Pagger) {
         var result;
 
-        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",RequestId:"' + RequestId + '",UserName:"' + UserName + '",Password:"' + Password + '",FirstName:"' + FirstName + '",LastName:"' + LastName + '",Department:"' + Department + '",Phone:"' + Phone + '",Fax:"' + Fax + '",Status:"' + Status + '",CreateDate:"' + CreateDate + '",DeleteDate:"' + DeleteDate + '",CancelDate:"' + CancelDate + '",ApprovedDate:"' + ApprovedDate + '",LastUpdate:"' + LastUpdate + '"}';
+        var tag = '{PageIndex:"'+PageIndex+'",PageSize:"'+PageSize+'",SortExpression:"'+SortExpression+'",SortDirection:"'+SortDirection+'",RequestId:"' + RequestId + '",UserName:"' + UserName + '",Password:"' + Password + '",FirstName:"' + FirstName + '",LastName:"' + LastName + '",Department:"' + Department + '",Phone:"' + Phone + '",Fax:"' + Fax + '",Status:"' + Status + '"}';
         var F = CallServices(url + "Search", tag, true, function (msg) {
             result = msg.d;
 
@@ -45,34 +45,34 @@ var AccountRegistrationService = {};
         });
         return result;
     };//Save
-this.Save = function(RequestId,UserName,Password,FirstName,LastName,Department,Phone,Fax,Status,CreateDate,DeleteDate,CancelDate,ApprovedDate,LastUpdate)
+this.Save = function(RequestId,UserName,Password,FirstName,LastName,Department,Phone,Fax,Status)
 {
 
             var result;
 
-            var tag = '{RequestId:"' + RequestId + '",UserName:"' + UserName + '",Password:"' + Password + '",FirstName:"' + FirstName + '",LastName:"' + LastName + '",Department:"' + Department + '",Phone:"' + Phone + '",Fax:"' + Fax + '",Status:"' + Status + '",CreateDate:"' + CreateDate + '",DeleteDate:"' + DeleteDate + '",CancelDate:"' + CancelDate + '",ApprovedDate:"' + ApprovedDate + '",LastUpdate:"' + LastUpdate + '"}';
+            var tag = '{RequestId:"' + RequestId + '",UserName:"' + UserName + '",Password:"' + Password + '",FirstName:"' + FirstName + '",LastName:"' + LastName + '",Department:"' + Department + '",Phone:"' + Phone + '",Fax:"' + Fax + '",Status:"' + Status + '"}';
             var F = CallServices(url + "Save", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Save
-this.Update = function(RequestId,UserName,Password,FirstName,LastName,Department,Phone,Fax,Status,CreateDate,DeleteDate,CancelDate,ApprovedDate,LastUpdate)
+this.Update = function(RequestId,UserName,Password,FirstName,LastName,Department,Phone,Fax,Status)
 {
 
             var result;
 
-            var tag = '{RequestId:"' + RequestId + '",UserName:"' + UserName + '",Password:"' + Password + '",FirstName:"' + FirstName + '",LastName:"' + LastName + '",Department:"' + Department + '",Phone:"' + Phone + '",Fax:"' + Fax + '",Status:"' + Status + '",CreateDate:"' + CreateDate + '",DeleteDate:"' + DeleteDate + '",CancelDate:"' + CancelDate + '",ApprovedDate:"' + ApprovedDate + '",LastUpdate:"' + LastUpdate + '"}';
+            var tag = '{RequestId:"' + RequestId + '",UserName:"' + UserName + '",Password:"' + Password + '",FirstName:"' + FirstName + '",LastName:"' + LastName + '",Department:"' + Department + '",Phone:"' + Phone + '",Fax:"' + Fax + '",Status:"' + Status + '"}';
             var F = CallServices(url + "Update", tag, false, function(msg) {
                 result = msg.d;
             });
             return result;
         };//Update
-this.Delete = function(RequestId,UserName,Password,FirstName,LastName,Department,Phone,Fax,Status,CreateDate,DeleteDate,CancelDate,ApprovedDate,LastUpdate)
+this.Delete = function(RequestId,UserName,Password,FirstName,LastName,Department,Phone,Fax,Status)
 {
 
             var result;
 
-            var tag = '{RequestId:"' + RequestId + '",UserName:"' + UserName + '",Password:"' + Password + '",FirstName:"' + FirstName + '",LastName:"' + LastName + '",Department:"' + Department + '",Phone:"' + Phone + '",Fax:"' + Fax + '",Status:"' + Status + '",CreateDate:"' + CreateDate + '",DeleteDate:"' + DeleteDate + '",CancelDate:"' + CancelDate + '",ApprovedDate:"' + ApprovedDate + '",LastUpdate:"' + LastUpdate + '"}';
+            var tag = '{RequestId:"' + RequestId + '",UserName:"' + UserName + '",Password:"' + Password + '",FirstName:"' + FirstName + '",LastName:"' + LastName + '",Department:"' + Department + '",Phone:"' + Phone + '",Fax:"' + Fax + '",Status:"' + Status + '"}';
             var F = CallServices(url + "Delete", tag, false, function(msg) {
                 result = msg.d;
             });

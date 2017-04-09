@@ -252,6 +252,43 @@ function LockInput(control, flage) {
 /* Create 24/01/2010 By www.javascriptthai.com
  *  Usesage $("#yourTextBoxName").ForceNumericOnly();
  */
+
+//$("#txtUserName").keypress(function (event) {
+//    var ew = event.which;
+//    //if (ew == 32)
+//    //    return true;
+//    //if (48 <= ew && ew <= 57)
+//    //    return true;
+//    if (65 <= ew && ew <= 90)
+//        return true;
+//    if (97 <= ew && ew <= 122)
+//        return true;
+//    return false;
+//});
+
+
+jQuery.fn.ForceEngOnly =
+function () {
+    return this.each(
+        function () {
+            $(this).keypress(function (event) {
+                var ew = event.which;
+                //if (ew == 32)  << Space
+                //    return true;
+                //if (48 <= ew && ew <= 57) << number
+                //    return true;
+                if (65 <= ew && ew <= 90)
+                    return true;
+                if (97 <= ew && ew <= 122)
+                    return true;
+                return false;
+            });
+    });
+};
+
+
+
+
 jQuery.fn.ForceNumericOnly =
 function () {
     return this.each(function () {

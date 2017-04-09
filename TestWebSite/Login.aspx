@@ -177,14 +177,16 @@
     <form id="form1" autocomplete="off" runat="server">
         <div class="body">
         </div>
-        <div class="grad">
+        <div class="grad" style="background-color:#1c1c1c;">
+            <img src="Images/Logo.png" style="margin:20px; " />
+
         </div>
         <div class="header">
             <div>
             </div>
             <div>
-           
-                Site<span>Login</span>
+       
+              Site<span>Demo</span> 
             </div>
         </div>
         <br>

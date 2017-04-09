@@ -1,9 +1,8 @@
-<%@ Page Title="AccountRegistration" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AccountRegistrationWeb.aspx.cs" Inherits="AccountRegistrationWeb" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPageAnonymous.master" AutoEventWireup="true" CodeFile="DemoRegister.aspx.cs" Inherits="DemoRegister" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="Js_U/AccountRegistration.js"></script>
     <script src="Js_U/AccountStatus.js"></script>
-
     <script src="Module/Strength.js-master/demo/styled_example/strength.js"></script>
     <link href="Module/Strength.js-master/demo/styled_example/Strength.css" rel="stylesheet" />
 
@@ -17,11 +16,6 @@
             $('select').material_select();
             BindQueryString();
             $('select').material_select();
-            $('.datepicker').pickadate({
-                selectMonths: true, // Creates a dropdown to control month
-                selectYears: 15,// Creates a dropdown of 15 years to control year,
-                format: 'd mmm yyyy',
-            });
 
             $('#txtPassword').strength({
                 strengthClass: 'strength',
@@ -31,7 +25,23 @@
                 strengthButtonTextToggle: 'Hide Password'
             });
 
+
             $("#txtUserName").ForceEngOnly();
+            //$("#txtUserName").keypress(function (event) {
+            //    var ew = event.which;
+            //    //if (ew == 32)
+            //    //    return true;
+            //    //if (48 <= ew && ew <= 57)
+            //    //    return true;
+            //    if (65 <= ew && ew <= 90)
+            //        return true;
+            //    if (97 <= ew && ew <= 122)
+            //        return true;
+            //    return false;
+            //});
+
+
+
 
         });
         function ForceNumberTextBox() {
@@ -45,17 +55,17 @@
             if (CheckEmtyp($("#txtDepartment"))) output = false;
             if (CheckEmtyp($("#txtPhone"))) output = false;
             if (CheckEmtyp($("#txtFax"))) output = false;
-            if (($("#drpStatus").prop('selectedIndex') == 0) || ($("#drpStatus").prop('selectedIndex') == -1)) {
-                output = false;
+            //if (($("#drpStatus").prop('selectedIndex') == 0) || ($("#drpStatus").prop('selectedIndex') == -1)) {
+            //    output = false;
 
-                $("#drpStatus").prev().prev().addClass('CustomInvalid');
+            //    $("#drpStatus").prev().prev().addClass('CustomInvalid');
 
-            }
-            else {
-                $("#drpStatus").prev().prev().removeClass('CustomInvalid');
-                $("#drpStatus").prev().prev().addClass('CustomValid');
+            //}
+            //else {
+            //    $("#drpStatus").prev().prev().removeClass('CustomInvalid');
+            //    $("#drpStatus").prev().prev().addClass('CustomValid');
 
-            }
+            //}
             if (output == false)
                 Materialize.toast('please validate your input.', 3000, 'toastCss');
             return output;
@@ -74,16 +84,20 @@
             var Department = $('#txtDepartment').val();
             var Phone = $('#txtPhone').val();
             var Fax = $('#txtFax').val();
-            var Status = $('#drpStatus').val();
+            //var Status = $('#drpStatus').val();
+            var Status = 'P';
             var result = AccountRegistrationService.Save(RequestId, UserName, Password, FirstName, LastName, Department, Phone, Fax, Status);
 
             if (result != null) {
 
                 Materialize.toast('Your data has been saved.', 3000, 'toastCss');
-                $('#txtRequestId').val(result);
+                //$('#txtRequestId').val(result);
+                $('#txtRequestId').text('Request id : ' + result)
+                $('#divRequestId').show();
+
                 $('#btnSave').hide();
-                $('#btnUpdate').show();
-                $('#btnDelete').show();
+                //$('#btnUpdate').show();
+                //$('#btnDelete').show();
             }
             else {
                 Materialize.toast(MsgError, 5000, 'toastCss');
@@ -178,18 +192,54 @@
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div class="container">
+        <img src="Images/Logo.png" width="201" style="position: absolute; top: 0px; right: 0px;" />
+
+        <h2 class="header">Create an account
+        </h2>
+
         <div class="row">
-            <div class="  col s9" style="display:none">
+            <%--  <div class="  col s9">
                 <label>RequestId </label>
-                <input readonly="true" id="txtRequestId" type="text" data-column-id="RequestId" class="validate RequestId" length="9" maxlength="9" />
+                <input readonly="true" id="txtRequestId" type="text" data-column-id="RequestId" class="validate RequestId" length="9" maxlength="9" style="display:none" />
+            </div> --%>
+            <div class="input-field col s9">
+                <input id="txtUserName" type="text" data-column-id="UserName" class="validate UserName" length="50" maxlength="50" />
+                <label for="txtUserName">UserName </label>
+            </div>
+            <%--   <div class="input-field col s9">
+                <input id="txtPassword" type="text" data-column-id="Password" class="validate Password" length="50" maxlength="50" />
+                <label for="txtPassword">Password </label>
+            </div>--%>
+
+            <div class="input-field col s9">
+
+                <label for="txtPassword">Password </label>
+
+                <input id="txtPassword" type="password" name="txtPassword" value="" data-column-id="Password" class="validate Password" length="50" maxlength="50" />
+            </div>
+            <div class="input-field col s9">
+                <input id="txtrePassword" type="password" data-column-id="Reenter password" class="validate Password" length="50" maxlength="50" />
+                <label for="txtrePassword">Reenter password </label>
             </div>
 
-            <div class="input-field col s6">
+            <div class="input-field col s9">
+
+                <blockquote style="color: #00CC99">
+                    8-character minimum&nbsp;
+                        <br />
+                    case sensitive
+                    <br />
+                    Non-alphanumeric (For example: $, #, or %)
+                </blockquote>
+            </div>
+
+            <div class="input-field col s9">
                 <input id="txtFirstName" type="text" data-column-id="FirstName" class="validate FirstName" length="50" maxlength="50" />
                 <label for="txtFirstName">FirstName </label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s9">
                 <input id="txtLastName" type="text" data-column-id="LastName" class="validate LastName" length="50" maxlength="50" />
                 <label for="txtLastName">LastName </label>
             </div>
@@ -197,41 +247,27 @@
                 <input id="txtDepartment" type="text" data-column-id="Department" class="validate Department" length="50" maxlength="50" />
                 <label for="txtDepartment">Department </label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s9">
                 <input id="txtPhone" type="text" data-column-id="Phone" class="validate Phone" length="50" maxlength="50" />
                 <label for="txtPhone">Phone </label>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s9">
                 <input id="txtFax" type="text" data-column-id="Fax" class="validate Fax" length="50" maxlength="50" />
                 <label for="txtFax">Fax </label>
             </div>
-
-            <div class="input-field col s9">
-                <input id="txtUserName" type="text" data-column-id="UserName" class="validate UserName" length="50" maxlength="50" />
-                <label for="txtUserName">UserName </label>
-            </div>
-            <%-- <div class="input-field col s9">
-                <input id="txtPassword" type="text" data-column-id="Password" class="validate Password" length="50" maxlength="50" />
-                <label for="txtPassword">Password </label>
-            </div>--%>
-
-            <div class="input-field col s6">
-
-                <label for="txtPassword">Password </label>
-                <input id="txtPassword" type="password" name="txtPassword" value="" data-column-id="Password" class="validate Password" length="50" maxlength="50" />
-            </div>
-            <div class="input-field col s6">
-                <input id="txtrePassword" type="text" data-column-id="Reenter password" class="validate Password" length="50" maxlength="50" />
-                <label for="txtrePassword">Reenter password </label>
-            </div>
-
-            <div class="input-field col s9">
+            <div class="input-field col s9" style="display: none">
                 <select id="drpStatus">
                 </select>
                 <label for="drpStatus">Status</label>
             </div>
             <div class="input-field col s12">
-                <input id="btnSave" type="button" value="Save" class=" btn" onclick="Save();" /><input id="btnUpdate" type="button" value="Update" class=" btn" onclick="    Update();" /><input id="btnDelete" type="button" value="Delete" class=" btn" onclick="    javascript: return Confirm();" style="display: none" />
+                <input id="btnSave" type="button" value="Create account" class=" btn" onclick="Save();" style="width: 100%" /><input id="btnUpdate" type="button" value="Update" class=" btn" onclick="    Update();" /><input id="btnDelete" type="button" value="Delete" class=" btn" onclick="    javascript: return Confirm();" />
+            </div>
+
+            <div id="divRequestId" class="col s12" style="display: none">
+
+                <h2 id="txtRequestId" class="header" style="color: #6798D3">Navbar</h2>
+                <label>Please wait, Application waiting to be approved by admin </label>
             </div>
         </div>
     </div>
@@ -257,4 +293,5 @@
             <input id="btnConfirm" type="button" value="Confirm" class="modal-action modal-close waves-effect waves-light btn" onclick="javascript: return Delete();" /><input id="btnCancel" type="button" value="Cancel" class="modal-action modal-close waves-effect waves-light btn" />
         </div>
     </div>
+    </label>
 </asp:Content>

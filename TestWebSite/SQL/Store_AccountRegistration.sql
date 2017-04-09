@@ -11,11 +11,6 @@ CREATE PROCEDURE [dbo].[Sp_GetAccountRegistrationPageWise]
 @Phone  [nvarchar](255) =null,
 @Fax  [nvarchar](255) =null,
 @Status  [nvarchar](255) =null,
-@CreateDate  [datetime] =null,
-@DeleteDate  [datetime] =null,
-@CancelDate  [datetime] =null,
-@ApprovedDate  [datetime] =null,
-@LastUpdate  [datetime] =null,
 /*– Pagination Parameters */
 @PageIndex INT = 1 ,
 @PageSize INT = 10 ,
@@ -39,11 +34,6 @@ DECLARE @lRequestId  [int] =null,
 @lPhone  [nvarchar](255) =null,
 @lFax  [nvarchar](255) =null,
 @lStatus  [nvarchar](255) =null,
-@lCreateDate  [datetime] =null,
-@lDeleteDate  [datetime] =null,
-@lCancelDate  [datetime] =null,
-@lApprovedDate  [datetime] =null,
-@lLastUpdate  [datetime] =null,
 @lPageNbr INT,
 @lPageSize INT,
 @lSortCol NVARCHAR(20),
@@ -60,11 +50,6 @@ SET @lDepartment = LTRIM(RTRIM(@Department))
 SET @lPhone = LTRIM(RTRIM(@Phone))
 SET @lFax = LTRIM(RTRIM(@Fax))
 SET @lStatus = LTRIM(RTRIM(@Status))
-SET @lCreateDate = LTRIM(RTRIM(@CreateDate))
-SET @lDeleteDate = LTRIM(RTRIM(@DeleteDate))
-SET @lCancelDate = LTRIM(RTRIM(@CancelDate))
-SET @lApprovedDate = LTRIM(RTRIM(@ApprovedDate))
-SET @lLastUpdate = LTRIM(RTRIM(@LastUpdate))
 SET @lPageNbr = @PageIndex
     SET @lPageSize = @PageSize
     SET @lSortCol = LTRIM(RTRIM(@SortColumn))
@@ -129,36 +114,6 @@ CASE WHEN (@lSortCol = 'Status' AND @SortOrder='ASC')
        END ASC,
        CASE WHEN (@lSortCol = 'Status' AND @SortOrder='DESC')
                   THEN Status
-       END DESC,
-CASE WHEN (@lSortCol = 'CreateDate' AND @SortOrder='ASC')
-                   THEN CreateDate
-       END ASC,
-       CASE WHEN (@lSortCol = 'CreateDate' AND @SortOrder='DESC')
-                  THEN CreateDate
-       END DESC,
-CASE WHEN (@lSortCol = 'DeleteDate' AND @SortOrder='ASC')
-                   THEN DeleteDate
-       END ASC,
-       CASE WHEN (@lSortCol = 'DeleteDate' AND @SortOrder='DESC')
-                  THEN DeleteDate
-       END DESC,
-CASE WHEN (@lSortCol = 'CancelDate' AND @SortOrder='ASC')
-                   THEN CancelDate
-       END ASC,
-       CASE WHEN (@lSortCol = 'CancelDate' AND @SortOrder='DESC')
-                  THEN CancelDate
-       END DESC,
-CASE WHEN (@lSortCol = 'ApprovedDate' AND @SortOrder='ASC')
-                   THEN ApprovedDate
-       END ASC,
-       CASE WHEN (@lSortCol = 'ApprovedDate' AND @SortOrder='DESC')
-                  THEN ApprovedDate
-       END DESC,
-CASE WHEN (@lSortCol = 'LastUpdate' AND @SortOrder='ASC')
-                   THEN LastUpdate
-       END ASC,
-       CASE WHEN (@lSortCol = 'LastUpdate' AND @SortOrder='DESC')
-                  THEN LastUpdate
        END DESC  ) AS ROWNUM,
 Count(*) over() AS RecordCount,
 
@@ -170,12 +125,7 @@ Count(*) over() AS RecordCount,
  Department,
  Phone,
  Fax,
- Status,
- CreateDate,
- DeleteDate,
- CancelDate,
- ApprovedDate,
- LastUpdate
+ Status
  FROM AccountRegistration
 WHERE
 (@lRequestId IS NULL OR RequestId = @lRequestId) AND
@@ -186,12 +136,7 @@ WHERE
 (@lDepartment IS NULL OR Department LIKE '%' +@lDepartment + '%') AND 
 (@lPhone IS NULL OR Phone LIKE '%' +@lPhone + '%') AND 
 (@lFax IS NULL OR Fax LIKE '%' +@lFax + '%') AND 
-(@lStatus IS NULL OR Status LIKE '%' +@lStatus + '%') AND 
-(@lCreateDate IS NULL OR CreateDate = @lCreateDate) AND
-(@lDeleteDate IS NULL OR DeleteDate = @lDeleteDate) AND
-(@lCancelDate IS NULL OR CancelDate = @lCancelDate) AND
-(@lApprovedDate IS NULL OR ApprovedDate = @lApprovedDate) AND
-(@lLastUpdate IS NULL OR LastUpdate = @lLastUpdate)
+(@lStatus IS NULL OR Status LIKE '%' +@lStatus + '%') 
 )
 SELECT   RecordCount,
  ROWNUM,
@@ -204,12 +149,7 @@ LastName,
 Department,
 Phone,
 Fax,
-Status,
-CreateDate,
-DeleteDate,
-CancelDate,
-ApprovedDate,
-LastUpdate FROM AccountRegistrationResult
+Status FROM AccountRegistrationResult
  WHERE
          ROWNUM > @lFirstRec
                AND ROWNUM < @lLastRec
@@ -293,9 +233,9 @@ SET NOCOUNT ON;
  select top 20 KetText,count(*) as NumberOfkey from  
 ( 
 SELECT  
-      CASE  WHEN (@Column = 'RequestId') THEN CONVERT(varchar, RequestId )  WHEN (@Column = 'UserName') THEN CONVERT(varchar, UserName )  WHEN (@Column = 'Password') THEN CONVERT(varchar, Password )  WHEN (@Column = 'FirstName') THEN CONVERT(varchar, FirstName )  WHEN (@Column = 'LastName') THEN CONVERT(varchar, LastName )  WHEN (@Column = 'Department') THEN CONVERT(varchar, Department )  WHEN (@Column = 'Phone') THEN CONVERT(varchar, Phone )  WHEN (@Column = 'Fax') THEN CONVERT(varchar, Fax )  WHEN (@Column = 'Status') THEN CONVERT(varchar, Status )  WHEN (@Column = 'CreateDate') THEN CONVERT(varchar, CreateDate )  WHEN (@Column = 'DeleteDate') THEN CONVERT(varchar, DeleteDate )  WHEN (@Column = 'CancelDate') THEN CONVERT(varchar, CancelDate )  WHEN (@Column = 'ApprovedDate') THEN CONVERT(varchar, ApprovedDate )  WHEN (@Column = 'LastUpdate') THEN CONVERT(varchar, LastUpdate )END As KetText 
+      CASE  WHEN (@Column = 'RequestId') THEN CONVERT(varchar, RequestId )  WHEN (@Column = 'UserName') THEN CONVERT(varchar, UserName )  WHEN (@Column = 'Password') THEN CONVERT(varchar, Password )  WHEN (@Column = 'FirstName') THEN CONVERT(varchar, FirstName )  WHEN (@Column = 'LastName') THEN CONVERT(varchar, LastName )  WHEN (@Column = 'Department') THEN CONVERT(varchar, Department )  WHEN (@Column = 'Phone') THEN CONVERT(varchar, Phone )  WHEN (@Column = 'Fax') THEN CONVERT(varchar, Fax )  WHEN (@Column = 'Status') THEN CONVERT(varchar, Status )END As KetText 
         
-  FROM [AccountRegistration] where CASE  WHEN (@Column = 'RequestId') THEN CONVERT(varchar, RequestId )  WHEN (@Column = 'UserName') THEN CONVERT(varchar, UserName )  WHEN (@Column = 'Password') THEN CONVERT(varchar, Password )  WHEN (@Column = 'FirstName') THEN CONVERT(varchar, FirstName )  WHEN (@Column = 'LastName') THEN CONVERT(varchar, LastName )  WHEN (@Column = 'Department') THEN CONVERT(varchar, Department )  WHEN (@Column = 'Phone') THEN CONVERT(varchar, Phone )  WHEN (@Column = 'Fax') THEN CONVERT(varchar, Fax )  WHEN (@Column = 'Status') THEN CONVERT(varchar, Status )  WHEN (@Column = 'CreateDate') THEN CONVERT(varchar, CreateDate )  WHEN (@Column = 'DeleteDate') THEN CONVERT(varchar, DeleteDate )  WHEN (@Column = 'CancelDate') THEN CONVERT(varchar, CancelDate )  WHEN (@Column = 'ApprovedDate') THEN CONVERT(varchar, ApprovedDate )  WHEN (@Column = 'LastUpdate') THEN CONVERT(varchar, LastUpdate )END like ''+@keyword+'%' 
+  FROM [AccountRegistration] where CASE  WHEN (@Column = 'RequestId') THEN CONVERT(varchar, RequestId )  WHEN (@Column = 'UserName') THEN CONVERT(varchar, UserName )  WHEN (@Column = 'Password') THEN CONVERT(varchar, Password )  WHEN (@Column = 'FirstName') THEN CONVERT(varchar, FirstName )  WHEN (@Column = 'LastName') THEN CONVERT(varchar, LastName )  WHEN (@Column = 'Department') THEN CONVERT(varchar, Department )  WHEN (@Column = 'Phone') THEN CONVERT(varchar, Phone )  WHEN (@Column = 'Fax') THEN CONVERT(varchar, Fax )  WHEN (@Column = 'Status') THEN CONVERT(varchar, Status )END like ''+@keyword+'%' 
   )KeyTable  
   group by KetText 
   order by count(*) desc  
@@ -348,26 +288,6 @@ go
          if  @Column = 'Status'
            BEGIN 
            UPDATE   AccountRegistration SET Status=@Data where RequestId = @RequestId;  
-         END 
-         if  @Column = 'CreateDate'
-           BEGIN 
-           UPDATE   AccountRegistration SET CreateDate=@Data where RequestId = @RequestId;  
-         END 
-         if  @Column = 'DeleteDate'
-           BEGIN 
-           UPDATE   AccountRegistration SET DeleteDate=@Data where RequestId = @RequestId;  
-         END 
-         if  @Column = 'CancelDate'
-           BEGIN 
-           UPDATE   AccountRegistration SET CancelDate=@Data where RequestId = @RequestId;  
-         END 
-         if  @Column = 'ApprovedDate'
-           BEGIN 
-           UPDATE   AccountRegistration SET ApprovedDate=@Data where RequestId = @RequestId;  
-         END 
-         if  @Column = 'LastUpdate'
-           BEGIN 
-           UPDATE   AccountRegistration SET LastUpdate=@Data where RequestId = @RequestId;  
          END 
        END     
 
