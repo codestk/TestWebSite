@@ -265,51 +265,73 @@ function LockInput(control, flage) {
 //        return true;
 //    return false;
 //});
+/* เช็คคีย์อังกฤษ a-z, A-Z */
+//if ((k>=65 && k<=90) || (k>=97 && k<=122)) { return allowedEng; }
 
+/* เช็คคีย์ไทย ทั้งแบบ non-unicode และ unicode */
+//if ((k>=161 && k<=255) || (k>=3585 && k<=3675)) { return allowedThai; }
 
 //$("#txtUserName").ForceEngOnly();
 //ใส่ได้แค่ Eng
 jQuery.fn.ForceEngOnly =
+
 function () {
     return this.each(
         function () {
+            //No plate and copy
+            $(this).bind("cut copy paste", function (e) {
+                e.preventDefault();
+            });
+
             $(this).keypress(function (event) {
+                console.log('enf');
                 var ew = event.which;
                 //if (ew == 32)  << Space
                 //    return true;
                 //if (48 <= ew && ew <= 57) << number
                 //    return true;
+
+                if (event.ctrlKey == true && (event.which == '118' || event.which == '86')) {
+                    event.preventDefault();
+                }
+
                 if (65 <= ew && ew <= 90)
                     return true;
                 if (97 <= ew && ew <= 122)
                     return true;
                 return false;
             });
-    });
+        });
 };
 
+//$("#txtUserName").ForceEngOnly();
+//ใส่ได้แค่ Thai
 jQuery.fn.ForceThaiOnly =
 function () {
     return this.each(
         function () {
+            //No plate and copy
+            $(this).bind("cut copy paste", function (e) {
+                e.preventDefault();
+            });
+
             $(this).keypress(function (event) {
+                debugger
+                console.log('Thai');
                 var ew = event.which;
                 //if (ew == 32)  << Space
                 //    return true;
                 //if (48 <= ew && ew <= 57) << number
                 //    return true;
-                if (65 <= ew && ew <= 90)
+
+                if ((161 <= ew && ew <= 255) || (ew >= 3585 && ew <= 3675))
                     return true;
-                if (97 <= ew && ew <= 122)
-                    return true;
+                //if (97 <= ew && ew <= 122)
+                //    return true;
                 return false;
             });
-    });
+        });
 };
-
-
-
-
 
 jQuery.fn.ForceNumericOnly =
 function () {
