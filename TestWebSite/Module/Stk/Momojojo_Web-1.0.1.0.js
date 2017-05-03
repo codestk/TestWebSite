@@ -267,6 +267,8 @@ function LockInput(control, flage) {
 //});
 
 
+//$("#txtUserName").ForceEngOnly();
+//ใส่ได้แค่ Eng
 jQuery.fn.ForceEngOnly =
 function () {
     return this.each(
@@ -285,6 +287,26 @@ function () {
             });
     });
 };
+
+jQuery.fn.ForceThaiOnly =
+function () {
+    return this.each(
+        function () {
+            $(this).keypress(function (event) {
+                var ew = event.which;
+                //if (ew == 32)  << Space
+                //    return true;
+                //if (48 <= ew && ew <= 57) << number
+                //    return true;
+                if (65 <= ew && ew <= 90)
+                    return true;
+                if (97 <= ew && ew <= 122)
+                    return true;
+                return false;
+            });
+    });
+};
+
 
 
 
