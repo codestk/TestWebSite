@@ -103,6 +103,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Images\1457019010_next.png" />
+    <Content Include="Images\1457019023_prev.png" />
+    <Content Include="Images\1457020740_arrow-right-01.svg" />
+    <Content Include="Images\1457020750_arrow-left-01.svg" />
+    <Content Include="Images\arrow-back.svg" />
+    <Content Include="Images\arrow-forward.svg" />
+    <Content Include="Images\backgroundligthup.jpg" />
+    <Content Include="Images\bg0001.png" />
+    <Content Include="Images\bglight01.png" />
+    <Content Include="Images\Close.png" />
+    <Content Include="Images\loginBg.jpg" />
+    <Content Include="Images\Logo.png" />
+    <Content Include="Images\magnifyingglass.png" />
+    <Content Include="Images\magnifyingglass13.png" />
+    <Content Include="Images\no-image.png" />
+    <Content Include="Images\pexels-photo-261706.jpeg" />
+    <Content Include="Images\search.png" />
+    <Content Include="Images\search7.png" />
+    <Content Include="Images\search73.svg" />
+    <Content Include="Images\the-queens-gallery-2.jpg" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\dist\Chart.bundle.js" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\dist\Chart.bundle.min.js" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\dist\Chart.js" />
@@ -295,6 +315,8 @@
     <Content Include="Module\xmlToJSON-master\test\lib\jasmine-1.3.0\jasmine.js" />
     <Content Include="Module\xmlToJSON-master\test\SpecRunner.html" />
     <Content Include="Module\xmlToJSON-master\test\spec\xmlToJSONSpec.js" />
+    <Content Include="SQL\Store_AccountRegistration.sql" />
+    <Content Include="SQL\Store_AccountStatus.sql" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
   </ItemGroup>
@@ -305,25 +327,7 @@
     <Content Include="App_Code\Business\AccountStatusDb.cs" />
     <Content Include="App_Code\FrameWork\App_Start\WebApiConfig.cs" />
     <Content Include="App_Code\FrameWork\BaseProperties.cs" />
-    <Content Include="App_Code\FrameWork\Common\Config.cs" />
-    <Content Include="App_Code\FrameWork\Common\StkAlert.cs" />
-    <Content Include="App_Code\FrameWork\Common\StkClosePopUp.cs" />
-    <Content Include="App_Code\FrameWork\Common\StkControls.cs" />
-    <Content Include="App_Code\FrameWork\Common\StkDate.cs" />
-    <Content Include="App_Code\FrameWork\Common\StkDefaultValue.cs" />
-    <Content Include="App_Code\FrameWork\Common\StkGlobalDate.cs" />
-    <Content Include="App_Code\FrameWork\Common\StkMessage.cs" />
-    <Content Include="App_Code\FrameWork\Common\StkString.cs" />
-    <Content Include="App_Code\FrameWork\Common\StkTestFunction.cs" />
-    <Content Include="App_Code\FrameWork\Common\StkUser.cs" />
-    <Content Include="App_Code\FrameWork\Common\StkValidates.cs" />
-    <Content Include="App_Code\FrameWork\Common\Stk_Barcode_R2.cs" />
-    <Content Include="App_Code\FrameWork\Common\Stk_QueryString.cs" />
-    <Content Include="App_Code\FrameWork\Common\Stk_TextNull.cs" />
     <Content Include="App_Code\FrameWork\Configcs.cs" />
-    <Content Include="App_Code\FrameWork\Controls\StkRepeaterExten.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
     <Content Include="App_Code\FrameWork\DataAccess.cs" />
     <Content Include="App_Code\FrameWork\Enum\EnumStkRole.cs" />
     <Content Include="App_Code\FrameWork\Properties\Controls\SelectInputProperties.cs" />
@@ -355,7 +359,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="App_Code\FrameWork\Common\Stk_DropDown.cs.exclude" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6.zip" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\.codeclimate.yml" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\.editorconfig" />
@@ -446,6 +449,7 @@
     <Content Include="Module\xmlToJSON-master\package.json" />
     <Content Include="Module\xmlToJSON-master\README.md" />
     <Content Include="Module\xmlToJSON-master\test\lib\jasmine-1.3.0\MIT.LICENSE" />
+    <Content Include="ErrorLogging\31-10-17.log" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

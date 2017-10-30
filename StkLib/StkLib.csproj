@@ -46,6 +46,24 @@
   <ItemGroup>
     <Compile Include="CCdate\CCDateTime.cs" />
     <Compile Include="CCobject\ObjectInstance.cs" />
+    <Content Include="Common\Config.cs" />
+    <Content Include="Common\Stk_Barcode_R2.cs" />
+    <Content Include="Common\Stk_QueryString.cs" />
+    <Content Include="Common\Stk_TextNull.cs" />
+    <Content Include="Common\StkAlert.cs" />
+    <Content Include="Common\StkClosePopUp.cs" />
+    <Content Include="Common\StkControls.cs" />
+    <Content Include="Common\StkDate.cs" />
+    <Content Include="Common\StkDefaultValue.cs" />
+    <Content Include="Common\StkGlobalDate.cs" />
+    <Content Include="Common\StkMessage.cs" />
+    <Content Include="Common\StkString.cs" />
+    <Content Include="Common\StkTestFunction.cs" />
+    <Content Include="Common\StkUser.cs" />
+    <Content Include="Common\StkValidates.cs" />
+    <Content Include="Controls\StkRepeaterExten.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Compile Include="Cryptography\EncryptAndDecrypt.cs" />
     <Compile Include="Enum\StringEnum.cs" />
     <Compile Include="Errors\ErrorLogging.cs" />
@@ -67,6 +85,7 @@
     <Compile Include="Web\JavaScript\MessageBox.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Common\Stk_DropDown.cs.exclude" />
     <None Include="Errors\vssver2.scc" />
   </ItemGroup>
   <ItemGroup />
