@@ -6,7 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TestWebSite", "TestWebSite\", "{30C8B3EA-0024-4A5C-9D93-41DF75D3E278}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.1"
-		ProjectReferences = "{be8f031f-3276-46ec-8476-17743f9ca1bc}|CoreDb.dll;{5cea6a8c-3970-48cb-b8cf-b42fd5c0b170}|StkLib.dll;{f8646414-0c9c-49bb-9da3-3923bf78a398}|BarcodeLib.dll;"
+		ProjectReferences = "{f8646414-0c9c-49bb-9da3-3923bf78a398}|BarcodeLib.dll;{be8f031f-3276-46ec-8476-17743f9ca1bc}|CoreDb.dll;{5cea6a8c-3970-48cb-b8cf-b42fd5c0b170}|StkLib.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_45013"
 		Debug.AspNetCompiler.PhysicalPath = "TestWebSite\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_45013\"
@@ -25,11 +25,13 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "TestWebSite", "TestWebSite\
 		SlnRelativePath = "TestWebSite\"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDb", "..\CoreDb\CoreDb\CoreDb.csproj", "{BE8F031F-3276-46EC-8476-17743F9CA1BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarcodeLib", "BarcodeLib\BarcodeLib.csproj", "{F8646414-0C9C-49BB-9DA3-3923BF78A398}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StkLib", "..\StkLib\StkLib\StkLib.csproj", "{5CEA6A8C-3970-48CB-B8CF-B42FD5C0B170}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{60686AEB-2437-4971-96C4-105E8924C2C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarcodeLib", "..\BarcodeLib\BarcodeLib.csproj", "{F8646414-0C9C-49BB-9DA3-3923BF78A398}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreDb", "CoreDb\CoreDb.csproj", "{BE8F031F-3276-46EC-8476-17743F9CA1BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StkLib", "StkLib\StkLib.csproj", "{5CEA6A8C-3970-48CB-B8CF-B42FD5C0B170}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,22 @@ Global
 		{30C8B3EA-0024-4A5C-9D93-41DF75D3E278}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{30C8B3EA-0024-4A5C-9D93-41DF75D3E278}.Release|x86.ActiveCfg = Debug|Any CPU
 		{30C8B3EA-0024-4A5C-9D93-41DF75D3E278}.Release|x86.Build.0 = Debug|Any CPU
+		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Debug|x86.ActiveCfg = Debug|x86
+		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Debug|x86.Build.0 = Debug|x86
+		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Release|x86.ActiveCfg = Release|x86
+		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Release|x86.Build.0 = Release|x86
+		{60686AEB-2437-4971-96C4-105E8924C2C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60686AEB-2437-4971-96C4-105E8924C2C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60686AEB-2437-4971-96C4-105E8924C2C0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{60686AEB-2437-4971-96C4-105E8924C2C0}.Debug|x86.Build.0 = Debug|Any CPU
+		{60686AEB-2437-4971-96C4-105E8924C2C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60686AEB-2437-4971-96C4-105E8924C2C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60686AEB-2437-4971-96C4-105E8924C2C0}.Release|x86.ActiveCfg = Release|Any CPU
+		{60686AEB-2437-4971-96C4-105E8924C2C0}.Release|x86.Build.0 = Release|Any CPU
 		{BE8F031F-3276-46EC-8476-17743F9CA1BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE8F031F-3276-46EC-8476-17743F9CA1BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE8F031F-3276-46EC-8476-17743F9CA1BC}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -63,14 +81,6 @@ Global
 		{5CEA6A8C-3970-48CB-B8CF-B42FD5C0B170}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5CEA6A8C-3970-48CB-B8CF-B42FD5C0B170}.Release|x86.ActiveCfg = Release|Any CPU
 		{5CEA6A8C-3970-48CB-B8CF-B42FD5C0B170}.Release|x86.Build.0 = Release|Any CPU
-		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Debug|x86.ActiveCfg = Debug|x86
-		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Debug|x86.Build.0 = Debug|x86
-		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Release|x86.ActiveCfg = Release|x86
-		{F8646414-0C9C-49BB-9DA3-3923BF78A398}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,273 @@
+﻿<html>
+<head>
+    <title>jQuery Drag and Drop Image Upload</title>
+    <script src="Module/jquery-2.1.4.min.js"></script>
+    <style>
+        #drop-area {
+            background: #D8F9D3;
+            padding: 10px;
+            width: 175px;
+            height: 135px;
+            border: 1px dashed #ddd;
+            border-radius: 5px;
+            background: white;
+        }
+
+        h3.drop-text {
+            color: #999;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .progress {
+            position: relative;
+            width: 100%;
+            border: 1px solid #ddd;
+            padding: 1px;
+            border-radius: 3px;
+        }
+
+        .bar {
+            background-color: #B4F5B4;
+            width: 0%;
+            height: 20px;
+            border-radius: 3px;
+        }
+
+        .percent {
+            color: #999;
+            position: absolute;
+            display: inline-block;
+            top: 3px;
+            left: 48%;
+        }
+
+        #drop-area-preview {
+            position: relative;
+        }
+
+        #imgRemove {
+            position: absolute;
+            top: -15px;
+            right: -12px;
+            z-index: 100;
+        }
+    </style>
+    <script src="Module/Stk/ValidateStk.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#drop-area-preview").hide();
+
+            DisplayImage(1);
+
+            $("#drop-area").on('dragenter', function (e) {
+                e.preventDefault();
+                $(this).css('background', '#BBD5B8');
+            });
+
+            $("#drop-area").on('dragover', function (e) {
+                e.preventDefault();
+            });
+
+            $("#drop-area").on('drop', function (e) {
+                $(this).css('background', '#D8F9D3');
+                e.preventDefault();
+                var image = e.originalEvent.dataTransfer.files;
+                var filename = image[0].name;
+                if (ImageNameValid(filename) == false) {
+                    alert('Upload Error this file extension is not allowed. You can only upload JPG, JPEG, PNG, GIF files. ')
+                    $(this).css('background', '#ffffff');
+                    return;
+                }
+
+                createFormData(image);
+            });
+
+        });
+
+        function createFormData(image) {
+
+            var formImage = new FormData();
+
+            formImage.append('UploadedImage', image[0]);
+
+            uploadFormData(formImage);
+        }
+
+        function InnitDropArea() {
+            var bar = $('.bar');
+            var percent = $('.percent');
+            var status = $('#status');
+            $('#drop-area').css('background', '#ffffff');
+            status.empty();
+            var percentVal = '0%';
+            bar.width(percentVal)
+            percent.html(percentVal);
+        }
+
+        function uploadFormData(formData) {
+
+            var bar = $('.bar');
+            var percent = $('.percent');
+            var status = $('#status');
+
+            $.ajax({
+                url: "api/CatImageController/UploadFile/1",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function () {
+
+                    InnitDropArea();
+                },
+                xhr: function () {
+                    var xhr = new window.XMLHttpRequest();
+
+                    xhr.upload.addEventListener("progress", function (evt) {
+                        if (evt.lengthComputable) {
+                            var percentComplete = evt.loaded / evt.total;
+                            percentComplete = parseInt(percentComplete * 100);
+
+                            var percentVal = percentComplete + '%';
+                            console.log(percentVal);
+                            bar.width(percentVal)
+                            percent.html(percentVal);
+
+                            if (percentComplete === 100) {
+                                var percentVal = '100%';
+                                bar.width(percentVal)
+                                percent.html(percentVal);
+                            }
+
+                        }
+                    }, false);
+
+                    return xhr;
+                },
+                //uploadProgress: function (event, position, total, percentComplete) {
+                //    var percentVal = percentComplete + '%';
+                //     console.log(percentVal);
+                //    bar.width(percentVal)
+                //    percent.html(percentVal);
+                //},
+                success: function (data) {
+                    //$('#drop-area').append(data);
+                    var imgFile = formData.get('UploadedImage');
+                    $('#drop-area-preview').show();
+                    $('#drop-area-detail').hide();
+
+                    previewFile(imgFile);
+
+                    $('#imgRemove').click(function () {
+
+                        Delete(1);
+
+                    });
+
+                },
+                complete: function (xhr) {
+                    // status.html(xhr.responseText);
+                }
+            });
+
+        }
+
+        function Delete(id) {
+
+            $.ajax({
+                url: "api/CatImageController/Delete/1",
+                type: "POST",
+                data: "{}",
+                contentType: false,
+                cache: false,
+                processData: false,
+                beforeSend: function () {
+
+                },
+                success: function (data) {
+                    //$('#drop-area').append(data);
+
+                    $('#drop-area-preview').hide();
+                    $('#drop-area-detail').show();
+
+                    InnitDropArea();
+
+                },
+                complete: function (xhr) {
+                    // status.html(xhr.responseText);
+                }
+            });
+        }
+
+        function DisplayImage(id) {
+
+            var imgUrl = "ImageHandler.ashx?Q=1";
+            $.ajax({
+                url: imgUrl,
+                type: "POST",
+                data: "{}",
+                contentType: false,
+                cache: false,
+                processData: false,
+
+                success: function (data) {
+
+                    $("#drop-area-preview").show();
+                    $("#drop-area-detail").hide();
+
+                    $("#imgPreview").attr("src", imgUrl);
+
+                    $('#imgRemove').click(function () {
+
+                        Delete(1);
+
+                    });
+
+                },
+                complete: function (xhr) {
+                    // status.html(xhr.responseText);
+                }
+            });
+
+        }
+
+        function previewFile(imageJs) {
+
+            var file = imageJs;
+
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+
+                $("#imgPreview").attr("src", reader.result);
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="drop-area">
+        <div id="drop-area-detail">
+
+            <h3 class="drop-text">Drag and Drop Images Here</h3>
+
+            <div class="progress">
+                <div class="bar"></div>
+                <div class="percent">0%</div>
+            </div>
+        </div>
+        <div id="drop-area-preview">
+            <img id="imgPreview" src="" height="131" width="174" alt="Image preview...">
+            <img id="imgRemove" src="Images/Close.png" />
+        </div>
+    </div>
+
+    <div id="status"></div>
+</body>
+</html>
