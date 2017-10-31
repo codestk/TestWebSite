@@ -102,7 +102,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountRegistrationListFilter.aspx.cs">
+      <DependentUpon>AccountRegistrationListFilter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Code\Utility\Security\Logon.cs" />
+    <Compile Include="Menu.ascx.cs">
+      <DependentUpon>Menu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm3.aspx.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm3.aspx.designer.cs">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+    </Compile>
+    <Content Include="AccountRegistrationListFilter.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\1457019010_next.png" />
     <Content Include="Images\1457019023_prev.png" />
@@ -124,7 +140,10 @@
     <Content Include="Images\search7.png" />
     <Content Include="Images\search73.svg" />
     <Content Include="Images\the-queens-gallery-2.jpg" />
+    <Content Include="Js_U\AccountRegistration.js" />
+    <Content Include="Js_U\AccountStatus.js" />
     <Content Include="Login.aspx" />
+    <Content Include="Menu.ascx" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\dist\Chart.bundle.js" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\dist\Chart.bundle.min.js" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\dist\Chart.js" />
@@ -322,6 +341,7 @@
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
     <Content Include="WebForm2.aspx" />
+    <Content Include="WebForm3.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Login.aspx.cs">
@@ -338,10 +358,10 @@
     <Compile Include="WebForm2.aspx.designer.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>
     </Compile>
-    <Content Include="Code\Business\AccountRegistration.cs" />
-    <Content Include="Code\Business\AccountRegistrationDb.cs" />
-    <Content Include="Code\Business\AccountStatus.cs" />
-    <Content Include="Code\Business\AccountStatusDb.cs" />
+    <Compile Include="Code\Business\AccountRegistration.cs" />
+    <Compile Include="Code\Business\AccountRegistrationDb.cs" />
+    <Compile Include="Code\Business\AccountStatus.cs" />
+    <Compile Include="Code\Business\AccountStatusDb.cs" />
     <Compile Include="Code\Utility\BaseProperties.cs" />
     <Compile Include="Code\Utility\Configcs.cs" />
     <Compile Include="Code\Utility\DataAccess.cs" />
@@ -351,12 +371,12 @@
     <Compile Include="Code\Utility\Security\RijndaelSimple.cs" />
     <Compile Include="Code\Utility\Uitility\Search\SearchUtility.cs" />
     <Compile Include="Code\Utility\Ui\MsgBox.cs" />
-    <Content Include="Code\Services\AccountRegistrationService.cs">
+    <Compile Include="Code\Services\AccountRegistrationService.cs">
       <SubType>Component</SubType>
-    </Content>
-    <Content Include="Code\Services\AccountStatusService.cs">
+    </Compile>
+    <Compile Include="Code\Services\AccountStatusService.cs">
       <SubType>Component</SubType>
-    </Content>
+    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Global.asax.cs">
@@ -479,9 +499,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Code\SampleProject\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+    <Folder Include="SampleProject\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BarcodeLib\BarcodeLib.csproj">
