@@ -1,12 +1,10 @@
-﻿using System.Web;
-using System.Text;
+﻿using System.Text;
+using System.Web;
 using System.Web.UI;
 namespace Stk.Common
 {
     public class StkAlert
     {
-
-
         public static void Show(string message)
         {
             // Cleans the message to allow single quotation marks
@@ -19,27 +17,19 @@ namespace Stk.Common
             // Checks if the handler is a Page and that the script isn't allready on the Page
             if (page != null && !page.ClientScript.IsClientScriptBlockRegistered("alert"))
             {
-                page.ClientScript.RegisterClientScriptBlock(typeof(StkAlert), "alert", script,true);
+                page.ClientScript.RegisterClientScriptBlock(typeof(StkAlert), "alert", script, true);
             }
         }
 
-
-        public static void ShowAjax(string message,Control ct)
+        public static void ShowAjax(string message, Control ct)
         {
             Page page = HttpContext.Current.CurrentHandler as Page;
 
             // Checks if the handler is a Page and that the script isn't allready on the Page
             //if (page != null && !page.ClientScript.IsClientScriptBlockRegistered("alert"))
             //{
-                ScriptManager.RegisterClientScriptBlock(ct, typeof(StkAlert), "alert", "alert('" + message + "');", true);
+            ScriptManager.RegisterClientScriptBlock(ct, typeof(StkAlert), "alert", "alert('" + message + "');", true);
             //}
-
         }
-
-
-
-     
-  
-
     }
 }

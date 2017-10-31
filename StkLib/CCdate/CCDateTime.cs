@@ -8,7 +8,7 @@ namespace StkLib.CCdate
         /// <summary>
         ///     datetime = dd/MM/yyyy   En
         /// </summary>
-      
+
         /// <param name="ddMMyyyyEn">>11/12/2015</param>
         /// <returns></returns>
         public static DateTime ConvertToDate(string ddMMyyyyEn)
@@ -23,11 +23,10 @@ namespace StkLib.CCdate
             return dt;
         }
 
-
         /// <summary>
         ///     ใช้เพื่อ....
         /// </summary>
- 
+
         /// <param name="ddMMyyyyTh">11/12/2558</param>
         /// th-TH
         /// <returns></returns>
@@ -39,7 +38,6 @@ namespace StkLib.CCdate
             string dateStringReformat = dateArray[0] + "/" + dateArray[1] + "/" + dateArray[2];
 
             var culture = new CultureInfo("th-TH", false);
-
 
             DateTime dt = DateTime.ParseExact(dateStringReformat, "d", culture);
 

@@ -102,6 +102,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Utility\Security\Logon.cs" />
     <Content Include="Global.asax" />
     <Content Include="Images\1457019010_next.png" />
     <Content Include="Images\1457019023_prev.png" />
@@ -123,6 +124,7 @@
     <Content Include="Images\search7.png" />
     <Content Include="Images\search73.svg" />
     <Content Include="Images\the-queens-gallery-2.jpg" />
+    <Content Include="Login.aspx" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\dist\Chart.bundle.js" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\dist\Chart.bundle.min.js" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\dist\Chart.js" />
@@ -315,37 +317,54 @@
     <Content Include="Module\xmlToJSON-master\test\lib\jasmine-1.3.0\jasmine.js" />
     <Content Include="Module\xmlToJSON-master\test\SpecRunner.html" />
     <Content Include="Module\xmlToJSON-master\test\spec\xmlToJSONSpec.js" />
-    <Content Include="SQL\Store_AccountRegistration.sql" />
-    <Content Include="SQL\Store_AccountStatus.sql" />
+    <Content Include="Code\SQL\Store_AccountRegistration.sql" />
+    <Content Include="Code\SQL\Store_AccountStatus.sql" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
+    <Content Include="WebForm2.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\Business\AccountRegistration.cs" />
-    <Content Include="App_Code\Business\AccountRegistrationDb.cs" />
-    <Content Include="App_Code\Business\AccountStatus.cs" />
-    <Content Include="App_Code\Business\AccountStatusDb.cs" />
-    <Content Include="App_Code\FrameWork\App_Start\WebApiConfig.cs" />
-    <Content Include="App_Code\FrameWork\BaseProperties.cs" />
-    <Content Include="App_Code\FrameWork\Configcs.cs" />
-    <Content Include="App_Code\FrameWork\DataAccess.cs" />
-    <Content Include="App_Code\FrameWork\Enum\EnumStkRole.cs" />
-    <Content Include="App_Code\FrameWork\Properties\Controls\SelectInputProperties.cs" />
-    <Content Include="App_Code\FrameWork\Security\EncryptDecryptQueryString.cs" />
-    <Content Include="App_Code\FrameWork\Security\Logon.cs" />
-    <Content Include="App_Code\FrameWork\Security\RijndaelSimple.cs" />
-    <Content Include="App_Code\FrameWork\Uitility\Search\SearchUtility.cs" />
-    <Content Include="App_Code\FrameWork\Ui\MsgBox.cs" />
-    <Content Include="App_Code\Services\AccountRegistrationService.cs">
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Code\Business\AccountRegistration.cs" />
+    <Content Include="Code\Business\AccountRegistrationDb.cs" />
+    <Content Include="Code\Business\AccountStatus.cs" />
+    <Content Include="Code\Business\AccountStatusDb.cs" />
+    <Compile Include="Code\Utility\BaseProperties.cs" />
+    <Compile Include="Code\Utility\Configcs.cs" />
+    <Compile Include="Code\Utility\DataAccess.cs" />
+    <Compile Include="Code\Utility\Enum\EnumStkRole.cs" />
+    <Compile Include="Code\Utility\Properties\Controls\SelectInputProperties.cs" />
+    <Compile Include="Code\Utility\Security\EncryptDecryptQueryString.cs" />
+    <Compile Include="Code\Utility\Security\RijndaelSimple.cs" />
+    <Compile Include="Code\Utility\Uitility\Search\SearchUtility.cs" />
+    <Compile Include="Code\Utility\Ui\MsgBox.cs" />
+    <Content Include="Code\Services\AccountRegistrationService.cs">
       <SubType>Component</SubType>
     </Content>
-    <Content Include="App_Code\Services\AccountStatusService.cs">
+    <Content Include="Code\Services\AccountStatusService.cs">
       <SubType>Component</SubType>
     </Content>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage.master.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebForm1.aspx.cs">
@@ -450,6 +469,7 @@
     <Content Include="Module\xmlToJSON-master\README.md" />
     <Content Include="Module\xmlToJSON-master\test\lib\jasmine-1.3.0\MIT.LICENSE" />
     <Content Include="ErrorLogging\31-10-17.log" />
+    <Content Include="MasterPage.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -459,8 +479,23 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Code\SampleProject\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BarcodeLib\BarcodeLib.csproj">
+      <Project>{f8646414-0c9c-49bb-9da3-3923bf78a398}</Project>
+      <Name>BarcodeLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreDb\CoreDb.csproj">
+      <Project>{be8f031f-3276-46ec-8476-17743f9ca1bc}</Project>
+      <Name>CoreDb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StkLib\StkLib.csproj">
+      <Project>{5cea6a8c-3970-48cb-b8cf-b42fd5c0b170}</Project>
+      <Name>StkLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

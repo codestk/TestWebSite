@@ -1,0 +1,131 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<%@ Register Src="~/Menu.ascx" TagPrefix="uc1" TagName="Menu" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head title="Site" runat="server">
+     
+    <!-- CSS  -->
+    <%--  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />--%>
+    <link href="Module/Materialize/css/materialize.css" rel="stylesheet" media="screen,projection" />
+    <link href="Module/Materialize/css/style.css" rel="stylesheet" media="screen,projection" />
+    <link href="Module/Materialize/FixedCss/MaterializedFixed.css" rel="stylesheet" />
+    <link href="Module/GoogleMaterialize/GoogleIconOffline.css" rel="stylesheet" />
+    <link href="Module/GoogleMaterialize/GoogleIconOfflineFix.css" rel="stylesheet" />
+    <script src="Module/CommonUtility.js"></script>
+    <script src="Module/Stk/date.format.js"></script>
+    <style>
+        /*.masterContent, {
+            min-height: 400px;
+            vertical-align: central;
+
+        }*/
+        body {
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        main {
+            min-height: 76vh !important;
+            vertical-align: central;
+            vertical-align: middle !important;
+            padding: 4px;
+            position: relative;
+            display: block;
+            background-image: url('Images/bg0001.png');background-size: cover;background-position:center right;
+        }
+
+        /*@media only screen and (min-width: 420px) {
+  main{
+        min-height:540px;
+            vertical-align: central;
+ }
+}*/
+
+        .uparrow {
+            width: 0;
+            height: 0;
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-bottom: 18px solid #ffffff;
+            /*margin: -20px auto 0 auto;*/
+            margin-top: -18px;
+            margin-left: 160px;
+        }
+
+        #DivMenu {
+            box-shadow: none;
+        }
+
+        #nav-mobile li {
+            width: 84px;
+            text-align: center;
+        }
+
+        .CurrentActive {
+            background-color: #607d8b;
+        }
+    </style>
+    <!--  Scripts-->
+    <script src="Module/jquery-2.1.4.min.js"></script>
+    <script src="Module/Materialize/js/materialize.js"></script>
+    <script src="Module/Materialize/js/init.js"></script>
+
+    <script src="Module/Stk/Momojojo-1.0.1.0.js"></script>
+    <script src="Module/Stk/Momojojo_Web-1.0.1.0.js"></script>
+
+    <link href="Module/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
+    <script src="Module/jquery-ui-1.11.4.custom/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <script>
+        $(document).ready(function () {
+            //Hilight menu
+            var path = window.location.pathname.split('/'); path = path[path.length - 1];
+            if (path !== undefined) {
+                var menu = $("#nav-mobile").find("a[href='" + path + "']").parents('li').children('a');
+                menu.addClass('CurrentActive');
+
+            }
+            //=====================================================================================================
+        });//   $(document).ready(function () {
+
+        // $(".dropdown-button").dropdown();
+    </script>
+
+
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <header>
+           
+           
+             <uc1:Menu runat="server" ID="Menu" />
+        </header>
+
+        <main>
+
+            <%--    <div class="masterContent">--%>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <%--  </div>--%>
+        </main>
+
+        <footer class="page-footer  grey">
+
+            <div class="footer-copyright">
+                <div class="container">
+                    <%--   Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>--%>
+                    <div class=" grey-text text-lighten-5">Copyright © 2004 Demo Public Company Limited. All rights reserved.</div>
+                </div>
+            </div>
+        </footer>
+    </form>
+</body>
+</html>

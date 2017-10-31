@@ -2,24 +2,21 @@
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
+
 //How To Use
 //protected void Application_Error(object sender, EventArgs e)
 //      {
 //          // find out the last error
 //         System.Exception  ex = Server.GetLastError().GetBaseException();
 //          // log the error now
-//         ErrorLogging.LogError(ex, ""); 
+//         ErrorLogging.LogError(ex, "");
 //      }
 using System.Web;
 
 namespace StkLib.Errors
 {
-  
-   
-
     public class ErrorLogging
     {
-
         /// <summary>
         /// Logs the error.
         /// </summary>
@@ -102,5 +99,3 @@ namespace StkLib.Errors
         }
     }
 }
-
-

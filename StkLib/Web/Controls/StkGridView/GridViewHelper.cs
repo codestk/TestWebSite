@@ -21,7 +21,6 @@ namespace StkLib.Web.Controls.StkGridView
     /// </summary>
     public class GridViewHelper
     {
-
         #region Fields
 
         private GridView mGrid;
@@ -30,7 +29,7 @@ namespace StkLib.Web.Controls.StkGridView
         private bool useFooter;
         private SortDirection groupSortDir;
 
-        #endregion
+        #endregion Fields
 
         public GridViewGroupList Groups
         {
@@ -41,7 +40,6 @@ namespace StkLib.Web.Controls.StkGridView
         {
             get { return mGeneralSummaries; }
         }
-
 
         #region Messages
 
@@ -57,8 +55,7 @@ namespace StkLib.Web.Controls.StkGridView
         private const string ONE_GROUP_ALREADY_REGISTERED =
             "At least a group is already defined. A suppress group can't coexist with other groups";
 
-        #endregion
-
+        #endregion Messages
 
         #region Events
 
@@ -92,8 +89,7 @@ namespace StkLib.Web.Controls.StkGridView
         /// </summary>
         public event FooterEvent FooterDataBound;
 
-        #endregion
-
+        #endregion Events
 
         #region Constructors
 
@@ -116,8 +112,7 @@ namespace StkLib.Web.Controls.StkGridView
             this.mGrid.RowDataBound += new GridViewRowEventHandler(RowDataBoundHandler);
         }
 
-        #endregion
-
+        #endregion Constructors
 
         #region RegisterSummary overloads
 
@@ -224,7 +219,7 @@ namespace StkLib.Web.Controls.StkGridView
 
                 mGeneralSummaries.Add(s);
             }
-            else if (! s.Group.ContainsSummary(s))
+            else if (!s.Group.ContainsSummary(s))
             {
                 s.Group.AddSummary(s);
             }
@@ -232,14 +227,13 @@ namespace StkLib.Web.Controls.StkGridView
             return s;
         }
 
-        #endregion
-
+        #endregion RegisterSummary overloads
 
         #region RegisterGroup overloads
 
         public GridViewGroup RegisterGroup(string column, bool auto, bool hideGroupColumns)
         {
-            string[] cols = new string[1] {column};
+            string[] cols = new string[1] { column };
             return RegisterGroup(cols, auto, hideGroupColumns);
         }
 
@@ -271,14 +265,13 @@ namespace StkLib.Web.Controls.StkGridView
             return g;
         }
 
-        #endregion
-
+        #endregion RegisterGroup overloads
 
         #region SetSuppressGroup overloads
 
         public GridViewGroup SetSuppressGroup(string column)
         {
-            string[] cols = new string[1] {column};
+            string[] cols = new string[1] { column };
             return SetSuppressGroup(cols);
         }
 
@@ -300,8 +293,7 @@ namespace StkLib.Web.Controls.StkGridView
             return g;
         }
 
-        #endregion
-
+        #endregion SetSuppressGroup overloads
 
         #region Private Helper functions
 
@@ -382,7 +374,7 @@ namespace StkLib.Web.Controls.StkGridView
             TableCell[] tcArray;
             int visibleColumns = this.GetVisibleColumnCount();
 
-            Table tbl = (Table) mGrid.Controls[0];
+            Table tbl = (Table)mGrid.Controls[0];
             int newRowIndex = tbl.Rows.GetRowIndex(beforeRow);
             GridViewRow newRow = new GridViewRow(newRowIndex, newRowIndex, DataControlRowType.DataRow,
                 DataControlRowState.Normal);
@@ -449,8 +441,7 @@ namespace StkLib.Web.Controls.StkGridView
             return newRow;
         }
 
-        #endregion
-
+        #endregion Private Helper functions
 
         #region Core
 
@@ -597,9 +588,9 @@ namespace StkLib.Web.Controls.StkGridView
             int colIndex;
             object colValue;
 
-            if (! HasAutoSummary(g.Summaries) && ! HasSuppressGroup()) return;
+            if (!HasAutoSummary(g.Summaries) && !HasSuppressGroup()) return;
 
-            // Inserts a new row 
+            // Inserts a new row
             GridViewRow newRow = InsertGridRow(row, g);
 
             foreach (GridViewSummary s in g.Summaries)
@@ -634,11 +625,10 @@ namespace StkLib.Web.Controls.StkGridView
             {
                 GroupSummary(g.Name, g.ActualValues, newRow);
             }
-
         }
 
         /// <summary>
-        /// Generates the general summaries in the grid. 
+        /// Generates the general summaries in the grid.
         /// </summary>
         /// <param name="e">GridViewRowEventArgs</param>
         private void GenerateGeneralSummaries(GridViewRowEventArgs e)
@@ -681,7 +671,6 @@ namespace StkLib.Web.Controls.StkGridView
             {
                 GeneralSummary(row);
             }
-
         }
 
         /// <summary>
@@ -748,8 +737,7 @@ namespace StkLib.Web.Controls.StkGridView
             return false;
         }
 
-        #endregion
-
+        #endregion Core
 
         #region Public Helper functions
 
@@ -842,7 +830,7 @@ namespace StkLib.Web.Controls.StkGridView
         }
 
         /// <summary>
-        /// This method must be called to hide columns that doesn't 
+        /// This method must be called to hide columns that doesn't
         /// have any summary operation when we are using a suppress group
         /// </summary>
         public void HideColumnsWithoutGroupSummary()
@@ -878,10 +866,8 @@ namespace StkLib.Web.Controls.StkGridView
                 if (colChecked) continue;
 
                 dcf.Visible = false;
-
             }
         }
-
 
         /// <summary>
         /// Legacy name...
@@ -900,7 +886,7 @@ namespace StkLib.Web.Controls.StkGridView
         {
             int visibleColumns = this.GetVisibleColumnCount();
 
-            Table tbl = (Table) mGrid.Controls[0];
+            Table tbl = (Table)mGrid.Controls[0];
             int newRowIndex = tbl.Rows.GetRowIndex(beforeRow);
             GridViewRow newRow = new GridViewRow(newRowIndex, newRowIndex, DataControlRowType.DataRow,
                 DataControlRowState.Normal);
@@ -921,6 +907,6 @@ namespace StkLib.Web.Controls.StkGridView
             mGrid.Sort(this.GetSequentialGroupColumns(), groupSortDir);
         }
 
-        #endregion
+        #endregion Public Helper functions
     }
 }

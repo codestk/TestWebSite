@@ -2,10 +2,8 @@ using System;
 using System.Collections;
 using System.Reflection;
 
-
 namespace StkLib.CCEnum
 {
-
     #region Class StringEnum
 
     /// <summary>
@@ -42,7 +40,7 @@ namespace StkLib.CCEnum
             string stringValue = null;
             try
             {
-                enumType = (Enum) Enum.Parse(_enumType, valueName);
+                enumType = (Enum)Enum.Parse(_enumType, valueName);
                 stringValue = GetStringValue(enumType);
             }
             catch
@@ -64,10 +62,9 @@ namespace StkLib.CCEnum
             {
                 //Check for our custom attribute
                 StringValueAttribute[] attrs =
-                    fi.GetCustomAttributes(typeof (StringValueAttribute), false) as StringValueAttribute[];
+                    fi.GetCustomAttributes(typeof(StringValueAttribute), false) as StringValueAttribute[];
                 if (attrs.Length > 0)
                     values.Add(attrs[0].Value);
-
             }
 
             return values.ToArray();
@@ -86,15 +83,13 @@ namespace StkLib.CCEnum
             {
                 //Check for our custom attribute
                 StringValueAttribute[] attrs =
-                    fi.GetCustomAttributes(typeof (StringValueAttribute), false) as StringValueAttribute[];
+                    fi.GetCustomAttributes(typeof(StringValueAttribute), false) as StringValueAttribute[];
                 if (attrs.Length > 0)
                     values.Add(new DictionaryEntry(Convert.ChangeType(Enum.Parse(_enumType, fi.Name), underlyingType),
                         attrs[0].Value));
-
             }
 
             return values;
-
         }
 
         /// <summary>
@@ -127,7 +122,7 @@ namespace StkLib.CCEnum
             get { return _enumType; }
         }
 
-        #endregion
+        #endregion Instance implementation
 
         #region Static implementation
 
@@ -148,16 +143,14 @@ namespace StkLib.CCEnum
                 //Look for our 'StringValueAttribute' in the field's custom attributes
                 FieldInfo fi = type.GetField(value.ToString());
                 StringValueAttribute[] attrs =
-                    fi.GetCustomAttributes(typeof (StringValueAttribute), false) as StringValueAttribute[];
+                    fi.GetCustomAttributes(typeof(StringValueAttribute), false) as StringValueAttribute[];
                 if (attrs.Length > 0)
                 {
                     _stringValues.Add(value, attrs[0]);
                     output = attrs[0].Value;
                 }
-
             }
             return output;
-
         }
 
         /// <summary>
@@ -192,7 +185,7 @@ namespace StkLib.CCEnum
             {
                 //Check for our custom attribute
                 StringValueAttribute[] attrs =
-                    fi.GetCustomAttributes(typeof (StringValueAttribute), false) as StringValueAttribute[];
+                    fi.GetCustomAttributes(typeof(StringValueAttribute), false) as StringValueAttribute[];
                 if (attrs.Length > 0)
                     enumStringValue = attrs[0].Value;
 
@@ -230,10 +223,10 @@ namespace StkLib.CCEnum
             return Parse(enumType, stringValue, ignoreCase) != null;
         }
 
-        #endregion
+        #endregion Static implementation
     }
 
-    #endregion
+    #endregion Class StringEnum
 
     #region Class StringValueAttribute
 
@@ -263,5 +256,5 @@ namespace StkLib.CCEnum
         }
     }
 
-    #endregion
+    #endregion Class StringValueAttribute
 }

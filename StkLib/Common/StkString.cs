@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace Stk.Common
 {
     public class StkString
     {
-
         /// <summary>
         /// Return Pure Numerric   ekoroew12334= 12334
         /// </summary>
@@ -17,30 +16,20 @@ namespace Stk.Common
         /// <returns></returns>
         string RemoveNonNumerric(string Text)
         {
-
             string OutPut = "";
 
-
             OutPut += Regex.Replace(Text, "[^0-9]", "");
-
-
-
 
             OutPut = OutPut.TrimEnd();
 
             return OutPut;
         }
 
-
         //Remove White Spaces
         public string TrimWhiteSpace(string str)
         {
-
-            return  Regex.Replace(str, @"^\s+", string.Empty);
+            return Regex.Replace(str, @"^\s+", string.Empty);
         }
-
-
-
 
         /// <summary>
         /// True = Null
@@ -51,8 +40,6 @@ namespace Stk.Common
         bool IsNull(string str)
         {
             return String.IsNullOrEmpty(str);
-
         }
-
     }
 }

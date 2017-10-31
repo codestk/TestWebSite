@@ -6,28 +6,22 @@ namespace StkLib.Web.Controls.StkGridView
 {
     public class StkGvEvent : System.Web.UI.Page
     {
-
-
-       virtual protected void BindData()
+        virtual protected void BindData()
         {
-
         }
 
+        virtual protected void BtnSearch_Click(object sender, EventArgs e)
+        {
+            BindData();
+        }
 
-       virtual protected void BtnSearch_Click(object sender, EventArgs e)
-       {
-           BindData();
-       }
+        protected void Refresh_Click(object sender, EventArgs args)
+        {
+            //update the grids contents
+            BindData();
+        }
 
-       protected void Refresh_Click(object sender, EventArgs args)
-       {
-           //update the grids contents
-           BindData();
-       }
-
-
-
-       protected string SortExpression
+        protected string SortExpression
         {
             get
             {
@@ -39,7 +33,7 @@ namespace StkLib.Web.Controls.StkGridView
             }
         }
 
-       protected SortDirection SortDirection
+        protected SortDirection SortDirection
         {
             get
             {
@@ -54,18 +48,15 @@ namespace StkLib.Web.Controls.StkGridView
             }
         }
 
-        protected virtual  void GvCustomers_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected virtual void GvCustomers_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             var gridView = (GridView)sender;
-
-         
 
             if (e.Row.RowType == DataControlRowType.Header)
             {
                 int cellIndex = -1;
                 foreach (DataControlField field in gridView.Columns)
                 {
-
                     if (field.SortExpression != "")
                     {
                         e.Row.Cells[gridView.Columns.IndexOf(field)].CssClass = "headerstyle";
@@ -75,7 +66,6 @@ namespace StkLib.Web.Controls.StkGridView
                     {
                         cellIndex = gridView.Columns.IndexOf(field);
                         break;
-                        
                     }
                 }
 
@@ -86,16 +76,10 @@ namespace StkLib.Web.Controls.StkGridView
                     e.Row.Cells[cellIndex].CssClass =
                         SortDirection == SortDirection.Ascending
                          ? "sortdescheaderstyle" : "sortascheaderstyle";
-                        //? "sortascheaderstyle" : "sortdescheaderstyle";
-                         
+                    //? "sortascheaderstyle" : "sortdescheaderstyle";
                 }
             }
-
-       
-
-
         }
-
 
         protected void gvCustomers_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -114,14 +98,12 @@ namespace StkLib.Web.Controls.StkGridView
             BindData();
         }
 
-
         protected virtual void gvCustomers_Sorting(object sender, GridViewSortEventArgs e)
         {
             if (SortExpression == e.SortExpression)
             {
                 SortDirection = SortDirection == SortDirection.Ascending ?
                     SortDirection.Descending : SortDirection.Ascending;
-
             }
             else
             {
@@ -139,27 +121,21 @@ namespace StkLib.Web.Controls.StkGridView
             BindData();
         }
 
-
         protected virtual void SetTableBootsStab(GridView gvView)
         {
             gvView.UseAccessibleHeader = true;
             gvView.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
-    
-
         //For PRint
         protected virtual void GridviewAllPages(GridView gvView, Button btnNameForRefresh)
         {
-
             gvView.AllowPaging = false;
 
             BindData();
 
             string buttonname = btnNameForRefresh.ClientID;
             Page.ClientScript.RegisterStartupScript(this.GetType(), "CallMyFunction", "PrintPanel(); $('#" + buttonname + "').click();", true);
-
         }
-
     }
 }

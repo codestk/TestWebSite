@@ -1,6 +1,8 @@
 ﻿using System.Configuration;
 using System.Globalization;
- 
+
+namespace WebApp.Code.Utility
+{
     public class Config
     {
         public static CultureInfo GlobalCulture()
@@ -29,4 +31,5 @@ using System.Globalization;
             return ConfigurationManager.AppSettings["ApplicationKey"];
         }
     }
+}
  

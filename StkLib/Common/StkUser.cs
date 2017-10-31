@@ -6,11 +6,9 @@ namespace MPO.Code.Common
     {
         public static string GetCurrentUser()
         {
-            return HttpContext.Current.User.Identity.Name ;
+            return HttpContext.Current.User.Identity.Name;
             //For Test Error
             //return HttpContext.Current.User.ToString();
         }
-
-   
     }
 }

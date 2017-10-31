@@ -14,9 +14,7 @@ namespace StkLib.Web.JavaScript
     /// </remarks>
     public class MessageBox
     {
-
         //  public MessageBox() { }
-
 
         /// <summary>
         /// This will contains the PageName[QueuedMessage]
@@ -27,7 +25,7 @@ namespace StkLib.Web.JavaScript
         /// Pass a string through this method to display a javascript popup
         /// </summary>
         /// <remarks>
-        /// Identify the calling Page, use it as the Hashtable Key, and put the Queue in as the value       
+        /// Identify the calling Page, use it as the Hashtable Key, and put the Queue in as the value
         /// For use with Web Applications Only
         /// </remarks>
         public static void Show(string sMessage)
@@ -53,7 +51,7 @@ namespace StkLib.Web.JavaScript
                     // in order of placement, to the page that called it.
                     MExecutingPages.Add(HttpContext.Current.Handler, messageQueue);
 
-                    // Wire up Unload event so that we can inject 
+                    // Wire up Unload event so that we can inject
                     // some JavaScript for the alerts.
                     // simply put; set the method we have as the event handler
                     // for the calling pages Unload event (after page has rendered)
@@ -63,12 +61,12 @@ namespace StkLib.Web.JavaScript
             }
             else
             {
-                // We have already been here previously, and the Show() method has already been 
+                // We have already been here previously, and the Show() method has already been
                 // called from this particular Executing Page.
                 // Therefore we have already created a message queue in memory and have already
-                // stored a reference to it in our hashtable. 
+                // stored a reference to it in our hashtable.
                 // So, lets add a new entry for this executing page
-                var queue = (Queue) MExecutingPages[HttpContext.Current.Handler];
+                var queue = (Queue)MExecutingPages[HttpContext.Current.Handler];
 
                 // And add our latest message to the Queue
                 queue.Enqueue(sMessage);
@@ -84,7 +82,7 @@ namespace StkLib.Web.JavaScript
         private static void ExecutingPage_Unload(object sender, EventArgs e)
         {
             // Get our message queue from the hashtable
-            var queue = (Queue) MExecutingPages[HttpContext.Current.Handler];
+            var queue = (Queue)MExecutingPages[HttpContext.Current.Handler];
 
             if (queue != null)
             {
@@ -99,7 +97,7 @@ namespace StkLib.Web.JavaScript
                 // Loop round registered messages
                 while (iMsgCount-- > 0)
                 {
-                    string sMsg = (string) queue.Dequeue();
+                    string sMsg = (string)queue.Dequeue();
                     sMsg = sMsg.Replace("\n", "\\n");
                     sMsg = sMsg.Replace("\"", "'");
                     sb.Append(@"alert( """ + sMsg + @""" );");
@@ -108,7 +106,6 @@ namespace StkLib.Web.JavaScript
                 // Close our JS
                 sb.Append(@"</" + "script>");
 
-
                 // Were done, so remove our page reference from the hashtable
                 MExecutingPages.Remove(HttpContext.Current.Handler);
 
@@ -116,8 +113,6 @@ namespace StkLib.Web.JavaScript
                 HttpContext.Current.Response.Write(sb.ToString());
             }
         }
-
-
 
         /// <summary>
         /// Shows a client-side JavaScript alert in the browser.
@@ -135,8 +130,6 @@ namespace StkLib.Web.JavaScript
             {
                 page.ClientScript.RegisterClientScriptBlock(typeof(MessageBox), "MessageBox", script);
             }
-
-
         }
     }
 }

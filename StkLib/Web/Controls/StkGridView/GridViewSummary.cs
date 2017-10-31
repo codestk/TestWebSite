@@ -9,7 +9,6 @@
 
 using System;
 
-
 namespace StkLib.Web.Controls.StkGridView
 {
     public enum SummaryOperation
@@ -42,7 +41,7 @@ namespace StkLib.Web.Controls.StkGridView
         private bool _automatic;
         private bool _treatNullAsZero;
 
-        #endregion
+        #endregion Fields
 
         #region Properties
 
@@ -99,7 +98,7 @@ namespace StkLib.Web.Controls.StkGridView
             set { _treatNullAsZero = value; }
         }
 
-        #endregion
+        #endregion Properties
 
         #region Constructors
 
@@ -139,7 +138,7 @@ namespace StkLib.Web.Controls.StkGridView
         {
         }
 
-        #endregion
+        #endregion Constructors
 
         internal void SetGroup(GridViewGroup g)
         {
@@ -239,24 +238,34 @@ namespace StkLib.Web.Controls.StkGridView
             {
                 case "System.Int16":
                     return Convert.ToInt16(a) + Convert.ToInt16(b);
+
                 case "System.Int32":
                     return Convert.ToInt32(a) + Convert.ToInt32(b);
+
                 case "System.Int64":
                     return Convert.ToInt64(a) + Convert.ToInt64(b);
+
                 case "System.UInt16":
                     return Convert.ToUInt16(a) + Convert.ToUInt16(b);
+
                 case "System.UInt32":
                     return Convert.ToUInt32(a) + Convert.ToUInt32(b);
+
                 case "System.UInt64":
                     return Convert.ToUInt64(a) + Convert.ToUInt64(b);
+
                 case "System.Single":
                     return Convert.ToSingle(a) + Convert.ToSingle(b);
+
                 case "System.Double":
                     return Convert.ToDouble(a) + Convert.ToDouble(b);
+
                 case "System.Decimal":
                     return Convert.ToDecimal(a) + Convert.ToDecimal(b);
+
                 case "System.Byte":
                     return Convert.ToByte(a) + Convert.ToByte(b);
+
                 case "System.String":
                     return a.ToString() + b.ToString();
             }
@@ -283,23 +292,31 @@ namespace StkLib.Web.Controls.StkGridView
             switch (a.GetType().FullName)
             {
                 case "System.Int16":
-                    return Convert.ToInt16(a)/b;
+                    return Convert.ToInt16(a) / b;
+
                 case "System.Int32":
-                    return Convert.ToInt32(a)/b;
+                    return Convert.ToInt32(a) / b;
+
                 case "System.Int64":
-                    return Convert.ToInt64(a)/b;
+                    return Convert.ToInt64(a) / b;
+
                 case "System.UInt16":
-                    return Convert.ToUInt16(a)/b;
+                    return Convert.ToUInt16(a) / b;
+
                 case "System.UInt32":
-                    return Convert.ToUInt32(a)/b;
+                    return Convert.ToUInt32(a) / b;
+
                 case "System.Single":
-                    return Convert.ToSingle(a)/b;
+                    return Convert.ToSingle(a) / b;
+
                 case "System.Double":
-                    return Convert.ToDouble(a)/b;
+                    return Convert.ToDouble(a) / b;
+
                 case "System.Decimal":
-                    return Convert.ToDecimal(a)/b;
+                    return Convert.ToDecimal(a) / b;
+
                 case "System.Byte":
-                    return Convert.ToByte(a)/b;
+                    return Convert.ToByte(a) / b;
                     // Operator '/' cannot be applied to operands of type 'ulong' and 'int'
                     //case "System.UInt64": return Convert.ToUInt64(a) / b;
             }
@@ -307,7 +324,6 @@ namespace StkLib.Web.Controls.StkGridView
             return null;
         }
 
-        #endregion
-
+        #endregion Built-in Summary Operations
     }
 }

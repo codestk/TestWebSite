@@ -5,7 +5,7 @@ using System.Web.UI.WebControls;
 /// <summary>
 /// Summary description for StkTableProperties
 /// </summary>
-public class StkRepeaterExten: System.Web.UI.Page
+public class StkRepeaterExten : System.Web.UI.Page
 {
     public int PageSize = 20;
 
@@ -99,8 +99,6 @@ public class StkRepeaterExten: System.Web.UI.Page
             }
             else
             {
-               
-
                 // SortExpression == e.CommandName;
                 _SortExpression = e.CommandName;
                 _SortDirection = SortDirection.Ascending;
@@ -178,7 +176,6 @@ public class StkRepeaterExten: System.Web.UI.Page
 
         if (Convert.ToBoolean(val) == true)
         {
-           
             status = "checked";
         }
         else
@@ -203,7 +200,7 @@ public class StkRepeaterExten: System.Web.UI.Page
                         if (lnk.CommandName == _SortExpression)
                         {
                             string icon = "";
-         
+
                             if (_SortDirection == SortDirection.Ascending)
                             {
                                 icon = "<i class=\"Small material-icons\">arrow_drop_up</i>";
@@ -215,7 +212,7 @@ public class StkRepeaterExten: System.Web.UI.Page
                             //<i class="Small material-icons">keyboard_arrow_up</i>
                             //<i class="Small material-icons">keyboard_arrow_down</i>
 
-                            lnk.Text =   lnk.CommandName + " " + icon;
+                            lnk.Text = lnk.CommandName + " " + icon;
                         }
                         else
                         {
