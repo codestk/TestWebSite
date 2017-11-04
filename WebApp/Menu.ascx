@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Menu.ascx.cs" Inherits="Menu" %>
- 
 <%@ Import Namespace="StkLib.CCEnum" %>
-<%@ Import Namespace="WebApp.Code.FrameWork.Enum" %>
+<%@ Import Namespace="WebApp.Utility.Enum" %>
+
 <% if (HttpContext.Current.User.IsInRole(StringEnum.GetStringValue(EnumStkRole.Admin)))
     { %>
   <nav id="DivMenu" class="blue-grey darken-2" role="navigation">

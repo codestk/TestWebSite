@@ -1,5 +1,5 @@
 ﻿using System;
-/**/
+
 public class Stk_TextNull
 {
     private const string DefaultEmpty = "";

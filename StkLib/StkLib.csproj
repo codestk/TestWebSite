@@ -44,21 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Captcha\RandomImage.cs" />
     <Compile Include="CCdate\CCDateTime.cs" />
     <Compile Include="CCobject\ObjectInstance.cs" />
-    <Content Include="Common\Config.cs" />
+    <Compile Include="Common\Config.cs" />
     <Content Include="Common\Stk_Barcode_R2.cs" />
     <Content Include="Common\Stk_QueryString.cs" />
     <Content Include="Common\Stk_TextNull.cs" />
     <Content Include="Common\StkAlert.cs" />
     <Content Include="Common\StkClosePopUp.cs" />
-    <Content Include="Common\StkControls.cs" />
+    <Compile Include="Common\StkControls.cs" />
     <Content Include="Common\StkDate.cs" />
     <Content Include="Common\StkDefaultValue.cs" />
-    <Content Include="Common\StkGlobalDate.cs" />
+    <Compile Include="Common\StkGlobalDate.cs" />
     <Content Include="Common\StkMessage.cs" />
     <Content Include="Common\StkString.cs" />
-    <Content Include="Common\StkTestFunction.cs" />
+    <Compile Include="Common\StkTestFunction.cs" />
     <Content Include="Common\StkUser.cs" />
     <Content Include="Common\StkValidates.cs" />
     <Content Include="Controls\StkRepeaterExten.cs">
@@ -70,6 +71,7 @@
     <Compile Include="Io\File.cs" />
     <Compile Include="Io\ImageUtiliy.cs" />
     <Compile Include="Io\TextFile\TxtFile.cs" />
+    <Compile Include="Mail\SmtpMail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strings\StkString.cs" />
     <Compile Include="Web\CCPage.cs" />

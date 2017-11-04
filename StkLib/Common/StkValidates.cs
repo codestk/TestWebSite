@@ -33,7 +33,7 @@ namespace MPO.Code.Common
         /// </summary>
         /// <param name="inputvalue"></param>
         /// <returns></returns>
-        public static bool IsDate(string inputvalue)
+            public static bool IsDate(string inputvalue)
         {
             DateTime dt;
             bool valid = DateTime.TryParseExact(inputvalue, "d/M/yyyy", null, DateTimeStyles.None, out dt);
@@ -45,11 +45,14 @@ namespace MPO.Code.Common
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public static bool IsValidEmail(string email)
-        {
-            // source: http://thedailywtf.com/Articles/Validating_Email_Addresses.aspx
-            var rx = new Regex(@"^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*@[a-zA-Z](-?[a-zA-Z0-9])*(\.[a-zA-Z](-?[a-zA-Z0-9])*)+$");
-            return rx.IsMatch(email);
-        }
+         public static bool IsValidEmail(string email)     {       
+             // source: http://thedailywtf.com/Articles/Validating_Email_Addresses.aspx        
+             var rx = new Regex(@"^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*@[a-zA-Z](-?[a-zA-Z0-9])*(\.[a-zA-Z](-?[a-zA-Z0-9])*)+$");       
+             return rx.IsMatch(email);     }
+
+
+     
+
+     
     }
 }

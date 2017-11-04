@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Security;
-using WebApp;
+using WebApp.AppCode.Utility.Security;
 
 namespace WebApp
 {
@@ -29,37 +29,40 @@ namespace WebApp
 
         private void Sigon()
         {
-              Logon lg = new Logon();
-            //if (lg.ValidateUser(user.Text, password.Text))
-
-            if ((user.Text == "demo") && (password.Text == "demo"))
+            Logon logon = new Logon
             {
-                FormsAuthenticationTicket tkt;
-                string cookiestr;
-                HttpCookie ck;
+                //userName = user.Text,
+                //passWord = password.Text
 
+                 userName = "momojojo",
+                passWord = "P@ssw0rd"
+            };
+            if (logon.ValidateUser())
+
+            //if ((user.Text == "demo") && (password.Text == "demo"))
+            {
                 //STkRolesGroup stkRole = new STkRolesGroup();
-                string Roles;
                 //Roles = lg.GetRole();
-                Roles = "A";
+                var Roles = "Admin";
                 //var stkEmployee = new Bu.Stk_Employee();
 
                 //stkEmployee.GetEmployee(txtUserName.Text.Trim());
-                tkt = new FormsAuthenticationTicket(1, user.Text, DateTime.Now, DateTime.Now.AddMinutes(50), true,
+                var tkt = new FormsAuthenticationTicket(1, user.Text, DateTime.Now, DateTime.Now.AddMinutes(50), true,
                     Roles);
 
-                cookiestr = FormsAuthentication.Encrypt(tkt);
-                ck = new HttpCookie(FormsAuthentication.FormsCookieName, cookiestr);
+                var cookiestr = FormsAuthentication.Encrypt(tkt);
+                var ck = new HttpCookie(FormsAuthentication.FormsCookieName, cookiestr)
+                {
+                    Path = FormsAuthentication.FormsCookiePath
+                };
                 //if (chkPersistCookie.Checked)
                 //    ck.Expires = tkt.Expiration;
-                ck.Path = FormsAuthentication.FormsCookiePath;
                 Response.Cookies.Add(ck);
 
-                string strRedirect;
                 //strRedirect = Request["ReturnUrl"];
                 // if (strRedirect == null)
                 // {
-                strRedirect = "AccountRegistrationListFilter.aspx";
+                var strRedirect = "AccountRegistrationListFilter.aspx";
 
                 // }
 

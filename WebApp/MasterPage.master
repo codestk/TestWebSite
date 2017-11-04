@@ -6,7 +6,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head title="Site" runat="server">
-     
+
     <!-- CSS  -->
     <%--  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />--%>
     <link href="Module/Materialize/css/materialize.css" rel="stylesheet" media="screen,projection" />
@@ -34,7 +34,9 @@
             padding: 4px;
             position: relative;
             display: block;
-            background-image: url('Images/bg0001.png');background-size: cover;background-position:center right;
+            background-image: url('Images/bg0001.png');
+            background-size: cover;
+            background-position: center right;
         }
 
         /*@media only screen and (min-width: 420px) {
@@ -96,25 +98,21 @@
 
         // $(".dropdown-button").dropdown();
     </script>
-
-
 </head>
 <body>
     <form id="form1" runat="server">
 
         <header>
-           
-           
-             <uc1:Menu runat="server" ID="Menu" />
+
+            <uc1:Menu runat="server" ID="Menu" />
         </header>
 
         <main>
 
-            <%--    <div class="masterContent">--%>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-
-            <%--  </div>--%>
+             <div class="masterContent container">
+                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                 </asp:ContentPlaceHolder>
+             </div>-
         </main>
 
         <footer class="page-footer  grey">
