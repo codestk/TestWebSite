@@ -7,6 +7,7 @@ using System.Drawing.Imaging;
 
 namespace StkLib.Captcha
 {
+
     public class RandomImage
     {
         //Default Constructor 
@@ -65,7 +66,7 @@ namespace StkLib.Captcha
         private void GenerateImage()
         {
             Bitmap bitmap = new Bitmap
-                (this.width, this.height, PixelFormat.Format32bppArgb);
+              (this.width, this.height, PixelFormat.Format32bppArgb);
             Graphics g = Graphics.FromImage(bitmap);
             g.SmoothingMode = SmoothingMode.AntiAlias;
             Rectangle rect = new Rectangle(0, 0, this.width, this.height);
@@ -91,16 +92,16 @@ namespace StkLib.Captcha
             path.AddString(this.text, font.FontFamily, (int)font.Style, 75, rect, format);
             float v = 4F;
             PointF[] points =
-            {
+              {
                 new PointF(this.random.Next(rect.Width) / v, this.random.Next(
-                                                                 rect.Height) / v),
-                new PointF(rect.Width - this.random.Next(rect.Width) / v, 
+                   rect.Height) / v),
+                new PointF(rect.Width - this.random.Next(rect.Width) / v,
                     this.random.Next(rect.Height) / v),
-                new PointF(this.random.Next(rect.Width) / v, 
+                new PointF(this.random.Next(rect.Width) / v,
                     rect.Height - this.random.Next(rect.Height) / v),
                 new PointF(rect.Width - this.random.Next(rect.Width) / v,
                     rect.Height - this.random.Next(rect.Height) / v)
-            };
+          };
             Matrix matrix = new Matrix();
             matrix.Translate(0F, 0F);
             path.Warp(points, rect, matrix, WarpMode.Perspective, 0F);
@@ -120,8 +121,46 @@ namespace StkLib.Captcha
             g.Dispose();
             this.image = bitmap;
         }
+
+
+        public static string GenerateRandomCode()
+        {
+            Random r = new Random();
+            string s = "";
+            for (int j = 0; j < 5; j++)
+            {
+                int i = r.Next(3);
+                int ch;
+                switch (i)
+                {
+                    case 1:
+                        ch = r.Next(0, 9);
+                        s = s + ch.ToString();
+                        break;
+                    case 2:
+                        ch = r.Next(65, 90);
+                        s = s + Convert.ToChar(ch).ToString();
+                        break;
+                    case 3:
+                        ch = r.Next(97, 122);
+                        s = s + Convert.ToChar(ch).ToString();
+                        break;
+                    default:
+                        ch = r.Next(97, 122);
+                        s = s + Convert.ToChar(ch).ToString();
+                        break;
+                }
+                r.NextDouble();
+                r.Next(100, 1999);
+            }
+            return s;
+        }
     }
+
 }
+
+
+
 //Aspx
 //protected void Page_Load(object sender, EventArgs e)
 //{

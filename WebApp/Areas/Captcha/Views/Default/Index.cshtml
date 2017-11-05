@@ -1,0 +1,73 @@
+﻿@model dynamic
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <title>title</title>
+
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-1.10.2.js"></script>
+        <script>
+            var CreditCardsService = {};
+            (function () {
+                var url = '/Bangkokbank_Form_CreditCard/CreditCard/';
+
+                this.CapText = function () {
+                    var result;
+
+                    var data = '';
+
+                    var callBack = CallServices(url + "CaptchaText", data, false, function (msg) {
+                        //result = msg.d;
+                        result = msg;
+
+                    });
+
+                    return result;
+                };//Save
+
+            }).apply(CreditCardsService);
+            $(document).ready(function () {
+
+                $('#RefreshCap').click(function (e) {
+                    e.preventDefault();
+
+                    $('#Captcha').attr('src', capImageUrl + "?ver=" + Math.random());
+                });
+
+            });
+
+            function isCaptchaTextIsValid() {
+                var isvalid;
+                var txtCaptcha = $("#txtCaptcha").val();
+
+                isvalid = (CallTextCap() == txtCaptcha);
+
+                if (isvalid == false) {
+                    $('#Captcha').attr('src', capImageUrl + "?ver=" + Math.random());
+
+                    $("#txtCaptcha").addClass("focus");
+                    $("#txtCaptcha").focus();
+                    appendErr("txtCaptcha", "Please verify CHAPTCHA field.");
+
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+
+            <div class="form-group required-field">
+                <img id="Captcha" class="center-block"
+                     src="CaptchaImage" />
+                <div style="width: 100%; text-align: right">
+                    <span style="width: 100%; text-align: right"> <a id="RefreshCap" href="#">Refresh</a></span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

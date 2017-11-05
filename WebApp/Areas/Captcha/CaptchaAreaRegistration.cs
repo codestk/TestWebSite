@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace WebApp.Areas.BCC
+namespace WebApp.Areas.Captcha
 {
-    public class BCCAreaRegistration : AreaRegistration 
+    public class CaptchaAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "BCC";
+                return "Captcha";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "BCC_default",
-                "BCC/{controller}/{action}/{id}",
+                "Captcha_default",
+                "Captcha/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }
