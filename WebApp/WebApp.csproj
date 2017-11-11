@@ -111,6 +111,9 @@
     <Compile Include="AppCode\Business\APP_USERDb.cs" />
     <Compile Include="AppCode\Business\APP_USERImageDb.cs" />
     <Compile Include="AppCode\Business\APP_USERValidatetor.cs" />
+    <Compile Include="AppCode\Business\TestValidate.cs" />
+    <Compile Include="AppCode\Business\TestValidateDb.cs" />
+    <Compile Include="AppCode\Business\TestValidateValidatetor.cs" />
     <Compile Include="AppCode\Services\Api\APP_USERImageController.cs" />
     <Compile Include="AppCode\Utility\Security\Logon.cs" />
     <Compile Include="APP_USERListFilter.aspx.cs">
@@ -139,6 +142,14 @@
       <DependentUpon>WebService1.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TestValidateListFilter.aspx.cs">
+      <DependentUpon>TestValidateListFilter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestValidateWeb.aspx.cs">
+      <DependentUpon>TestValidateWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -152,6 +163,14 @@
     </Compile>
     <Content Include="APP_USERListFilter.aspx" />
     <Content Include="APP_USERWeb.aspx" />
+    <Content Include="bin\BarcodeLib.dll" />
+    <Content Include="bin\BarcodeLib.pdb" />
+    <Content Include="bin\CoreDb.dll" />
+    <Content Include="bin\CoreDb.pdb" />
+    <Content Include="bin\FluentValidation.dll" />
+    <Content Include="bin\FluentValidation.xml" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -1208,6 +1227,7 @@
     <Content Include="Images\v1\toggle_plus.png" />
     <Content Include="Images\v1\user.gif" />
     <Content Include="Js_U\APP_USER.js" />
+    <Content Include="Js_U\TestValidate.js" />
     <Content Include="Login.aspx" />
     <Content Include="Menu.ascx" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\dist\Chart.bundle.js" />
@@ -1441,6 +1461,8 @@
     <Content Include="SQL\Store_AccountRegistration.sql" />
     <Content Include="SQL\Store_AccountStatus.sql" />
     <Content Include="SQL\Store_APP_USER.sql" />
+    <Content Include="TestValidateListFilter.aspx" />
+    <Content Include="TestValidateWeb.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
     <Content Include="WebService1.asmx" />
@@ -1567,7 +1589,6 @@
     <Content Include="Module\xmlToJSON-master\package.json" />
     <Content Include="Module\xmlToJSON-master\README.md" />
     <Content Include="Module\xmlToJSON-master\test\lib\jasmine-1.3.0\MIT.LICENSE" />
-    <Content Include="ErrorLogging\31-10-17.log" />
     <Content Include="MasterPage.master" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -1586,6 +1607,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Captcha\Models\" />
     <Folder Include="Areas\Captcha\Views\Shared\" />
+    <Folder Include="ErrorLogging\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
