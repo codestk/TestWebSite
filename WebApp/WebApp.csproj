@@ -1603,7 +1603,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AppCode\Utility\Ui\" />
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Captcha\Models\" />
     <Folder Include="Areas\Captcha\Views\Shared\" />
