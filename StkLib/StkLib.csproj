@@ -65,7 +65,10 @@
     <Content Include="Controls\StkRepeaterExten.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Compile Include="Cryptography\AES.cs" />
     <Compile Include="Cryptography\EncryptAndDecrypt.cs" />
+    <Compile Include="Cryptography\EncryptDecryptQueryString.cs" />
+    <Compile Include="Cryptography\RijndaelSimple.cs" />
     <Compile Include="Enum\StringEnum.cs" />
     <Compile Include="Errors\ErrorLogging.cs" />
     <Compile Include="Io\File.cs" />

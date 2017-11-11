@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net452</TargetFramework>
+    <AssemblyName>FluentValidation.Tests</AssemblyName>
+    <!--<PackageTargetFallback>$(PackageTargetFallback);dnxcore50;portable-net451+win81</PackageTargetFallback>-->
+    <!--<RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>-->
+    <RootNamespace>FluentValidation.Tests</RootNamespace>
+	  <IsPackable>false</IsPackable>
+	  <OutputType>Library</OutputType>
+	</PropertyGroup>
+
+  <ItemGroup>
+    <None Update="xunit.runner.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0-preview-20170106-08" />
+    <PackageReference Include="Microsoft.TestPlatform.TestHost" Version="15.0.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+		<PackageReference Include="Moq" Version="4.7.99" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FluentValidation\FluentValidation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="TestMessages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TestMessages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="TestMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TestMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;1705;1998;0618</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;1705;1998;0618</NoWarn>
+  </PropertyGroup>
+
+</Project>

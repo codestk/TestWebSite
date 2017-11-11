@@ -144,7 +144,7 @@ namespace CoreDb
 
         public string FbExecuteScalar(string sql, List<IDataParameter> parms)
         {
-            string output;
+            string output=null;
 
             try
             {
@@ -155,7 +155,13 @@ namespace CoreDb
 
                 SetParameter(parms, ref Com);
 
-                output = Com.ExecuteScalar().ToString();
+                //output = Com.ExecuteScalar().ToString();
+                object data = Com.ExecuteScalar();
+                if (data != null)
+                {
+                    output = data.ToString();
+                }
+
             }
             finally
             {

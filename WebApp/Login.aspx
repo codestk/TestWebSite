@@ -28,11 +28,13 @@
             bottom: -40px;
             /*width: auto;*/
             /*height: auto;*/
-            background-image: url('images/loginBg.jpg');
+            /*background-image: url('images/loginBg.jpg');*/
+            background-image: url('images/mpo2/loginBg.jpg');
+         
             /*background-image: url('images/the-queens-gallery-2.jpg');
                     background-image: url('images/backgroundligthup.jpg');*/
-            background-image: url('images/pexels-photo-261706.jpeg');
-            background-position:center right;
+            /*background-image: url('images/pexels-photo-261706.jpeg');*/
+            background-position: center right;
             background-size: cover;
             -webkit-filter: blur(5px);
             z-index: 0; /* color */
