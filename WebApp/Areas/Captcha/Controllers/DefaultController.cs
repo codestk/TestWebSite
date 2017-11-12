@@ -44,7 +44,7 @@ namespace WebApp.Areas.Captcha.Controllers
                 return File(ms.ToArray(), "image/jpeg");
             }
 
-            //return result;
+          
         }
 
         // Function to generate random string with Random class.

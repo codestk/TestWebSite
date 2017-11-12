@@ -126,7 +126,6 @@
     </Compile>
     <Compile Include="Areas\Captcha\CaptchaAreaRegistration.cs" />
     <Compile Include="Areas\Captcha\Controllers\DefaultController.cs" />
-    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Handler1.ashx.cs">
       <DependentUpon>Handler1.ashx</DependentUpon>
     </Compile>
@@ -136,6 +135,10 @@
     </Compile>
     <Compile Include="Services\APP_USERService.asmx.cs">
       <DependentUpon>APP_USERService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\TestValidateService.asmx.cs">
+      <DependentUpon>TestValidateService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Services\WebService1.asmx.cs">
@@ -1457,6 +1460,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Services\APP_USERService.asmx" />
+    <Content Include="Services\TestValidateService.asmx" />
     <Content Include="Services\WebService1.asmx" />
     <Content Include="SQL\Store_AccountRegistration.sql" />
     <Content Include="SQL\Store_AccountStatus.sql" />
@@ -1497,7 +1501,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6.zip" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\.codeclimate.yml" />
@@ -1594,7 +1597,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Image\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1608,7 +1610,6 @@
     <Folder Include="Areas\Captcha\Views\Shared\" />
     <Folder Include="ErrorLogging\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BarcodeLib\BarcodeLib.csproj">
