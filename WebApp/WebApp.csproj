@@ -111,6 +111,9 @@
     <Compile Include="AppCode\Business\APP_USERDb.cs" />
     <Compile Include="AppCode\Business\APP_USERImageDb.cs" />
     <Compile Include="AppCode\Business\APP_USERValidatetor.cs" />
+    <Compile Include="AppCode\Business\Source.cs" />
+    <Compile Include="AppCode\Business\SourceDb.cs" />
+    <Compile Include="AppCode\Business\SourceValidatetor.cs" />
     <Compile Include="AppCode\Business\TestValidate.cs" />
     <Compile Include="AppCode\Business\TestValidateDb.cs" />
     <Compile Include="AppCode\Business\TestValidateValidatetor.cs" />
@@ -137,6 +140,10 @@
       <DependentUpon>APP_USERService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Services\SourceService.asmx.cs">
+      <DependentUpon>SourceService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Services\TestValidateService.asmx.cs">
       <DependentUpon>TestValidateService.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -144,6 +151,14 @@
     <Compile Include="Services\WebService1.asmx.cs">
       <DependentUpon>WebService1.asmx</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SourceListFilter.aspx.cs">
+      <DependentUpon>SourceListFilter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SourceWeb.aspx.cs">
+      <DependentUpon>SourceWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="TestValidateListFilter.aspx.cs">
       <DependentUpon>TestValidateListFilter.aspx</DependentUpon>
@@ -1230,6 +1245,7 @@
     <Content Include="Images\v1\toggle_plus.png" />
     <Content Include="Images\v1\user.gif" />
     <Content Include="Js_U\APP_USER.js" />
+    <Content Include="Js_U\Source.js" />
     <Content Include="Js_U\TestValidate.js" />
     <Content Include="Login.aspx" />
     <Content Include="Menu.ascx" />
@@ -1460,11 +1476,16 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Services\APP_USERService.asmx" />
+    <Content Include="Services\SourceService.asmx" />
     <Content Include="Services\TestValidateService.asmx" />
     <Content Include="Services\WebService1.asmx" />
+    <Content Include="SourceListFilter.aspx" />
+    <Content Include="SourceWeb.aspx" />
     <Content Include="SQL\Store_AccountRegistration.sql" />
     <Content Include="SQL\Store_AccountStatus.sql" />
     <Content Include="SQL\Store_APP_USER.sql" />
+    <Content Include="SQL\Store_Source.sql" />
+    <Content Include="SQL\Store_TestValidate.sql" />
     <Content Include="TestValidateListFilter.aspx" />
     <Content Include="TestValidateWeb.aspx" />
     <Content Include="Web.config" />
@@ -1610,6 +1631,7 @@
     <Folder Include="Areas\Captcha\Views\Shared\" />
     <Folder Include="ErrorLogging\" />
     <Folder Include="Models\" />
+    <Folder Include="Project\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BarcodeLib\BarcodeLib.csproj">

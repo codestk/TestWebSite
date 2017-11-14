@@ -7,3 +7,13 @@ function CheckEmtyp(control) {
 
     return false
 }
+
+
+
+function AddInvalidControl(control) {
+    
+        control.addClass("invalid");
+     
+
+    
+}
