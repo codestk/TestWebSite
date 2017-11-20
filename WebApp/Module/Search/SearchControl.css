@@ -259,6 +259,7 @@ cursor: pointer;
 th, td {
     /*vertical-align: bottom;*/
     border-radius: 0px;
+    white-space: nowrap;
 }
 
 .TableMargin {

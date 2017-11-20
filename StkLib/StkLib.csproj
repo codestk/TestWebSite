@@ -49,19 +49,16 @@
     <Compile Include="CCobject\ObjectInstance.cs" />
     <Compile Include="Common\Config.cs" />
     <Content Include="Common\Stk_Barcode_R2.cs" />
-    <Content Include="Common\Stk_QueryString.cs" />
-    <Content Include="Common\Stk_TextNull.cs" />
-    <Content Include="Common\StkAlert.cs" />
-    <Content Include="Common\StkClosePopUp.cs" />
+    <Compile Include="Common\Stk_QueryString.cs" />
+    <Compile Include="Common\Stk_TextNull.cs" />
     <Compile Include="Common\StkControls.cs" />
-    <Content Include="Common\StkDate.cs" />
+    <Compile Include="Common\StkDate.cs" />
     <Content Include="Common\StkDefaultValue.cs" />
     <Compile Include="Common\StkGlobalDate.cs" />
-    <Content Include="Common\StkMessage.cs" />
-    <Content Include="Common\StkString.cs" />
+    <Compile Include="Common\StkString.cs" />
     <Compile Include="Common\StkTestFunction.cs" />
-    <Content Include="Common\StkUser.cs" />
-    <Content Include="Common\StkValidates.cs" />
+    <Compile Include="Common\StkUser.cs" />
+    <Compile Include="Common\StkValidates.cs" />
     <Content Include="Controls\StkRepeaterExten.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Content>

@@ -3,10 +3,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-/// <summary>
-///  var aes = new AES(key);
-///  aes.Encrypt(data);
-/// </summary>
+
 
 namespace StkLib.Cryptography
 {

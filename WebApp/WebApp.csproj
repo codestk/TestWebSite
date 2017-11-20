@@ -111,9 +111,30 @@
     <Compile Include="AppCode\Business\APP_USERDb.cs" />
     <Compile Include="AppCode\Business\APP_USERImageDb.cs" />
     <Compile Include="AppCode\Business\APP_USERValidatetor.cs" />
+    <Compile Include="AppCode\Business\Category.cs" />
+    <Compile Include="AppCode\Business\CategoryDb.cs" />
+    <Compile Include="AppCode\Business\CategoryValidatetor.cs" />
+    <Compile Include="AppCode\Business\Contain.cs" />
+    <Compile Include="AppCode\Business\ContainDb.cs" />
+    <Compile Include="AppCode\Business\ContainValidatetor.cs" />
+    <Compile Include="AppCode\Business\CustomerBrand.cs" />
+    <Compile Include="AppCode\Business\CustomerBrandDb.cs" />
+    <Compile Include="AppCode\Business\CustomerBrandValidatetor.cs" />
+    <Compile Include="AppCode\Business\Line.cs" />
+    <Compile Include="AppCode\Business\LineDb.cs" />
+    <Compile Include="AppCode\Business\LineSize.cs" />
+    <Compile Include="AppCode\Business\LineSizeDb.cs" />
+    <Compile Include="AppCode\Business\LineSizeValidatetor.cs" />
+    <Compile Include="AppCode\Business\LineValidatetor.cs" />
+    <Compile Include="AppCode\Business\ProductLine.cs" />
+    <Compile Include="AppCode\Business\ProductLineDb.cs" />
+    <Compile Include="AppCode\Business\ProductLineValidatetor.cs" />
     <Compile Include="AppCode\Business\Source.cs" />
     <Compile Include="AppCode\Business\SourceDb.cs" />
     <Compile Include="AppCode\Business\SourceValidatetor.cs" />
+    <Compile Include="AppCode\Business\TestFormula.cs" />
+    <Compile Include="AppCode\Business\TestFormulaDb.cs" />
+    <Compile Include="AppCode\Business\TestFormulaValidatetor.cs" />
     <Compile Include="AppCode\Business\TestValidate.cs" />
     <Compile Include="AppCode\Business\TestValidateDb.cs" />
     <Compile Include="AppCode\Business\TestValidateValidatetor.cs" />
@@ -129,19 +150,95 @@
     </Compile>
     <Compile Include="Areas\Captcha\CaptchaAreaRegistration.cs" />
     <Compile Include="Areas\Captcha\Controllers\DefaultController.cs" />
+    <Compile Include="CategoryListFilter.aspx.cs">
+      <DependentUpon>CategoryListFilter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CategoryWeb.aspx.cs">
+      <DependentUpon>CategoryWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContainListFilter.aspx.cs">
+      <DependentUpon>ContainListFilter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContainWeb.aspx.cs">
+      <DependentUpon>ContainWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerBrandListFilter.aspx.cs">
+      <DependentUpon>CustomerBrandListFilter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerBrandWeb.aspx.cs">
+      <DependentUpon>CustomerBrandWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Handler1.ashx.cs">
       <DependentUpon>Handler1.ashx</DependentUpon>
     </Compile>
+    <Compile Include="LineListFilter.aspx.cs">
+      <DependentUpon>LineListFilter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LineSizeListFilter.aspx.cs">
+      <DependentUpon>LineSizeListFilter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LineSizeWeb.aspx.cs">
+      <DependentUpon>LineSizeWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LineWeb.aspx.cs">
+      <DependentUpon>LineWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Menu.ascx.cs">
       <DependentUpon>Menu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductLineListFilter.aspx.cs">
+      <DependentUpon>ProductLineListFilter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductLineWeb.aspx.cs">
+      <DependentUpon>ProductLineWeb.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Services\APP_USERService.asmx.cs">
       <DependentUpon>APP_USERService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Services\CategoryService.asmx.cs">
+      <DependentUpon>CategoryService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\ContainService.asmx.cs">
+      <DependentUpon>ContainService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\CustomerBrandService.asmx.cs">
+      <DependentUpon>CustomerBrandService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\LineService.asmx.cs">
+      <DependentUpon>LineService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\LineSizeService.asmx.cs">
+      <DependentUpon>LineSizeService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\ProductLineService.asmx.cs">
+      <DependentUpon>ProductLineService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Services\SourceService.asmx.cs">
       <DependentUpon>SourceService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Services\TestFormulaService.asmx.cs">
+      <DependentUpon>TestFormulaService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Services\TestValidateService.asmx.cs">
@@ -158,14 +255,6 @@
     </Compile>
     <Compile Include="SourceWeb.aspx.cs">
       <DependentUpon>SourceWeb.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestValidateListFilter.aspx.cs">
-      <DependentUpon>TestValidateListFilter.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestValidateWeb.aspx.cs">
-      <DependentUpon>TestValidateWeb.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="WebForm1.aspx.cs">
@@ -189,9 +278,15 @@
     <Content Include="bin\FluentValidation.xml" />
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="CategoryListFilter.aspx" />
+    <Content Include="CategoryWeb.aspx" />
+    <Content Include="ContainListFilter.aspx" />
+    <Content Include="ContainWeb.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="CustomerBrandListFilter.aspx" />
+    <Content Include="CustomerBrandWeb.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\1457019010_next.png" />
@@ -1245,8 +1340,19 @@
     <Content Include="Images\v1\toggle_plus.png" />
     <Content Include="Images\v1\user.gif" />
     <Content Include="Js_U\APP_USER.js" />
+    <Content Include="Js_U\Category.js" />
+    <Content Include="Js_U\Contain.js" />
+    <Content Include="Js_U\CustomerBrand.js" />
+    <Content Include="Js_U\Line.js" />
+    <Content Include="Js_U\LineSize.js" />
+    <Content Include="Js_U\ProductLine.js" />
     <Content Include="Js_U\Source.js" />
+    <Content Include="Js_U\TestFormula.js" />
     <Content Include="Js_U\TestValidate.js" />
+    <Content Include="LineListFilter.aspx" />
+    <Content Include="LineSizeListFilter.aspx" />
+    <Content Include="LineSizeWeb.aspx" />
+    <Content Include="LineWeb.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Menu.ascx" />
     <Content Include="Module\ChartJs\Chart.js-2.1.6\dist\Chart.bundle.js" />
@@ -1453,6 +1559,8 @@
     <Content Include="Module\xmlToJSON-master\test\lib\jasmine-1.3.0\jasmine.js" />
     <Content Include="Module\xmlToJSON-master\test\SpecRunner.html" />
     <Content Include="Module\xmlToJSON-master\test\spec\xmlToJSONSpec.js" />
+    <Content Include="ProductLineListFilter.aspx" />
+    <Content Include="ProductLineWeb.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Handler1.ashx" />
@@ -1476,18 +1584,20 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Services\APP_USERService.asmx" />
+    <Content Include="Services\CategoryService.asmx" />
+    <Content Include="Services\ContainService.asmx" />
+    <Content Include="Services\CustomerBrandService.asmx" />
+    <Content Include="Services\LineService.asmx" />
+    <Content Include="Services\LineSizeService.asmx" />
+    <Content Include="Services\ProductLineService.asmx" />
     <Content Include="Services\SourceService.asmx" />
+    <Content Include="Services\TestFormulaService.asmx" />
     <Content Include="Services\TestValidateService.asmx" />
     <Content Include="Services\WebService1.asmx" />
     <Content Include="SourceListFilter.aspx" />
     <Content Include="SourceWeb.aspx" />
-    <Content Include="SQL\Store_AccountRegistration.sql" />
-    <Content Include="SQL\Store_AccountStatus.sql" />
     <Content Include="SQL\Store_APP_USER.sql" />
     <Content Include="SQL\Store_Source.sql" />
-    <Content Include="SQL\Store_TestValidate.sql" />
-    <Content Include="TestValidateListFilter.aspx" />
-    <Content Include="TestValidateWeb.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
     <Content Include="WebService1.asmx" />

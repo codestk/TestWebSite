@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Globalization;
 
- 
+namespace StkLib.Common
+{
     public class StkDate
     {
         /// <summary>
@@ -12,14 +13,14 @@ using System.Globalization;
         /// <returns></returns>
         public static DateTime TextToDate(string ddMMyyyy)
         {
-            string[] DateArray = ddMMyyyy.Split('/');
+            string[] dateArray = ddMMyyyy.Split('/');
 
-            string d = DateArray[0];
-            string m = DateArray[1];
-            string y = DateArray[2];
+            string d = dateArray[0];
+            string m = dateArray[1];
+            string y = dateArray[2];
 
             //MM/dd/yyyy
-            string dateStringReformat = DateArray[1] + "/" + DateArray[0] + "/" + DateArray[2];
+            string dateStringReformat = dateArray[1] + "/" + dateArray[0] + "/" + dateArray[2];
 
             var culture = new CultureInfo("en-US", false);
 
@@ -158,4 +159,5 @@ using System.Globalization;
             return _dt.AddHours(23).AddMinutes(59).AddMilliseconds(59);
         }
     }
+}
    

@@ -1,8 +1,10 @@
-﻿ 
-using System;
+﻿using System;
 using System.Web;
- 
- 
+using MPO.Code.Common;
+using StkLib.Cryptography;
+
+namespace StkLib.Common
+{
     public class Stk_QueryString
     {
         private readonly string _key = Config.GetApllicationKey();
@@ -46,4 +48,5 @@ using System.Web;
             return o;
         }
     }
+}
  

@@ -1,25 +1,28 @@
 ﻿using System;
 
-public class Stk_TextNull
+namespace StkLib.Common
 {
-    private const string DefaultEmpty = "";
-
-    public static string DateTotext(DateTime? dt)
+    public class Stk_TextNull
     {
-        string txt = dt.ToString();
-        if (txt == "")
+        private const string DefaultEmpty = "";
+
+        public static string DateTotext(DateTime? dt)
         {
-            txt = DefaultEmpty;
+            string txt = dt.ToString();
+            if (txt == "")
+            {
+                txt = DefaultEmpty;
+            }
+            return txt;
         }
-        return txt;
-    }
 
-    public static string StringTotext(string s)
-    {
-        string txt = s;
-        if (string.IsNullOrEmpty(txt))
-            txt = DefaultEmpty;
+        public static string StringTotext(string s)
+        {
+            string txt = s;
+            if (string.IsNullOrEmpty(txt))
+                txt = DefaultEmpty;
 
-        return txt;
+            return txt;
+        }
     }
 }
